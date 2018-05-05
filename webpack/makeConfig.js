@@ -236,7 +236,8 @@ if (!module.parent) {
   );
 }
 
-exports = module.exports = makeConfig;
+exports = makeConfig;
+module.exports = makeConfig;
 exports.DEFAULTS = DEFAULTS;
 exports.POSTCSS_LOADER = POSTCSS_LOADER;
 exports.makeStyleLoaders = makeStyleLoaders;

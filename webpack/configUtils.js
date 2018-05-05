@@ -9,7 +9,7 @@ const MATCH_FONTS = /\.(eot|ttf|woff|woff2|svg)(\?.+)?$/;
 
 require('dotenv').config()
 
-const HTTP = {
+const NETWORK = {
 	CLIENT_PORT: process.env.CLIENT_PORT || 3456,
 	AUTH_SERVER_PORT: process.env.AUTH_SERVER_PORT || 3457,
 	CLIENT_PROTOCOL: process.env.CLIENT_PROTOCOL || 'http://',
@@ -36,7 +36,7 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
     process.env.STEEMCONNECT_CLIENT_ID || 'busy.app',
   ),
   'process.env.STEEMCONNECT_REDIRECT_URL': JSON.stringify(
-    process.env.STEEMCONNECT_REDIRECT_URL || `${HTTP.CLIENT_PROTOCOL}localhost:${HTTP.CLIENT_PORT}/callback`,
+    process.env.STEEMCONNECT_REDIRECT_URL || `${NETWORK.CLIENT_PROTOCOL}localhost:${NETWORK.CLIENT_PORT}/callback`,
   ),
   'process.env.STEEMCONNECT_HOST': JSON.stringify(
     process.env.STEEMCONNECT_HOST || 'https://steemconnect.com',
@@ -53,5 +53,5 @@ module.exports = {
   MATCH_FONTS,
   POSTCSS_LOADER,
 	DEFINE_PLUGIN,
-	HTTP
+	NETWORK
 };

@@ -55,5 +55,5 @@ app.get('/i/:parent/@:referral/:permlink', async (req, res) => {
 const server = app.listen(process.env.AUTH_SERVER_PORT, 'localhost', () => {
   const host = server.address().address;
   const port = server.address().port;
-  console.log(`Auth server running at ${process.env.AUTH_SERVER_PROTOCOL} %s:%s/`, host, port);
+  console.log(`Auth server running at ${process.env.AUTH_SERVER_PROTOCOL}%s:%s/`, host, port);
 });

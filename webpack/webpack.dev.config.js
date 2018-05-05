@@ -46,7 +46,7 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 3000,
+    port: NETWORK.CLIENT_PORT,
     contentBase: [path.resolve(baseDir, 'templates'), path.resolve(baseDir, 'assets')],
     historyApiFallback: {
       disableDotRule: true,

@@ -21,7 +21,7 @@ module.exports = {
         ENABLE_LOGGER: JSON.stringify(process.env.ENABLE_LOGGER),
         STEEMCONNECT_CLIENT_ID: JSON.stringify(process.env.STEEMCONNECT_CLIENT_ID || 'busy.app'),
         STEEMCONNECT_REDIRECT_URL: JSON.stringify(
-          process.env.STEEMCONNECT_REDIRECT_URL || `${configUtils.HTTP.CLIENT_PROTOCOL}localhost:${configUtils.HTTP.CLIENT_PORT}/callback`,
+          process.env.STEEMCONNECT_REDIRECT_URL || `${configUtils.NETWORK.CLIENT_PROTOCOL}localhost:${configUtils.NETWORK.CLIENT_PORT}/callback`,
         ),
         STEEMCONNECT_HOST: JSON.stringify(
           process.env.STEEMCONNECT_HOST || 'https://steemconnect.com',
@@ -71,14 +71,14 @@ module.exports = {
     ],
   },
   devServer: {
-    port: configUtils.HTTP.CLIENT_PORT,
+    port: configUtils.NETWORK.CLIENT_PORT,
     contentBase: [path.resolve(baseDir, 'templates'), path.resolve(baseDir, 'assets')],
     historyApiFallback: {
       disableDotRule: true,
     },
     proxy: {
-      '/callback': `${configUtils.HTTP.AUTH_SERVER_PROTOCOL}localhost:${configUtils.HTTP.AUTH_SERVER_PORT}`,
-      '/i/**': `${configUtils.HTTP.AUTH_SERVER_PROTOCOL}localhost:${configUtils.HTTP.AUTH_SERVER_PORT}`,
+      '/callback': `${configUtils.NETWORK.AUTH_SERVER_PROTOCOL}localhost:${configUtils.NETWORK.AUTH_SERVER_PORT}`,
+      '/i/**': `${configUtils.NETWORK.AUTH_SERVER_PROTOCOL}localhost:${configUtils.NETWORK.AUTH_SERVER_PORT}`,
     },
   },
 };
