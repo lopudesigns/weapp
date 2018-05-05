@@ -4,7 +4,7 @@
  */
 const app = require('./app').app;
 const debug = require('debug')('busy:server');
-require('dotenv').config()
+require('dotenv').config();
 /**
  * Normalize a port into a number, string, or false.
  */
