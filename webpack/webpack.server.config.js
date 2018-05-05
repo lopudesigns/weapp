@@ -46,7 +46,7 @@ module.exports = {
         process.env.STEEMCONNECT_CLIENT_ID || 'busy.app',
       ),
       'process.env.STEEMCONNECT_REDIRECT_URL': JSON.stringify(
-        process.env.STEEMCONNECT_REDIRECT_URL || 'http://localhost:3000/callback',
+        process.env.STEEMCONNECT_REDIRECT_URL || (process.env.CLIENT_PROTOCOL || configUtils.HTTP.CLIENT_PROTOCOL)+'localhost:'+(process.env.CLIENT_PORT || configUtils.CLIENT_PORT)+'/callback',
       ),
       'process.env.STEEMCONNECT_HOST': JSON.stringify(
         process.env.STEEMCONNECT_HOST || 'https://steemconnect.com',

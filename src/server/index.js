@@ -4,7 +4,7 @@
  */
 const app = require('./app').app;
 const debug = require('debug')('busy:server');
-
+require('dotenv').config()
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -28,7 +28,7 @@ function normalizePort(val) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT) || 3000;
+const port = normalizePort(process.env.CLIENT_PORT) || 3456;
 app.set('port', port);
 
 /**

@@ -6,6 +6,7 @@ const configUtils = require('./configUtils');
 
 const baseDir = path.resolve(__dirname, '..');
 
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: path.resolve(baseDir, './src/client/index.js'),
@@ -20,7 +21,7 @@ module.exports = {
         ENABLE_LOGGER: JSON.stringify(process.env.ENABLE_LOGGER),
         STEEMCONNECT_CLIENT_ID: JSON.stringify(process.env.STEEMCONNECT_CLIENT_ID || 'busy.app'),
         STEEMCONNECT_REDIRECT_URL: JSON.stringify(
-          process.env.STEEMCONNECT_REDIRECT_URL || 'http://localhost:3000/callback',
+          process.env.STEEMCONNECT_REDIRECT_URL || (process.env.CLIENT_PROTOCOL || configUtils.HTTP.CLIENT_PROTOCOL)+'localhost:'+(process.env.CLIENT_PORT || configUtils.HTTP.CLIENT_PORT)+'/callback',
         ),
         STEEMCONNECT_HOST: JSON.stringify(
           process.env.STEEMCONNECT_HOST || 'https://steemconnect.com',
@@ -70,14 +71,14 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 3000,
+    port: process.env.CLIENT_PORT || configUtils.HTTP.CLIENT_PORT,
     contentBase: [path.resolve(baseDir, 'templates'), path.resolve(baseDir, 'assets')],
     historyApiFallback: {
       disableDotRule: true,
     },
     proxy: {
-      '/callback': 'http://localhost:3001',
-      '/i/**': 'http://localhost:3001',
+      '/callback': (process.env.AUTH_SERVER_PROTOCOL || configUtils.HTTP.AUTH_SERVER_PROTOCOL)+'localhost:'+(process.env.AUTH_SERVER_PORT || configUtils.HTTP.AUTH_SERVER_PORT),
+      '/i/**': (process.env.AUTH_SERVER_PROTOCOL || configUtils.HTTP.AUTH_SERVER_PROTOCOL)+'localhost:'+(process.env.AUTH_SERVER_PORT || configUtils.HTTP.AUTH_SERVER_PORT),
     },
   },
 };
