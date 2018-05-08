@@ -306,7 +306,7 @@
   "display_nsfw_posts_details": "आप सभी पोस्ट को डिफ़ॉल्ट/विथत दिखने जैसा बना सकते हैं NSFW टैग/पट्टी लगा कर|",
   "display_nsfw_posts": "NSFW पोस्ट प्रदर्शित करें",
   "rewrite_links": "Rewrite links",
-  "rewrite_links_details": "You can enable this option to replace Steemit.com links with Busy.org links.",
+  "rewrite_links_details": "You can enable this option to replace Steemit.com links with ezira.io links.",
   "use_beta": "Use Busy beta",
   "use_beta_details": "You can enable this option to use Busy beta by default.",
   "post_preview_hidden_for_nsfw": "इस पोस्ट का पूर्वदर्शन छुपा हुवा है क्योंकि यह NSFW से चिन्हित है|",

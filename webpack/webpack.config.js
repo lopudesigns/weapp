@@ -12,7 +12,9 @@ const {
   MATCH_CSS_LESS,
   MATCH_FONTS,
   DEFINE_PLUGIN,
-  POSTCSS_LOADER,
+	POSTCSS_LOADER,
+	REPLACE_RULES,
+	NETWORK
 } = require('./configUtils');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -69,9 +71,9 @@ module.exports = {
     path: path.join(baseDir, '/public/js'),
     filename: 'busyapp-[name].[chunkhash].js',
     publicPath: '/js/',
-  },
+	},
   plugins: [
-    DEFINE_PLUGIN,
+		DEFINE_PLUGIN,
     new LodashModuleReplacementPlugin({
       collections: true,
       paths: true,
@@ -118,6 +120,7 @@ module.exports = {
   ],
   module: {
     rules: [
+			REPLACE_RULES,
       {
         test: MATCH_JS,
         exclude: /node_modules/,
@@ -141,7 +144,7 @@ module.exports = {
         options: {
           removeComments: false,
         },
-      },
-    ].concat(makeStyleLoaders()),
+			},
+		].concat(makeStyleLoaders())
   },
 };

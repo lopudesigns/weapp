@@ -20,6 +20,7 @@ import QuickPostEditor from '../components/QuickPostEditor/QuickPostEditor';
   authenticated: getIsAuthenticated(state),
   loaded: getIsLoaded(state),
 }))
+
 class Page extends React.Component {
   static propTypes = {
     authenticated: PropTypes.bool.isRequired,
@@ -57,7 +58,9 @@ class Page extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>Busy</title>
+          <title>
+						BRAND_NAME_CAPITALIZED
+					</title>
           <meta name="robots" content={robots} />
         </Helmet>
         <ScrollToTop />

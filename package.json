@@ -16,6 +16,7 @@
     "prettier-check": "node ./scripts/prettier/tasks/checkFiles.js",
     "prettier-check-all": "node ./scripts/prettier/tasks/checkFiles.js all",
     "prettier-file": "node ./scripts/prettier/tasks/formatFile.js",
+    "dev": "yarn run dev-server",
     "dev-server": "run-p dev-server:auth-server dev-server:client",
     "dev-server:client": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
     "dev-server:auth-server": "node ./src/server/auth-server.js",
@@ -66,6 +67,7 @@
     "css-loader": "^0.28.7",
     "debug": "~2.2.0",
     "diff-match-patch": "^1.0.0",
+    "dotenv": "^5.0.1",
     "embedjs": "^0.0.11",
     "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.1",
@@ -90,6 +92,7 @@
     "matchmedia": "^0.1.2",
     "nodemon": "^1.9.2",
     "npm-run-all": "^4.0.2",
+    "postcss-flexbugs-fixes": "^3.3.1",
     "postcss-loader": "^2.0.8",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
@@ -155,6 +158,8 @@
     "minimatch": "^3.0.4",
     "prettier": "^1.9.2",
     "react-test-renderer": "^15.6.1",
+    "replace-in-file-webpack-plugin": "^1.0.5",
+    "string-replace-loader": "^2.1.1",
     "webpack-dev-server": "~2.9.3"
   },
   "jest": {

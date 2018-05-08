@@ -4,7 +4,9 @@ const {
   MATCH_CSS_LESS,
   MATCH_FONTS,
   DEFINE_PLUGIN,
-  POSTCSS_LOADER,
+	POSTCSS_LOADER,
+	REPLACE_RULES,
+	NETWORK
 } = require('./configUtils');
 
 const baseDir = path.resolve(__dirname, '..');
@@ -19,6 +21,7 @@ module.exports = {
   plugins: [DEFINE_PLUGIN],
   module: {
     rules: [
+			REPLACE_RULES,
       {
         test: MATCH_JS,
         exclude: /node_modules/,
@@ -45,14 +48,14 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 3000,
+    port: NETWORK.CLIENT_PORT,
     contentBase: [path.resolve(baseDir, 'templates'), path.resolve(baseDir, 'assets')],
     historyApiFallback: {
       disableDotRule: true,
     },
     proxy: {
-      '/callback': 'http://localhost:3001',
-      '/i/**': 'http://localhost:3001',
+      '/callback': `${NETWORK.AUTH_SERVER_PROTOCOL}localhost:${NETWORK.AUTH_SERVER_PORT}`,
+      '/i/**': `${NETWORK.AUTH_SERVER_PROTOCOL}localhost:${NETWORK.AUTH_SERVER_PORT}`,
     },
   },
 };

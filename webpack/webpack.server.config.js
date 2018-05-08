@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const { MATCH_JS, MATCH_CSS_LESS, DEFINE_PLUGIN } = require('./configUtils');
+const { MATCH_JS, MATCH_CSS_LESS, DEFINE_PLUGIN, REPLACE_RULES } = require('./configUtils');
 
 const baseDir = path.resolve(__dirname, '..');
 
@@ -20,6 +20,9 @@ module.exports = {
     __dirname: true,
   },
   module: {
+		rules: [
+			REPLACE_RULES
+		],
     loaders: [
       {
         test: MATCH_JS,
@@ -36,7 +39,7 @@ module.exports = {
     ],
   },
   plugins: [
-    DEFINE_PLUGIN,
+		DEFINE_PLUGIN,
     new webpack.NormalModuleReplacementPlugin(MATCH_CSS_LESS, 'identity-obj-proxy'),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
