@@ -70,11 +70,11 @@ const REPLACE_RULES = {
 				replace: 'ez',
 				flags: 'g'
 			},
-			{
-				search: 'BRAND_COLOR',
-				replace: '#ff2020',
-				flags: 'g'
-			}
+			// {
+			// 	search: 'BRAND_COLOR',
+			// 	replace: '#ff2020',
+			// 	flags: 'g'
+			// }
 		]
 	}
 }
