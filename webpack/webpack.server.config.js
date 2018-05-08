@@ -21,7 +21,6 @@ module.exports = {
   },
   module: {
 		rules: [
-			REPLACE_RULES
 		],
     loaders: [
       {
