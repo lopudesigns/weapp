@@ -1,13 +1,15 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const path = require('path');
 
 const MATCH_JS = /\.js$/i;
 const MATCH_CSS_LESS = /\.(css|less)$/i;
 const MATCH_FONTS = /\.(eot|ttf|woff|woff2|svg)(\?.+)?$/;
 
 require('dotenv').config()
+const baseDir = path.resolve(__dirname, '..');
 
 const NETWORK = {
 	CLIENT_PORT: process.env.CLIENT_PORT || 3456,
@@ -44,8 +46,38 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
   'process.env.STEEMJS_URL': JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
   'process.env.SIGNUP_URL': JSON.stringify(
     process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=busy',
-  ),
+	)
 });
+
+const REPLACE_RULES = {
+	test: /.*\.(js|css|less|html)$/,
+	include: [/src/, /templates/],
+	loader: 'string-replace-loader',
+	options: {
+		multiple: [
+			{
+				search: 'BRAND_NAME_CAPITALIZED',
+				replace: 'Ezira',
+				flags: 'g'
+			},
+			{
+				search: 'BRAND_NAME',
+				replace: 'ezira',
+				flags: 'g'
+			},
+			{
+				search: 'BRAND_ICON_CLASS_PREFIX',
+				replace: 'ez',
+				flags: 'g'
+			},
+			{
+				search: 'BRAND_COLOR',
+				replace: '#ff2020',
+				flags: 'g'
+			}
+		]
+	}
+}
 
 module.exports = {
   MATCH_JS,
@@ -53,5 +85,6 @@ module.exports = {
   MATCH_FONTS,
   POSTCSS_LOADER,
 	DEFINE_PLUGIN,
+	REPLACE_RULES,
 	NETWORK
 };

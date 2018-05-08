@@ -137,7 +137,7 @@ export default class User extends React.Component {
     const url = `${busyHost}/@${username}`;
     const displayedUsername = profile.name || username || '';
     const hasCover = !!profile.cover_image;
-    const title = `${displayedUsername} - Ezira`;
+    const title = `${displayedUsername} BRAND_NAME_CAPITALIZED`;
 
     const isSameUser = authenticated && authenticatedUser.name === username;
 

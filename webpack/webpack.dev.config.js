@@ -5,6 +5,7 @@ const {
   MATCH_FONTS,
   DEFINE_PLUGIN,
 	POSTCSS_LOADER,
+	REPLACE_RULES,
 	NETWORK
 } = require('./configUtils');
 
@@ -20,6 +21,7 @@ module.exports = {
   plugins: [DEFINE_PLUGIN],
   module: {
     rules: [
+			REPLACE_RULES,
       {
         test: MATCH_JS,
         exclude: /node_modules/,

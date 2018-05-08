@@ -30,10 +30,11 @@ module.exports = {
         IS_BROWSER: JSON.stringify(true),
         SIGNUP_URL: JSON.stringify(process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=busy'),
       },
-    }),
+		}),
   ],
   module: {
     rules: [
+			configUtils.REPLACE_RULES,
       {
         test: configUtils.MATCH_JS_JSX,
         exclude: /node_modules/,

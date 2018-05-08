@@ -14,7 +14,7 @@
 @green: #54d2a0;
 @blue-dodgerBlue: #ff2020;
 // @blue-dodgerBlue: #2088ff;
-@blue-navyBlue: #ff7979;
+@blue-navyBlue: lighten(@blue-dodgerBlue, 30);
 // @blue-navyBlue: #79b8ff;
 @blue-botticelli: #99aab5;
 @blue-hawkesBlue: #e7e9f5;
@@ -22,10 +22,10 @@
 @blue-baliHai: #8798a4;
 @blue-heather: #a1afba;
 @blue-solitude: #f5f6f9;
-@blue-deepSkyBlue: #ed0000;
+@blue-deepSkyBlue: darken(@blue-dodgerBlue, 10);
 // @blue-deepSkyBlue: #00aced;
 @blue-pattensBlue: #f3f6fa;
-@teal: #de5b5b;
+@teal: lighten(@blue-dodgerBlue, 25);
 // @teal: #5bc0de;
 @normal-grey: #4f545c;
 @grey-mortar: #595959;
@@ -84,7 +84,7 @@
 @comment-avatar-size-small: 32px;
 @comment-text-offset-small: @comment-avatar-size-small + @comment-text-left-margin;
 
-@table-border: 1px solid rgba(34, 36, 38, 0.15);
+@table-border: 1px solid darken(@blue-dodgerBlue, 85);
 
 // Share Buttons
 @facebook-background-color: #3b5998;

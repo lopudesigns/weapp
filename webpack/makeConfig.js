@@ -59,7 +59,8 @@ function makePlugins(options) {
           process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=busy',
         ),
       },
-    }),
+		}),
+		configUtils.REPLACE_PLUGIN,
     new LodashModuleReplacementPlugin({
       collections: true,
       paths: true,

@@ -352,8 +352,8 @@ class Topnav extends React.Component {
         <div className="topnav-layout">
           <div className={classNames('left', { 'Topnav__mobile-hidden': searchBarActive })}>
             <Link className="Topnav__brand" to="/">
-              <i className="iconfont icon-busy Topnav__brand-icon" />
-              Ezira
+              <i className="iconfont BRAND_ICON_CLASS_PREFIXicon-BRAND_NAME Topnav__brand-icon" />
+              BRAND_NAME_CAPITALIZED
             </Link>
             <span className="Topnav__version">alpha</span>
           </div>
