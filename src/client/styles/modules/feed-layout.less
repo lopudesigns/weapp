@@ -1,8 +1,14 @@
 @import (reference) './variables.less';
 
 .feed-layout {
-  position: relative;
-
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: row;
+	@media @small {
+		justify-content: center;
+	}
   @media only screen and (min-width: 768px) and (max-width: 1200px) {
     padding: 0 @mobile-padding;
   }
@@ -25,7 +31,7 @@
     float: left;
     display: none;
     width: @left-width;
-
+		margin-left: -@left-width;
     &__user {
       min-height: 150px !important;
     }

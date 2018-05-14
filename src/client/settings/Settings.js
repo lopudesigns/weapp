@@ -198,7 +198,7 @@ export default class Settings extends React.Component {
       <div className="shifted">
         <Helmet>
           <title>
-            {intl.formatMessage({ id: 'settings', defaultMessage: 'Settings' })} BRAND_NAME_CAPITALIZED
+            {intl.formatMessage({ id: 'settings', defaultMessage: 'Settings' })} Ezira
           </title>
         </Helmet>
         <div className="settings-layout container">
@@ -305,7 +305,7 @@ export default class Settings extends React.Component {
                   <p>
                     <FormattedMessage
                       id="rewrite_links_details"
-                      defaultMessage="You can enable this option to replace Steemit.com links with BRAND_NAME_CAPITALIZED.io links."
+                      defaultMessage="You can enable this option to replace Steemit.com links with Ezira.io links."
                     />
                   </p>
                   <div className="Settings__section__checkbox">

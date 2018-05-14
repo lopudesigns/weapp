@@ -18,6 +18,12 @@ const NETWORK = {
 	AUTH_SERVER_PROTOCOL: process.env.AUTH_SERVER_PROTOCOL || 'http://'
 };
 
+const BRAND = {
+	BRAND_NAME: 'ezira',
+	BRAND_NAME_CAPITALIZED: 'Ezira',
+	BRAND_COLOR: 'red'
+}
+
 const POSTCSS_LOADER = {
   loader: 'postcss-loader',
   options: {
@@ -35,17 +41,17 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
     ? JSON.stringify('development')
     : JSON.stringify('production'),
   'process.env.STEEMCONNECT_CLIENT_ID': JSON.stringify(
-    process.env.STEEMCONNECT_CLIENT_ID || 'busy.app',
+    process.env.STEEMCONNECT_CLIENT_ID || 'ezira-app',
   ),
   'process.env.STEEMCONNECT_REDIRECT_URL': JSON.stringify(
-    process.env.STEEMCONNECT_REDIRECT_URL || `${NETWORK.CLIENT_PROTOCOL}localhost:${NETWORK.CLIENT_PORT}/callback`,
+    process.env.STEEMCONNECT_REDIRECT_URL || `'http://ezira.src/callback`,
   ),
   'process.env.STEEMCONNECT_HOST': JSON.stringify(
-    process.env.STEEMCONNECT_HOST || 'https://steemconnect.com',
+    process.env.STEEMCONNECT_HOST || 'https://v2.steemconnect.com',
   ),
   'process.env.STEEMJS_URL': JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
   'process.env.SIGNUP_URL': JSON.stringify(
-    process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=busy',
+    process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=ezira',
 	)
 });
 
@@ -55,14 +61,34 @@ const REPLACE_RULES = {
 	loader: 'string-replace-loader',
 	options: {
 		multiple: [
+			// {
+			// 	search: 'CLIENT_PORT',
+			// 	replace: NETWORK.CLIENT_PORT,
+			// 	flags: 'g'
+			// },
+			// {
+			// 	search: 'CLIENT_PROTOCOL',
+			// 	replace: NETWORK.CLIENT_PROTOCOL,
+			// 	flags: 'g'
+			// },
+			// {
+			// 	search: 'AUTH_SERVER_PORT',
+			// 	replace: NETWORK.AUTH_SERVER_PORT,
+			// 	flags: 'g'
+			// },
+			// {
+			// 	search: 'AUTH_SERVER_PROTOCOL',
+			// 	replace: NETWORK.AUTH_SERVER_PROTOCOL,
+			// 	flags: 'g'
+			// },
 			{
 				search: 'BRAND_NAME_CAPITALIZED',
-				replace: 'Ezira',
+				replace: BRAND.BRAND_NAME_CAPITALIZED,
 				flags: 'g'
 			},
 			{
 				search: 'BRAND_NAME',
-				replace: 'ezira',
+				replace: BRAND.BRAND_NAME,
 				flags: 'g'
 			},
 			{

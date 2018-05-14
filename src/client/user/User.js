@@ -137,7 +137,7 @@ export default class User extends React.Component {
     const url = `${busyHost}/@${username}`;
     const displayedUsername = profile.name || username || '';
     const hasCover = !!profile.cover_image;
-    const title = `${displayedUsername} BRAND_NAME_CAPITALIZED`;
+    const title = `${displayedUsername} Ezira`;
 
     const isSameUser = authenticated && authenticatedUser.name === username;
 
@@ -188,7 +188,9 @@ export default class User extends React.Component {
               </div>
             </Affix>
             <Affix className="rightContainer" stickPosition={72}>
-              <div className="right">{loaded && <RightSidebar key={user.name} />}</div>
+							<div className="right">{loaded 
+							// && <RightSidebar key={user.name} />
+							}</div>
             </Affix>
             {loaded && <div className="center">{renderRoutes(this.props.route.routes)}</div>}
           </div>

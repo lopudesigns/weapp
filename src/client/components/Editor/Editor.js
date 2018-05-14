@@ -204,7 +204,7 @@ class Editor extends React.Component {
       <Form className="Editor" layout="vertical" onSubmit={this.handleSubmit}>
         <Helmet>
           <title>
-            {intl.formatMessage({ id: 'write_post', defaultMessage: 'Write post' })} BRAND_NAME_CAPITALIZED
+            {intl.formatMessage({ id: 'write_post', defaultMessage: 'Write post' })} Ezira
           </title>
         </Helmet>
         <Form.Item
