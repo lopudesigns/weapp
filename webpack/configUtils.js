@@ -1,21 +1,27 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
-const isDevelopment = process.env.NODE_ENV !== 'production';
-const path = require('path');
+const paths = require('../scripts/paths');
+require('dotenv').config()
+const IS_DEV = process.env.NODE_ENV !== 'production';
+
+const CONTENT_PORT = process.env.CLIENT_PORT || 3456;
+const SERVER_PORT = process.env.SSR_PORT || 3456;
 
 const MATCH_JS = /\.js$/i;
 const MATCH_CSS_LESS = /\.(css|less)$/i;
 const MATCH_FONTS = /\.(eot|ttf|woff|woff2|svg)(\?.+)?$/;
 
-require('dotenv').config()
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
+
+
+const path = require('path')
 const baseDir = path.resolve(__dirname, '..');
 
 const NETWORK = {
 	CLIENT_PORT: process.env.CLIENT_PORT || 3456,
-	AUTH_SERVER_PORT: process.env.AUTH_SERVER_PORT || 3457,
+	SSR_PORT: process.env.SSR_PORT || 3457,
 	CLIENT_PROTOCOL: process.env.CLIENT_PROTOCOL || 'http://',
-	AUTH_SERVER_PROTOCOL: process.env.AUTH_SERVER_PROTOCOL || 'http://'
+	SSR_PROTOCOL: process.env.SSR_PROTOCOL || 'http://'
 };
 
 const BRAND = {
@@ -37,9 +43,7 @@ const POSTCSS_LOADER = {
 };
 
 const DEFINE_PLUGIN = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': isDevelopment
-    ? JSON.stringify('development')
-    : JSON.stringify('production'),
+  'process.env.NODE_ENV': IS_DEV ? JSON.stringify('development') : JSON.stringify('production'),
   'process.env.STEEMCONNECT_CLIENT_ID': JSON.stringify(
     process.env.STEEMCONNECT_CLIENT_ID || 'ezira-app',
   ),
@@ -52,7 +56,8 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
   'process.env.STEEMJS_URL': JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
   'process.env.SIGNUP_URL': JSON.stringify(
     process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=ezira',
-	)
+  ),
+  'process.env.MANIFEST_PATH': JSON.stringify(paths.assets),
 });
 
 const REPLACE_RULES = {
@@ -72,13 +77,13 @@ const REPLACE_RULES = {
 			// 	flags: 'g'
 			// },
 			// {
-			// 	search: 'AUTH_SERVER_PORT',
-			// 	replace: NETWORK.AUTH_SERVER_PORT,
+			// 	search: 'SSR_PORT',
+			// 	replace: NETWORK.SSR_PORT,
 			// 	flags: 'g'
 			// },
 			// {
-			// 	search: 'AUTH_SERVER_PROTOCOL',
-			// 	replace: NETWORK.AUTH_SERVER_PROTOCOL,
+			// 	search: 'SSR_PROTOCOL',
+			// 	replace: NETWORK.SSR_PROTOCOL,
 			// 	flags: 'g'
 			// },
 			{
@@ -106,6 +111,8 @@ const REPLACE_RULES = {
 }
 
 module.exports = {
+  SERVER_PORT,
+  CONTENT_PORT,
   MATCH_JS,
   MATCH_CSS_LESS,
   MATCH_FONTS,

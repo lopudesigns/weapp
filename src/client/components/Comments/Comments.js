@@ -10,7 +10,7 @@ import CommentForm from './CommentForm';
 import Comment from './Comment';
 import './Comments.less';
 import MoreCommentsButton from './MoreCommentsButton';
-import { findRootComment, getLinkedComment } from '../../helpers/commentHelpers';
+import { findTopComment, getLinkedComment } from '../../helpers/commentHelpers';
 
 @injectIntl
 class Comments extends React.Component {
@@ -190,6 +190,7 @@ class Comments extends React.Component {
   render() {
     const {
       user,
+      parentPost,
       comments,
       rootLevelComments,
       commentsChildren,
@@ -207,7 +208,8 @@ class Comments extends React.Component {
     } = this.props;
     const { sort } = this.state;
 
-    const rootLinkedComment = findRootComment(comments, getLinkedComment(comments));
+    const linkedComment = getLinkedComment(comments);
+    const rootLinkedComment = findTopComment(parentPost, comments, linkedComment);
     const commentsToRender = this.commentsToRender(rootLevelComments, rootLinkedComment);
 
     return (
@@ -246,6 +248,11 @@ class Comments extends React.Component {
           />
         )}
         {loading && <Loading />}
+        {parentPost.children === 0 && (
+          <div className="Comments__empty">
+            <FormattedMessage id="empty_comments" defaultMessage="There are no comments yet." />
+          </div>
+        )}
         {!loading &&
           show &&
           comments &&

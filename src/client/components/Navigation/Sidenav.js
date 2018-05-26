@@ -13,7 +13,7 @@ const Sidenav = ({ username }) => (
     {true && (
       <ul className="Sidenav">
         <li>
-          <NavLink to={`/`}>
+          <NavLink to={`/`} activeClassName="Sidenav__item--active" exact>
             <i className="iconfont icon-home" />
             <FormattedMessage id="home" defaultMessage="Home" />
           </NavLink>
@@ -30,6 +30,12 @@ const Sidenav = ({ username }) => (
             <FormattedMessage id="feeds" defaultMessage="Feeds" />
           </NavLink>
         </li>
+				<li>
+					<NavLink to="/trending" activeClassName="Sidenav__item--active" isActive={isNews}>
+						{/* <i className="iconfont icon-headlines" /> */}
+						<FormattedMessage id="news" defaultMessage="News" />
+					</NavLink>
+				</li>
         <li>
           <NavLink to={`/groups`}>
             <i className="iconfont icon-home" />
@@ -43,7 +49,7 @@ const Sidenav = ({ username }) => (
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/wallet`}>
+					<NavLink to="/wallet" activeClassName="Sidenav__item--active" isActive={isWallet}>
             <i className="iconfont icon-home" />
             <FormattedMessage id="wallet" defaultMessage="Wallet" />
           </NavLink>
