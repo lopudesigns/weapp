@@ -28,7 +28,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run linc && npm run prettier-check && npm run test"
     }
   },
   "dependencies": {
