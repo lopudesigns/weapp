@@ -4,9 +4,10 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const paths = require('../scripts/paths');
-const { MATCH_JS, MATCH_CSS_LESS, DEFINE_PLUGIN } = require('./configUtils');
+const { MATCH_JS, MATCH_CSS_LESS, DEFINE_PLUGIN, root_dir } = require('./configUtils');
 
 module.exports = function createConfig(env = 'dev') {
+	const exchangeConfig = require('./exchange')({prod: env})
   const IS_DEV = env === 'dev';
 
   const config = {
@@ -30,7 +31,9 @@ module.exports = function createConfig(env = 'dev') {
       rules: [
         {
           test: MATCH_JS,
-          exclude: /node_modules/,
+          exclude: [
+						/node_modules/,
+					],
           use: {
             loader: 'babel-loader',
             options: {
@@ -39,8 +42,8 @@ module.exports = function createConfig(env = 'dev') {
               cacheDirectory: true,
             },
           },
-        },
-      ],
+				}
+      ].concat(exchangeConfig.rules),
     },
     plugins: [
       DEFINE_PLUGIN,
@@ -52,7 +55,8 @@ module.exports = function createConfig(env = 'dev') {
         name: 'server',
         color: '#c065f4',
       }),
-    ],
+		].concat(exchangeConfig.plugins),
+		resolve: exchangeConfig.resolve
   };
 
   if (IS_DEV) {

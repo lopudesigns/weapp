@@ -54,3 +54,11 @@ const render = async Component => {
 };
 
 render(AppHost);
+
+// Exchange
+
+if(process.env.NODE_ENV === 'development'){
+	require('../exchange/Main-dev.js')
+} else {
+	require('../exchange/Main.js')
+}

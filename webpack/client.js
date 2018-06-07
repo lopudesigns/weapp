@@ -6,6 +6,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const WebpackBar = require('webpackbar');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const paths = require('../scripts/paths');
+const path = require("path");
 
 const {
   CONTENT_PORT,
@@ -14,10 +15,12 @@ const {
   MATCH_FONTS,
   DEFINE_PLUGIN,
 	POSTCSS_LOADER,
-	NETWORK
+	NETWORK,
 } = require('./configUtils');
 
+
 module.exports = function createConfig(env = 'dev') {
+	const exchangeConfig = require('./exchange')({prod: env})
   const IS_DEV = env === 'dev';
   const IS_PROD = !IS_DEV;
 
@@ -42,20 +45,29 @@ module.exports = function createConfig(env = 'dev') {
         name: 'client',
         color: '#f56be2',
       }),
-    ],
+    ].concat(exchangeConfig.plugins),
     module: {
       rules: [
         {
-          test: MATCH_JS,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-        },
+					test: MATCH_JS,
+					exclude: [
+						/node_modules/,
+						path.join(paths.app, 'src', 'exchange')
+					],
+					loader: 'babel-loader',
+				},
         {
           test: MATCH_FONTS,
-          loader: 'url-loader',
-        },
+					loader: 'url-loader',
+					exclude: [
+						path.join(paths.app, 'src', 'exchange')
+					],
+				},
         {
-          test: MATCH_CSS_LESS,
+					test: MATCH_CSS_LESS,
+					exclude: [
+						path.join(paths.app, 'src', 'exchange')
+					],
           use: [
             IS_PROD ? CSSExtract.loader : 'style-loader',
             {
@@ -74,8 +86,9 @@ module.exports = function createConfig(env = 'dev') {
             },
           ],
         },
-      ],
-    },
+      ].concat(exchangeConfig.rules),
+		},
+		resolve: exchangeConfig.resolve
   };
 
   if (IS_DEV) {

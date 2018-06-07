@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const paths = require('../scripts/paths');
+
 require('dotenv').config()
+
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
 const CONTENT_PORT = process.env.CLIENT_PORT || 3456;
@@ -31,7 +33,7 @@ const BRAND = {
 }
 
 const POSTCSS_LOADER = {
-  loader: 'postcss-loader',
+	loader: 'postcss-loader',
   options: {
     ident: 'postcss',
     plugins: () => [
@@ -57,11 +59,14 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
   'process.env.SIGNUP_URL': JSON.stringify(
     process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=ezira',
   ),
-  'process.env.MANIFEST_PATH': JSON.stringify(paths.assets),
+	'process.env.MANIFEST_PATH': JSON.stringify(paths.assets),
 });
 
 const REPLACE_RULES = {
 	test: /.*\.(js|css|less|html)$/,
+	exclude: [
+		path.join(baseDir, 'src', 'exchange')
+	],
 	include: [/src/, /templates/],
 	loader: 'string-replace-loader',
 	options: {
@@ -110,6 +115,7 @@ const REPLACE_RULES = {
 	}
 }
 
+
 module.exports = {
   SERVER_PORT,
   CONTENT_PORT,
@@ -119,5 +125,5 @@ module.exports = {
   POSTCSS_LOADER,
 	DEFINE_PLUGIN,
 	REPLACE_RULES,
-	NETWORK
+	NETWORK,
 };

@@ -55,10 +55,10 @@ const Sidenav = ({ username }) => (
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/exchange`}>
+          <a href={`/exchange`}>
             {/* <i className="iconfont icon-home" /> */}
             <FormattedMessage id="exchange" defaultMessage="Exchange" />
-          </NavLink>
+          </a>
         </li>
         <li>
           <NavLink to={`/marketplace`}>
