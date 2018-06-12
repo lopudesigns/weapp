@@ -92,7 +92,7 @@
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.16",
     "node-rsa": "^0.4.2",
-    "notifyjs": "^3.0.0",
+    "notifyjs": "^0.4.2",
     "npm-run-all": "^4.0.2",
     "numeral": "2.0.4",
     "object-assign": "^4.0.1",
