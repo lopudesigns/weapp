@@ -282,21 +282,21 @@ module.exports = function (env) {
         }
       }]
     },
-    // {
-    //   test: /\.js$/,
-    //   include: [
-    //     path.join(root_dir, 'src', 'exchange'),
-    //     path.join(root_dir, 'node_modules/react-datepicker2')
-    //   ],
-    //   use: [{
-		// 		loader: 'babel-loader',
-    //     options: {
-    //       compact: false,
-    //       cacheDirectory: env.prod ? false : true,
-    //       plugins: ['react-hot-loader/babel']
-    //     }
-    //   }]
-    // },
+    {
+      test: /\.js$/,
+      include: [
+        path.join(root_dir, 'src', 'exchange'),
+        path.join(root_dir, 'node_modules/react-datepicker2')
+      ],
+      use: [{
+				loader: 'babel-loader',
+        options: {
+          compact: false,
+          cacheDirectory: env.prod ? false : true,
+          plugins: ['react-hot-loader/babel']
+        }
+      }]
+    },
     {
       test: /\.coffee$/,
 			loader: 'coffee-loader',
