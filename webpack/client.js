@@ -52,9 +52,18 @@ module.exports = function createConfig(env = 'dev') {
 					test: MATCH_JS,
 					exclude: [
 						/node_modules/,
-						path.join(paths.app, 'src', 'exchange')
 					],
-					loader: 'babel-loader',
+					include: [
+						path.join(root_dir, 'node_modules/react-datepicker2')
+					],
+					use: [{
+						loader: 'babel-loader',
+						options: {
+							compact: false,
+							cacheDirectory: env.prod ? false : true,
+							plugins: ['react-hot-loader/babel']
+						}
+					}]
 				},
         {
           test: MATCH_FONTS,
