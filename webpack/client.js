@@ -54,13 +54,13 @@ module.exports = function createConfig(env = 'dev') {
 						/node_modules/,
 					],
 					include: [
-						path.join(root_dir, 'node_modules/react-datepicker2')
+						path.join(exchangeConfig.root_dir, 'node_modules/react-datepicker2')
 					],
 					use: [{
 						loader: 'babel-loader',
 						options: {
 							compact: false,
-							cacheDirectory: env.prod ? false : true,
+							cacheDirectory: env ? false : true,
 							plugins: ['react-hot-loader/babel']
 						}
 					}]
