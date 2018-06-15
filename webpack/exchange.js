@@ -286,7 +286,8 @@ module.exports = function (env) {
       test: /\.js$/,
       include: [
         path.join(root_dir, 'src', 'exchange'),
-        path.join(root_dir, 'node_modules/react-datepicker2')
+        path.join(root_dir, 'node_modules/react-datepicker2'),
+        path.join(root_dir, 'node_modules/highcharts')
       ],
       use: [{
 				loader: 'babel-loader',
