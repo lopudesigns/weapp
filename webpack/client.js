@@ -32,7 +32,7 @@ module.exports = function createConfig(env = 'dev') {
     output: {
       path: appPath,
       filename: IS_DEV ? 'bundle.js' : 'bundle-[name].[chunkhash].js',
-      publicPath: IS_DEV ? `http://localhost:${NETWORK.CLIENT_PORT}/` : '/',
+      publicPath: IS_DEV ? `http://${NETWORK.URL}:${NETWORK.CLIENT_PORT}/` : '/',
     },
     context: process.cwd(),
     plugins: [

@@ -23,7 +23,8 @@ const NETWORK = {
 	CLIENT_PORT: process.env.CLIENT_PORT || 3456,
 	SSR_PORT: process.env.SSR_PORT || 3457,
 	CLIENT_PROTOCOL: process.env.CLIENT_PROTOCOL || 'http://',
-	SSR_PROTOCOL: process.env.SSR_PROTOCOL || 'http://'
+	SSR_PROTOCOL: process.env.SSR_PROTOCOL || 'http://',
+	URL: 'ezira.src'
 };
 
 const BRAND = {
