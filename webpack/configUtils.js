@@ -23,7 +23,7 @@ const NETWORK = {
 	CLIENT_PROTOCOL: process.env.CLIENT_PROTOCOL || 'http://',
 	SSR_PROTOCOL: process.env.SSR_PROTOCOL || 'http://',
 	URL: 'ezira.src',
-	LOCALHOST: '10.0.0.36'
+	LOCALHOST: process.env.LOCALHOST || 'localhost'
 };
 
 const BRAND = {

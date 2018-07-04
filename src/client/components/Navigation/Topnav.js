@@ -139,55 +139,6 @@ class Topnav extends React.Component {
               <FormattedMessage id="login" defaultMessage="Log in" />
             </a>
           </Menu.Item>
-          <Menu.Item key="more" className="Topnav__menu--icon">
-            <Popover
-              placement="bottom"
-              trigger="click"
-              visible={popoverVisible}
-              onVisibleChange={this.handleMoreMenuVisibleChange}
-              overlayStyle={{ position: 'fixed' }}
-              content={
-                <PopoverMenu onSelect={this.handleMoreMenuSelect}>
-                  <PopoverMenuItem key="my-profile" fullScreenHidden>
-                    <FormattedMessage id="my_profile" defaultMessage="My profile" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="feed" fullScreenHidden>
-                    <FormattedMessage id="feed" defaultMessage="Feed" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="news" fullScreenHidden>
-                    <FormattedMessage id="news" defaultMessage="News" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="replies" fullScreenHidden>
-                    <FormattedMessage id="replies" defaultMessage="Replies" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="wallet" fullScreenHidden>
-                    <FormattedMessage id="wallet" defaultMessage="Wallet" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="activity">
-                    <FormattedMessage id="activity" defaultMessage="Activity" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="bookmarks">
-                    <FormattedMessage id="bookmarks" defaultMessage="Bookmarks" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="drafts">
-                    <FormattedMessage id="drafts" defaultMessage="Drafts" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="settings">
-                    <FormattedMessage id="settings" defaultMessage="Settings" />
-                  </PopoverMenuItem>
-                  <PopoverMenuItem key="logout">
-                    <FormattedMessage id="logout" defaultMessage="Logout" />
-                  </PopoverMenuItem>
-                </PopoverMenu>
-              }
-            >
-              <a className="Topnav__link Topnav__link--light">
-                <i className="material-icons">
-									menu
-								</i>
-              </a>
-            </Popover>
-          </Menu.Item>
 					{/* <Menu.Item key="menu">
             <LanguageSettings />
           </Menu.Item> */}
