@@ -46,18 +46,18 @@ const POSTCSS_LOADER = {
 
 const DEFINE_PLUGIN = new webpack.DefinePlugin({
   'process.env.NODE_ENV': IS_DEV ? JSON.stringify('development') : JSON.stringify('production'),
-  'process.env.STEEMCONNECT_CLIENT_ID': JSON.stringify(
-    process.env.STEEMCONNECT_CLIENT_ID || 'ezira-app',
+  'process.env.AUTH_API_CLIENT_ID': JSON.stringify(
+    process.env.AUTH_API_CLIENT_ID || 'native-app',
   ),
-  'process.env.STEEMCONNECT_REDIRECT_URL': JSON.stringify(
-    process.env.STEEMCONNECT_REDIRECT_URL || `'http://ezira.src/callback`,
+  'process.env.AUTH_API_REDIRECT_URL': JSON.stringify(
+    process.env.AUTH_API_REDIRECT_URL || `'https://alpha.ezira.io/callback`,
   ),
-  'process.env.STEEMCONNECT_HOST': JSON.stringify(
-    process.env.STEEMCONNECT_HOST || 'https://v2.steemconnect.com',
+  'process.env.AUTH_API_HOST': JSON.stringify(
+    process.env.AUTH_API_HOST || 'https://auth.ezira.io',
   ),
-  'process.env.STEEMJS_URL': JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
+  'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://api.ezira.io'),
   'process.env.SIGNUP_URL': JSON.stringify(
-    process.env.SIGNUP_URL || 'https://signup.steemit.com/?ref=ezira',
+    process.env.SIGNUP_URL || 'https://signup.ezira.io/?ref=ezira',
   ),
   'process.env.MANIFEST_PATH': JSON.stringify(paths.assets),
 });

@@ -124,8 +124,8 @@ export const getUpvoteSetting = state => fromSettings.getUpvoteSetting(state.set
 export const getRewardSetting = state => fromSettings.getRewardSetting(state.settings);
 export const getUseBeta = state => fromSettings.getUseBeta(state.settings);
 
-export const getTotalVestingShares = state => fromWallet.getTotalVestingShares(state.wallet);
-export const getTotalVestingFundSteem = state => fromWallet.getTotalVestingFundSteem(state.wallet);
+export const getTotalESCOR = state => fromWallet.getTotalESCOR(state.wallet);
+export const getTotalECOintheESCORfund = state => fromWallet.getTotalECOintheESCORfund(state.wallet);
 export const getUsersTransactions = state => fromWallet.getUsersTransactions(state.wallet);
 export const getUsersAccountHistory = state => fromWallet.getUsersAccountHistory(state.wallet);
 export const getUsersAccountHistoryLoading = state =>

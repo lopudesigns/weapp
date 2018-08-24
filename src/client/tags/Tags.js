@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import steemAPI from '../steemAPI';
+import client from '../client';
 import Loading from '../components/Icon/Loading';
 import Tag from './Tag';
 import { getFavoriteCategories } from '../reducers';
@@ -45,7 +45,7 @@ export default class Tags extends React.Component {
   };
 
   componentDidMount() {
-    steemAPI.getState('tags', (err, result) => {
+    client.getState('tags', (err, result) => {
       this.setState({ tags: result.tags });
     });
   }

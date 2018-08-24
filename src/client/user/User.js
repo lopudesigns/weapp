@@ -119,12 +119,12 @@ export default class User extends React.Component {
 
     const username = this.props.match.params.name;
     const { user } = this.props;
-    const { profile = {} } = user.json_metadata || {};
-    const busyHost = global.postOrigin || 'https://busy.org';
+    const { profile = {} } = user.json || {};
+    const host = global.postOrigin || 'https://alpha.ezira.io';
     const desc = profile.about || `Posts by ${username}`;
     const image = getAvatarURL(username) || '/images/logo.png';
-    const canonicalUrl = `${busyHost}/@${username}`;
-    const url = `${busyHost}/@${username}`;
+    const canonicalUrl = `${host}/@${username}`;
+    const url = `${host}/@${username}`;
     const displayedUsername = profile.name || username || '';
     const hasCover = !!profile.cover_image;
     const title = `${displayedUsername} Ezira`;
@@ -143,15 +143,15 @@ export default class User extends React.Component {
           <meta property="og:url" content={url} />
           <meta property="og:image" content={image} />
           <meta property="og:description" content={desc} />
-          <meta property="og:site_name" content="Busy" />
+          <meta property="og:site_name" content="Ezira" />
 
           <meta property="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-          <meta property="twitter:site" content={'@steemit'} />
+          <meta property="twitter:site" content={'@eziranetwork'} />
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={desc} />
           <meta
             property="twitter:image"
-            content={image || 'https://steemit.com/images/steemit-twshare.png'}
+            content={image || 'https://steemitimages.com/images/steemit-twshare.png'}
           />
         </Helmet>
         <ScrollToTopOnMount />

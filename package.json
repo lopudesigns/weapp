@@ -1,5 +1,5 @@
 {
-  "name": "busy",
+  "name": "weapp",
   "version": "2.4.0",
   "engines": {
     "node": ">=7.10.1",
@@ -16,7 +16,7 @@
     "prettier-check": "node ./scripts/prettier/tasks/checkFiles.js",
     "prettier-check-all": "node ./scripts/prettier/tasks/checkFiles.js all",
     "prettier-file": "node ./scripts/prettier/tasks/formatFile.js",
-    "dev": "node ./scripts/start.js",
+    "dev": "node ./scripts/dev.js",
     "build": "node ./scripts/build.js",
     "start": "node ./build/server.js",
     "test": "jest",
@@ -27,8 +27,7 @@
     "heroku-postbuild": "npm run build"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "dependencies": {
     "antd": "^3.4.4",
@@ -48,7 +47,7 @@
     "babel-register": "^6.24.1",
     "babel-runtime": "^6.18.0",
     "bs58": "^4.0.0",
-    "busyjs": "https://github.com/busyorg/busyjs#dev",
+    "welightjs": "welightjs",
     "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
@@ -100,10 +99,10 @@
     "remarkable": "^1.7.1",
     "resize-observer-polyfill": "^1.4.2",
     "sanitize-html": "1.15.0",
-    "sc2-sdk": "^1.0.1",
+    "weauthjs": "^1.0.1",
     "secure-random": "^1.1.1",
     "speakingurl": "^11.0.0",
-    "steemscript": "https://github.com/busyorg/steemscript.git",
+    "weschemajs": "weschemajs",
     "store": "^1.3.20",
     "striptags": "^2.1.1",
     "text-ellipsis": "^1.0.3",
@@ -137,8 +136,8 @@
     "mini-css-extract-plugin": "^0.4.0",
     "minimatch": "^3.0.4",
     "postcss-loader": "^2.1.4",
-		"prettier": "^1.9.2",
-		"react-test-renderer": "^15.6.1",
+    "prettier": "^1.9.2",
+    "react-test-renderer": "^15.6.1",
     "replace-in-file-webpack-plugin": "^1.0.5",
     "string-replace-loader": "^2.1.1",
     "start-server-webpack-plugin": "^2.2.5",
@@ -156,6 +155,6 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
-  "repository": "https://github.com/adcpm/busy.git",
+  "repository": "https://github.com/eziranetwork/weapp.git",
   "license": "MIT"
 }

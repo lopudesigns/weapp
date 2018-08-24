@@ -1,14 +1,14 @@
-import formatter from '../helpers/steemitFormatter';
+import formatter from './extraformatter';
 
 export const sortComments = (comments, sortType = 'BEST') => {
   const sortedComments = [...comments];
 
-  const netNegative = a => a.net_rshares < 0;
+  const netNegative = a => a.net_rESCOR < 0;
   const totalPayout = a =>
     parseFloat(a.pending_payout_value) +
     parseFloat(a.total_payout_value) +
     parseFloat(a.curator_payout_value);
-  const netRshares = a => a.net_rshares;
+  const netRESCOR = a => a.net_rESCOR;
 
   switch (sortType) {
     case 'BEST':
@@ -26,7 +26,7 @@ export const sortComments = (comments, sortType = 'BEST') => {
           return bPayout - aPayout;
         }
 
-        return netRshares(b) - netRshares(a);
+        return netRESCOR(b) - netRESCOR(a);
       });
     case 'NEWEST':
       return sortedComments.sort((a, b) => Date.parse(a.created) - Date.parse(b.created)).reverse();
@@ -42,6 +42,6 @@ export const sortComments = (comments, sortType = 'BEST') => {
   }
 };
 
-export const sortVotes = (a, b) => b.rshares - a.rshares;
+export const sortVotes = (a, b) => b.rESCOR - a.rESCOR;
 
 export default null;

@@ -9,11 +9,11 @@ export const isPostDeleted = post => post.title === 'deleted' && post.body === '
 export const isPostTaggedNSFW = post => {
   if (post.parent_permlink === 'nsfw') return true;
 
-  const postJSONMetaData = _.attempt(JSON.parse, post.json_metadata);
+  const postjson = _.attempt(JSON.parse, post.json);
 
-  if (_.isError(postJSONMetaData)) return false;
+  if (_.isError(postjson)) return false;
 
-  return _.includes(postJSONMetaData.tags, 'nsfw');
+  return _.includes(postjson.tags, 'nsfw');
 };
 
 export function dropCategory(url) {
@@ -28,8 +28,8 @@ export function dropCategory(url) {
  */
 export function getAppData(post) {
   try {
-    const jsonMetadata = jsonParse(post.json_metadata);
-    const appDetails = _.get(jsonMetadata, 'app', '');
+    const json = jsonParse(post.json);
+    const appDetails = _.get(json, 'app', '');
     const appData = _.split(appDetails, '/');
     const appKey = _.get(appData, 0, '');
     const version = _.get(appData, 1, '');

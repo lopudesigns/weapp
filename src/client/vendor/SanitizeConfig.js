@@ -62,7 +62,7 @@ export default ({ large = true, noImage = false, sanitizeErrors = [] }) => ({
   allowedTags,
   // figure, figcaption,
 
-  // SEE https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
+  // SEE https://www.owasp.io/index.php/XSS_Filter_Evasion_Cheat_Sheet
   allowedAttributes: {
     // "src" MUST pass a whitelist (below)
     iframe: [
@@ -160,8 +160,8 @@ export default ({ large = true, noImage = false, sanitizeErrors = [] }) => ({
       if (!href) href = '#';
       href = href.trim();
       const attys = {};
-      // If it's not a (relative or absolute) steemit URL...
-      if (!href.match(/^^(\/|https:\/\/(staging\.)?busy\.org(?![\w\.]+))/)) {
+      // If it's not a (relative or absolute) alpha.ezira.io URL...
+      if (!href.match(/^^(\/|https:\/\/(staging\.)?ezira\.io(?![\w\.]+))/)) {
         attys.target = '_blank';
         href = `/exit?url=${encodeURI(href)}`;
       }

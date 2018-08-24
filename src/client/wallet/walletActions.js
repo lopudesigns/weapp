@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { createAction } from 'redux-actions';
-import formatter from '../helpers/steemitFormatter';
+import formatter from '../helpers/extraformatter';
 import { createAsyncActionType, getUserDetailsKey } from '../helpers/stateHelpers';
 import {
   getAccountHistory,
@@ -8,7 +8,7 @@ import {
   isWalletTransaction,
   defaultAccountLimit,
 } from '../helpers/apiHelpers';
-import { ACTIONS_DISPLAY_LIMIT, actionsFilter } from '../helpers/accountHistoryHelper';
+import { actionsShownLimit, actionsFilter } from '../helpers/accountHistoryHelper';
 
 export const OPEN_TRANSFER = '@wallet/OPEN_TRANSFER';
 export const CLOSE_TRANSFER = '@wallet/CLOSE_TRANSFER';
@@ -136,12 +136,12 @@ export const loadMoreCurrentUsersActions = username => (dispatch, getState) => {
   );
   const moreActions = currentUsersActions.slice(
     lastDisplayedActionIndex + 1,
-    lastDisplayedActionIndex + 1 + ACTIONS_DISPLAY_LIMIT,
+    lastDisplayedActionIndex + 1 + actionsShownLimit,
   );
   const lastMoreAction = _.last(moreActions);
   const lastMoreActionCount = _.isEmpty(lastMoreAction) ? 0 : lastMoreAction.actionCount;
 
-  if (moreActions.length === ACTIONS_DISPLAY_LIMIT || lastMoreActionCount === 0) {
+  if (moreActions.length === actionsShownLimit || lastMoreActionCount === 0) {
     const filteredMoreActions = _.filter(moreActions, userAction =>
       actionsFilter(userAction, accountHistoryFilter, username),
     );

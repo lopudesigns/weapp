@@ -18,7 +18,7 @@ import {
   getTranslations,
   getUseBeta,
 } from './reducers';
-import { login, logout, busyLogin } from './auth/authActions';
+import { login, logout, login } from './auth/authActions';
 import { getFollowing, getNotifications } from './user/userActions';
 import {
   getRate,
@@ -52,7 +52,7 @@ import BBackTop from './components/BBackTop';
     getRate,
     getRewardFund,
     getTrendingTopics,
-    busyLogin,
+    login,
     getRebloggedList: reblogActions.getRebloggedList,
     setUsedLocale,
   },
@@ -75,7 +75,7 @@ export default class Wrapper extends React.PureComponent {
     getTrendingTopics: PropTypes.func,
     getNotifications: PropTypes.func,
     setUsedLocale: PropTypes.func,
-    busyLogin: PropTypes.func,
+    login: PropTypes.func,
   };
 
   static defaultProps = {
@@ -91,7 +91,7 @@ export default class Wrapper extends React.PureComponent {
     getTrendingTopics: () => {},
     getNotifications: () => {},
     setUsedLocale: () => {},
-    busyLogin: () => {},
+    login: () => {},
   };
 
   static async fetchData({ store, req, res }) {
@@ -108,8 +108,8 @@ export default class Wrapper extends React.PureComponent {
 
     const useBeta = getUseBeta(state);
 
-    if (useBeta && appUrl === 'https://busy.org') {
-      res.redirect(`https://staging.busy.org${req.originalUrl}`);
+    if (useBeta && appUrl === 'https://ezira.io') {
+      res.redirect(`https://staging.ezira.io${req.originalUrl}`);
       return;
     }
 
@@ -134,7 +134,7 @@ export default class Wrapper extends React.PureComponent {
     this.props.login().then(() => {
       this.props.getFollowing();
       this.props.getNotifications();
-      this.props.busyLogin();
+      this.props.login();
     });
 
     this.props.getRewardFund();

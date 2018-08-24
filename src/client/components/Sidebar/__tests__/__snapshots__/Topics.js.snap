@@ -10,10 +10,10 @@ ShallowWrapper {
     maxItems={20}
     topics={
       Array [
-        "busy",
-        "introduceyourself",
-        "steemfest",
-        "poland",
+        "Ezira",
+        "Etroductions",
+        "Say Hello",
+        "random",
       ]
     }
   />,
@@ -45,7 +45,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={true}
-              name="busy"
+              name="Ezira"
               onClose={[Function]}
             />
           </li>
@@ -53,7 +53,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={true}
-              name="introduceyourself"
+              name="Etroductions"
               onClose={[Function]}
             />
           </li>
@@ -61,7 +61,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={true}
-              name="steemfest"
+              name="Say Hello"
               onClose={[Function]}
             />
           </li>
@@ -69,7 +69,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={true}
-              name="poland"
+              name="random"
               onClose={[Function]}
             />
           </li>
@@ -119,7 +119,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="busy"
+                name="Ezira"
                 onClose={[Function]}
               />
             </li>,
@@ -127,7 +127,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="introduceyourself"
+                name="Etroductions"
                 onClose={[Function]}
               />
             </li>,
@@ -135,7 +135,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="steemfest"
+                name="Say Hello"
                 onClose={[Function]}
               />
             </li>,
@@ -143,7 +143,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="poland"
+                name="random"
                 onClose={[Function]}
               />
             </li>,
@@ -154,13 +154,13 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "busy",
+            "key": "Ezira",
             "nodeType": "host",
             "props": Object {
               "children": <Topic
                 closable={false}
                 favorite={true}
-                name="busy"
+                name="Ezira"
                 onClose={[Function]}
               />,
             },
@@ -172,7 +172,7 @@ ShallowWrapper {
               "props": Object {
                 "closable": false,
                 "favorite": true,
-                "name": "busy",
+                "name": "Ezira",
                 "onClose": [Function],
               },
               "ref": null,
@@ -183,13 +183,13 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "introduceyourself",
+            "key": "Etroductions",
             "nodeType": "host",
             "props": Object {
               "children": <Topic
                 closable={false}
                 favorite={true}
-                name="introduceyourself"
+                name="Etroductions"
                 onClose={[Function]}
               />,
             },
@@ -201,7 +201,7 @@ ShallowWrapper {
               "props": Object {
                 "closable": false,
                 "favorite": true,
-                "name": "introduceyourself",
+                "name": "Etroductions",
                 "onClose": [Function],
               },
               "ref": null,
@@ -212,13 +212,13 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "steemfest",
+            "key": "Say Hello",
             "nodeType": "host",
             "props": Object {
               "children": <Topic
                 closable={false}
                 favorite={true}
-                name="steemfest"
+                name="Say Hello"
                 onClose={[Function]}
               />,
             },
@@ -230,7 +230,7 @@ ShallowWrapper {
               "props": Object {
                 "closable": false,
                 "favorite": true,
-                "name": "steemfest",
+                "name": "Say Hello",
                 "onClose": [Function],
               },
               "ref": null,
@@ -241,13 +241,13 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "poland",
+            "key": "random",
             "nodeType": "host",
             "props": Object {
               "children": <Topic
                 closable={false}
                 favorite={true}
-                name="poland"
+                name="random"
                 onClose={[Function]}
               />,
             },
@@ -259,7 +259,7 @@ ShallowWrapper {
               "props": Object {
                 "closable": false,
                 "favorite": true,
-                "name": "poland",
+                "name": "random",
                 "onClose": [Function],
               },
               "ref": null,
@@ -298,7 +298,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="busy"
+                name="Ezira"
                 onClose={[Function]}
               />
             </li>
@@ -306,7 +306,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="introduceyourself"
+                name="Etroductions"
                 onClose={[Function]}
               />
             </li>
@@ -314,7 +314,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="steemfest"
+                name="Say Hello"
                 onClose={[Function]}
               />
             </li>
@@ -322,7 +322,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={true}
-                name="poland"
+                name="random"
                 onClose={[Function]}
               />
             </li>
@@ -372,7 +372,7 @@ ShallowWrapper {
                 <Topic
                   closable={false}
                   favorite={true}
-                  name="busy"
+                  name="Ezira"
                   onClose={[Function]}
                 />
               </li>,
@@ -380,7 +380,7 @@ ShallowWrapper {
                 <Topic
                   closable={false}
                   favorite={true}
-                  name="introduceyourself"
+                  name="Etroductions"
                   onClose={[Function]}
                 />
               </li>,
@@ -388,7 +388,7 @@ ShallowWrapper {
                 <Topic
                   closable={false}
                   favorite={true}
-                  name="steemfest"
+                  name="Say Hello"
                   onClose={[Function]}
                 />
               </li>,
@@ -396,7 +396,7 @@ ShallowWrapper {
                 <Topic
                   closable={false}
                   favorite={true}
-                  name="poland"
+                  name="random"
                   onClose={[Function]}
                 />
               </li>,
@@ -407,13 +407,13 @@ ShallowWrapper {
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "busy",
+              "key": "Ezira",
               "nodeType": "host",
               "props": Object {
                 "children": <Topic
                   closable={false}
                   favorite={true}
-                  name="busy"
+                  name="Ezira"
                   onClose={[Function]}
                 />,
               },
@@ -425,7 +425,7 @@ ShallowWrapper {
                 "props": Object {
                   "closable": false,
                   "favorite": true,
-                  "name": "busy",
+                  "name": "Ezira",
                   "onClose": [Function],
                 },
                 "ref": null,
@@ -436,13 +436,13 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "introduceyourself",
+              "key": "Etroductions",
               "nodeType": "host",
               "props": Object {
                 "children": <Topic
                   closable={false}
                   favorite={true}
-                  name="introduceyourself"
+                  name="Etroductions"
                   onClose={[Function]}
                 />,
               },
@@ -454,7 +454,7 @@ ShallowWrapper {
                 "props": Object {
                   "closable": false,
                   "favorite": true,
-                  "name": "introduceyourself",
+                  "name": "Etroductions",
                   "onClose": [Function],
                 },
                 "ref": null,
@@ -465,13 +465,13 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "steemfest",
+              "key": "Say Hello",
               "nodeType": "host",
               "props": Object {
                 "children": <Topic
                   closable={false}
                   favorite={true}
-                  name="steemfest"
+                  name="Say Hello"
                   onClose={[Function]}
                 />,
               },
@@ -483,7 +483,7 @@ ShallowWrapper {
                 "props": Object {
                   "closable": false,
                   "favorite": true,
-                  "name": "steemfest",
+                  "name": "Say Hello",
                   "onClose": [Function],
                 },
                 "ref": null,
@@ -494,13 +494,13 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "poland",
+              "key": "random",
               "nodeType": "host",
               "props": Object {
                 "children": <Topic
                   closable={false}
                   favorite={true}
-                  name="poland"
+                  name="random"
                   onClose={[Function]}
                 />,
               },
@@ -512,7 +512,7 @@ ShallowWrapper {
                 "props": Object {
                   "closable": false,
                   "favorite": true,
-                  "name": "poland",
+                  "name": "random",
                   "onClose": [Function],
                 },
                 "ref": null,

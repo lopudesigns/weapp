@@ -8,6 +8,6 @@ export const TRANSFER = 'transfer';
 
 export const PARSED_NOTIFICATIONS = [REPLY, MENTION, FOLLOW, VOTE, REBLOG, WITNESS_VOTE, TRANSFER];
 
-export const BUSY_API_TYPES = {
+export const API_TYPES = {
   notification: 'notification',
 };

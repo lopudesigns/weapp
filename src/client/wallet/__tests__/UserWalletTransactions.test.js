@@ -10,9 +10,9 @@ describe('(Component) UserWalletTransactions', () => {
           {
             timestamp: '0',
             op: [
-              'transfer_to_vesting',
+              'transferECOtoESCORfund',
               {
-                amount: '100 STEEM',
+                amount: '100 ECO',
               },
             ],
           },
@@ -21,16 +21,16 @@ describe('(Component) UserWalletTransactions', () => {
             op: [
               'transfer',
               {
-                from: 'hellosteem1',
+                from: 'helloezira1',
                 memo: 'transfer memo',
-                amount: '100 STEEM',
+                amount: '100 ECO',
               },
             ],
           },
         ],
-        currentUsername: 'hellosteem',
-        totalVestingShares: '0',
-        totalVestingFundSteem: '0',
+        currentUsername: 'helloezira',
+        totalESCOR: '0',
+        ESCORbackingECOfundBalance: '0',
       };
       const wrapper = shallow(<UserWalletTransactions {...props} />);
       expect(wrapper).toMatchSnapshot();

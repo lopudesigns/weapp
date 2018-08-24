@@ -77,7 +77,7 @@ class QuickPostEditor extends React.Component {
 
   getQuickPostData = () => {
     const currentPaths = this.props.location.pathname.split('/');
-    const busyTag = 'busy';
+    const defaultTag = 'Post';
     const tag = currentPaths[2];
     const tags = [];
     const images = _.map(this.state.currentImages, image => image.src);
@@ -101,8 +101,8 @@ class QuickPostEditor extends React.Component {
     };
 
     const metaData = {
-      community: 'busy',
-      app: `busy/${version}`,
+      community: 'Ezira',
+      app: `weapp/${version}`,
       format: 'markdown',
     };
 
@@ -113,14 +113,14 @@ class QuickPostEditor extends React.Component {
     if (!_.isEmpty(tag)) {
       tags.push(tag);
     } else {
-      tags.push(busyTag);
+      tags.push(defaultTag);
     }
 
     metaData.tags = tags;
 
-    data.parentPermlink = _.isEmpty(tag) ? busyTag : tag;
+    data.parentPermlink = _.isEmpty(tag) ? defaultTag : tag;
     data.permlink = _.kebabCase(postTitle);
-    data.jsonMetadata = metaData;
+    data.json = metaData;
 
     return data;
   };

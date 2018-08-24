@@ -178,10 +178,16 @@ class PostContent extends React.Component {
 
     if (isBannedPost(content)) return <DMCARemovedMessage className="center" />;
 
-    const postMetaData = jsonParse(content.json_metadata);
-    const busyHost = appUrl || 'https://busy.org';
-    let canonicalHost = busyHost;
+    const postMetaData = jsonParse(content.json);
+    const host = appUrl || 'https://alpha.ezira.io';
+    let canonicalHost = host;
 
+    if (_.indexOf(postMetaData.app, 'ezira') === 0) {
+      canonicalHost = 'https://alpha.ezira.io';
+    }
+    if (_.indexOf(postMetaData.app, 'busy') === 0) {
+      canonicalHost = 'https://ezira.io';
+    }
     if (_.indexOf(postMetaData.app, 'steemit') === 0) {
       canonicalHost = 'https://steemit.com';
     }
@@ -214,7 +220,7 @@ class PostContent extends React.Component {
     const desc = `${_.truncate(bodyText, { length: 143 })} by ${author}`;
     const image = postMetaImage || getAvatarURL(author) || '/images/logo.png';
     const canonicalUrl = `${canonicalHost}${dropCategory(content.url)}`;
-    const url = `${busyHost}${dropCategory(content.url)}`;
+    const url = `${host}${dropCategory(content.url)}`;
     const ampUrl = `${url}/amp`;
     const metaTitle = `${title} Ezira`;
 
@@ -230,11 +236,11 @@ class PostContent extends React.Component {
           <meta property="og:url" content={url} />
           <meta property="og:image" content={image} />
           <meta property="og:description" content={desc} />
-          <meta property="og:site_name" content="Busy" />
+          <meta property="og:site_name" content="Ezira" />
           <meta property="article:tag" content={category} />
           <meta property="article:published_time" content={created} />
           <meta property="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-          <meta property="twitter:site" content={'@busyorg'} />
+          <meta property="twitter:site" content={'@eziranetwork'} />
           <meta property="twitter:title" content={metaTitle} />
           <meta property="twitter:description" content={desc} />
           <meta property="twitter:image" content={image} />

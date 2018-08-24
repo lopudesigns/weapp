@@ -6,7 +6,7 @@ import UserActionIcon from './UserActionIcon';
 import UserActionMessage from './UserActionMessage';
 import UserActionContents from './UserActionContents';
 
-const UserAction = ({ action, totalVestingShares, totalVestingFundSteem, currentUsername }) => {
+const UserAction = ({ action, totalESCOR, ESCORbackingECOfundBalance, currentUsername }) => {
   const actionType = action.op[0];
   const actionDetails = action.op[1];
   return (
@@ -20,8 +20,8 @@ const UserAction = ({ action, totalVestingShares, totalVestingFundSteem, current
         <UserActionMessage
           actionType={actionType}
           actionDetails={actionDetails}
-          totalVestingShares={totalVestingShares}
-          totalVestingFundSteem={totalVestingFundSteem}
+          totalESCOR={totalESCOR}
+          ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
           currentUsername={currentUsername}
         />
         <span className="UserActivityActions__timestamp">
@@ -46,8 +46,8 @@ const UserAction = ({ action, totalVestingShares, totalVestingFundSteem, current
 
 UserAction.propTypes = {
   action: PropTypes.shape(),
-  totalVestingShares: PropTypes.string.isRequired,
-  totalVestingFundSteem: PropTypes.string.isRequired,
+  totalESCOR: PropTypes.string.isRequired,
+  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
   currentUsername: PropTypes.string.isRequired,
 };
 

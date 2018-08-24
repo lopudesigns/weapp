@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 
-import sc2 from 'sc2-sdk';
+import weauthjs from 'weauthjs';
 import getStore from '../../client/store';
 import routes from '../../common/routes';
 import renderSsrPage from '../renderers/ssrRenderer';
@@ -27,10 +27,10 @@ function createTimeout(timeout, promise) {
 export default function createSsrHandler(template) {
   return async function serverSideResponse(req, res) {
     try {
-      const api = sc2.Initialize({
-        app: process.env.STEEMCONNECT_CLIENT_ID,
-        baseURL: process.env.STEEMCONNECT_HOST,
-        callbackURL: process.env.STEEMCONNECT_REDIRECT_URL,
+      const api = weauthjs.Initialize({
+        app: process.env.AUTH_API_CLIENT_ID,
+        baseURL: process.env.AUTH_API_HOST,
+        callbackURL: process.env.AUTH_API_REDIRECT_URL,
       });
 
       if (req.cookies.access_token) {
@@ -64,10 +64,10 @@ export default function createSsrHandler(template) {
         res.status(context.status);
       }
 
-      return res.send(renderSsrPage(store, content, assets, template, req.hostname !== 'busy.org'));
+      return res.send(renderSsrPage(store, content, assets, template, req.hostname !== 'ezira.io'));
     } catch (err) {
       console.error('SSR error occured, falling back to bundled application instead', err);
-      return res.send(renderSsrPage(null, null, assets, template, req.hostname !== 'busy.org'));
+      return res.send(renderSsrPage(null, null, assets, template, req.hostname !== 'ezira.io'));
     }
   };
 }

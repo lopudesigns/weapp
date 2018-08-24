@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import SteemConnect from '../steemConnectAPI';
+import authAPI from '../authAPI';
 import './LoginModal.less';
 
 class LoginModal extends React.Component {
@@ -44,7 +44,7 @@ class LoginModal extends React.Component {
               values={{
                 link: (
                   <a role="presentation" onClick={this.handleSignup}>
-                    Steemit.com
+                    alpha.Ezira.io
                   </a>
                 ),
               }}
@@ -53,20 +53,20 @@ class LoginModal extends React.Component {
         }
       >
         <div className="LoginModal__body">
-          <i className="iconfont icon-busy LoginModal__icon" />
+          <i className="iconfont icon-native-app LoginModal__icon" />
           <span className="LoginModal__login-title">
-            <FormattedMessage id="login_to_busy" defaultMessage="Login to Ezira" />
+            <FormattedMessage id="login_to_native_app" defaultMessage="Login to Ezira" />
           </span>
           <span className="LoginModal__login-description">
             <FormattedMessage
               id="login_modal_description"
-              defaultMessage="Login with your Steem account using SteemConnect to enjoy Ezira at 100%"
+              defaultMessage="Login with your Ezira account using weAuth to enjoy Ezira at 100%"
             />
           </span>
-          <a className="LoginModal__login-button" href={SteemConnect.getLoginURL(next)}>
+          <a className="LoginModal__login-button" href={authAPI.getLoginURL(next)}>
             <FormattedMessage
-              id="login_with_steemconnect"
-              defaultMessage="Login with SteemConnect"
+              id="login_with_native_auth"
+              defaultMessage="Login with weAuth"
             />
           </a>
         </div>

@@ -5,7 +5,7 @@ import { createAction } from 'redux-actions';
 import { addDraftMetadata, deleteDraftMetadata } from '../../helpers/metadata';
 import { jsonParse } from '../../helpers/formatter';
 import { rewardsValues } from '../../../common/constants/rewards';
-import { createPermlink, getBodyPatchIfSmaller } from '../../vendor/steemitHelpers';
+import { createPermlink, getBodyPatchIfSmaller } from '../../vendor/helpers';
 import { saveSettings } from '../../settings/settingsActions';
 import { notify } from '../../app/Notification/notificationActions';
 
@@ -65,11 +65,11 @@ export const deleteDraft = draftIds => dispatch =>
   });
 
 export const editPost = post => dispatch => {
-  const jsonMetadata = jsonParse(post.json_metadata);
+  const json = jsonParse(post.json);
   const draft = {
     ...post,
     originalBody: post.body,
-    jsonMetadata,
+    json,
     lastUpdated: new Date(),
     isUpdating: true,
   };
@@ -78,18 +78,18 @@ export const editPost = post => dispatch => {
   );
 };
 
-const requiredFields = 'parentAuthor,parentPermlink,author,permlink,title,body,jsonMetadata'.split(
+const requiredFields = 'parentAuthor,parentPermlink,author,permlink,title,body,json'.split(
   ',',
 );
 
 const broadcastComment = (
-  steemConnectAPI,
+  authAPI,
   parentAuthor,
   parentPermlink,
   author,
   title,
   body,
-  jsonMetadata,
+  json,
   reward,
   upvote,
   permlink,
@@ -106,7 +106,7 @@ const broadcastComment = (
       permlink,
       title,
       body,
-      json_metadata: JSON.stringify(jsonMetadata),
+      json: JSON.stringify(json),
     },
   ];
   operations.push(commentOp);
@@ -115,15 +115,15 @@ const broadcastComment = (
     author,
     permlink,
     allow_votes: true,
-    allow_curation_rewards: true,
-    max_accepted_payout: '1000000.000 SBD',
-    percent_steem_dollars: 10000,
+    allow_curationRewards: true,
+    max_accepted_payout: '1000000.000 EUSD',
+    percent_EUSD: 10000,
   };
 
   if (reward === rewardsValues.none) {
-    commentOptionsConfig.max_accepted_payout = '0.000 SBD';
+    commentOptionsConfig.max_accepted_payout = '0.000 EUSD';
   } else if (reward === rewardsValues.all) {
-    commentOptionsConfig.percent_steem_dollars = 0;
+    commentOptionsConfig.percent_EUSD = 0;
   }
 
   if (referral && referral !== authUsername) {
@@ -153,7 +153,7 @@ const broadcastComment = (
     ]);
   }
 
-  return steemConnectAPI.broadcast(operations);
+  return authAPI.broadcast(operations);
 };
 
 export function createPost(postData) {
@@ -161,14 +161,14 @@ export function createPost(postData) {
     assert(postData[field] != null, `Developer Error: Missing required field ${field}`);
   });
 
-  return (dispatch, getState, { steemConnectAPI }) => {
+  return (dispatch, getState, { authAPI }) => {
     const {
       parentAuthor,
       parentPermlink,
       author,
       title,
       body,
-      jsonMetadata,
+      json,
       reward,
       upvote,
       draftId,
@@ -197,13 +197,13 @@ export function createPost(postData) {
       payload: {
         promise: getPermLink.then(permlink =>
           broadcastComment(
-            steemConnectAPI,
+            authAPI,
             parentAuthor,
             parentPermlink,
             author,
             title,
             newBody,
-            jsonMetadata,
+            json,
             !isUpdating && reward,
             !isUpdating && upvote,
             permlink,

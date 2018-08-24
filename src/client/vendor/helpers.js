@@ -2,8 +2,8 @@ import base58 from 'bs58';
 import getSlug from 'speakingurl';
 import secureRandom from 'secure-random';
 import diff_match_patch from 'diff-match-patch';
-import steemAPI from '../steemAPI';
-import formatter from '../helpers/steemitFormatter';
+import client from '../client';
+import formatter from '../helpers/extraformatter';
 
 const dmp = new diff_match_patch();
 /**
@@ -21,7 +21,7 @@ export const createCommentPermlink = (parentAuthor, parentPermlink) => {
   permlink = `re-${parentAuthor}-${newParentPermlink}-${timeStr}`;
 
   if (permlink.length > 255) {
-    // STEEMIT_MAX_PERMLINK_LENGTH
+    // NETWORK_MAX_PERMLINK_LENGTH
     permlink = permlink.substring(permlink.length - 255, permlink.length);
   }
   // only letters numbers and dashes shall survive
@@ -92,7 +92,7 @@ export const calculatePayout = post => {
 
 function checkPermLinkLength(permlink) {
   if (permlink.length > 255) {
-    // STEEMIT_MAX_PERMLINK_LENGTH
+    // NETWORK_MAX_PERMLINK_LENGTH
     permlink = permlink.substring(permlink.length - 255, permlink.length);
   }
   // only letters numbers and dashes shall survive
@@ -117,7 +117,7 @@ export function createPermlink(title, author, parent_author, parent_permlink) {
       s = base58.encode(secureRandom.randomBuffer(4));
     }
 
-    return steemAPI
+    return client
       .sendAsync('get_content', [author, s])
       .then(content => {
         let prefix;
@@ -169,27 +169,27 @@ export function getBodyPatchIfSmaller(originalBody, body) {
  * https://github.com/aaroncox/chainbb/blob/fcb09bee716e907c789a6494975093361482fb4f/services/frontend/src/components/elements/post/button/vote/options.js#L69
  */
 export const calculateVoteValue = (
-  vests,
+  ESCOR,
   recentClaims,
   rewardBalance,
   rate,
   vp = 10000,
   weight = 10000,
 ) => {
-  const vestingShares = parseInt(vests * 1e6, 10);
+  const ESCOR = parseInt(ESCOR * 1e6, 10);
   const power = vp * weight / 10000 / 50;
-  const rshares = power * vestingShares / 10000;
-  return rshares / recentClaims * rewardBalance * rate;
+  const rESCOR = power * ESCOR / 10000;
+  return rESCOR / recentClaims * rewardBalance * rate;
 };
 
-export const calculateTotalDelegatedSP = (user, totalVestingShares, totalVestingFundSteem) => {
-  const receivedSP = parseFloat(
-    formatter.vestToSteem(user.received_vesting_shares, totalVestingShares, totalVestingFundSteem),
+export const calculateTotalDelegatedESCORinECOvalue = (user, totalESCOR, ESCORbackingECOfundBalance) => {
+  const ESCORvalueInECOreceived = parseFloat(
+    formatter.ESCORinECOvalue(user.ESCORreceived, totalESCOR, ESCORbackingECOfundBalance),
   );
-  const delegatedSP = parseFloat(
-    formatter.vestToSteem(user.delegated_vesting_shares, totalVestingShares, totalVestingFundSteem),
+  const ESCORvalueInECOdelegate = parseFloat(
+    formatter.ESCORinECOvalue(user.ESCORDelegated, totalESCOR, ESCORbackingECOfundBalance),
   );
-  return receivedSP - delegatedSP;
+  return ESCORvalueInECOreceived - ESCORvalueInECOdelegate;
 };
 
 export const calculateVotingPower = user => {
@@ -199,18 +199,18 @@ export const calculateVotingPower = user => {
 
 export const calculateEstAccountValue = (
   user,
-  totalVestingShares,
-  totalVestingFundSteem,
-  steemRate,
-  sbdRate,
+  totalESCOR,
+  ESCORbackingECOfundBalance,
+  ECOrate,
+  EUSDrate,
 ) => {
-  const steemPower = formatter.vestToSteem(
-    user.vesting_shares,
-    totalVestingShares,
-    totalVestingFundSteem,
+  const amountESCORvalueInECO = formatter.ESCORinECOvalue(
+    user.ESCOR,
+    totalESCOR,
+    ESCORbackingECOfundBalance,
   );
   return (
-    parseFloat(steemRate) * (parseFloat(user.balance) + parseFloat(steemPower)) +
-    parseFloat(user.sbd_balance) * parseFloat(sbdRate)
+    parseFloat(ECOrate) * (parseFloat(user.balance) + parseFloat(amountESCORvalueInECO)) +
+    parseFloat(user.EUSDbalance) * parseFloat(EUSDrate)
   );
 };

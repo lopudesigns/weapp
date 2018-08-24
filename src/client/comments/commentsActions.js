@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { createCommentPermlink, getBodyPatchIfSmaller } from '../vendor/steemitHelpers';
+import { createCommentPermlink, getBodyPatchIfSmaller } from '../vendor/helpers';
 import { notify } from '../app/Notification/notificationActions';
 
 const version = require('../../../package.json').version;
@@ -50,7 +50,7 @@ const getCommentsChildrenLists = apiRes => {
 export const getComments = (postId, reload = false, focusedComment = undefined) => (
   dispatch,
   getState,
-  { steemAPI },
+  { client },
 ) => {
   const { posts, comments } = getState();
 
@@ -61,7 +61,7 @@ export const getComments = (postId, reload = false, focusedComment = undefined) 
   dispatch({
     type: GET_COMMENTS,
     payload: {
-      promise: steemAPI
+      promise: client
         .sendAsync('get_state', [`/${category}/@${author}/${permlink}`])
         .then(apiRes => ({
           rootCommentsList: getRootCommentsList(apiRes),
@@ -80,7 +80,7 @@ export const getComments = (postId, reload = false, focusedComment = undefined) 
 export const sendComment = (parentPost, body, isUpdating = false, originalComment) => (
   dispatch,
   getState,
-  { steemConnectAPI },
+  { authAPI },
 ) => {
   const { category, id, permlink: parentPermlink, author: parentAuthor } = parentPost;
   const { auth } = getState();
@@ -97,15 +97,15 @@ export const sendComment = (parentPost, body, isUpdating = false, originalCommen
   const permlink = isUpdating
     ? originalComment.permlink
     : createCommentPermlink(parentAuthor, parentPermlink);
-  const jsonMetadata = { tags: [category], community: 'busy', app: `busy/${version}` };
+  const json = { tags: [category], community: 'Ezira', app: `weapp/${version}` };
 
   const newBody = isUpdating ? getBodyPatchIfSmaller(originalComment.body, body) : body;
 
   return dispatch({
     type: SEND_COMMENT,
     payload: {
-      promise: steemConnectAPI
-        .comment(parentAuthor, parentPermlink, author, permlink, '', newBody, jsonMetadata)
+      promise: authAPI
+        .comment(parentAuthor, parentPermlink, author, permlink, '', newBody, json)
         .then(resp => {
           const focusedComment = {
             author: resp.result.operations[0][1].author,
@@ -133,7 +133,7 @@ export const sendComment = (parentPost, body, isUpdating = false, originalCommen
 export const likeComment = (commentId, weight = 10000, vote = 'like', retryCount = 0) => (
   dispatch,
   getState,
-  { steemAPI, steemConnectAPI },
+  { client, authAPI },
 ) => {
   const { auth, comments } = getState();
 
@@ -147,9 +147,9 @@ export const likeComment = (commentId, weight = 10000, vote = 'like', retryCount
   dispatch({
     type: LIKE_COMMENT,
     payload: {
-      promise: steemConnectAPI.vote(voter, author, permlink, weight).then(res => {
+      promise: authAPI.vote(voter, author, permlink, weight).then(res => {
         // reload comment data to fetch payout after vote
-        steemAPI.sendAsync('get_content', [author, permlink]).then(data => {
+        client.sendAsync('get_content', [author, permlink]).then(data => {
           dispatch(reloadExistingComment(data));
           return data;
         });

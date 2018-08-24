@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { getUseBeta } from '../../reducers';
 
 const Redirect = ({ useBeta }) => {
-  if (typeof window !== 'undefined' && window.location.host === 'busy.org' && useBeta) {
+  if (typeof window !== 'undefined' && window.location.host === 'alpha.ezira.io' && useBeta) {
     const url = window.location.href.split('/');
-    url[2] = 'staging.busy.org';
+    url[2] = 'beta.ezira.io';
     window.location.replace(url.join('/'));
   }
 

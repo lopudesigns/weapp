@@ -97,8 +97,8 @@ class Write extends React.Component {
 
     if (draftPost) {
       let tags = [];
-      if (_.isArray(draftPost.jsonMetadata.tags)) {
-        tags = draftPost.jsonMetadata.tags;
+      if (_.isArray(draftPost.json.tags)) {
+        tags = draftPost.json.tags;
       }
 
       if (draftPost.permlink) {
@@ -148,7 +148,7 @@ class Write extends React.Component {
       const draftPost = _.get(draftPosts, draftId, {});
       const initialTitle = _.get(draftPost, 'title', '');
       const initialBody = _.get(draftPost, 'body', '');
-      const initialTopics = _.get(draftPost, 'jsonMetadata.tags', []);
+      const initialTopics = _.get(draftPost, 'json.tags', []);
       this.draftId = draftId;
       this.setState({
         initialTitle,
@@ -217,16 +217,16 @@ class Write extends React.Component {
     if (this.state.isUpdating) data.isUpdating = this.state.isUpdating;
 
     let metaData = {
-      community: 'busy',
-      app: `busy/${version}`,
+      community: 'ezira',
+      app: `weapp/${version}`,
       format: 'markdown',
     };
 
-    // Merging jsonMetadata makes sure that users don't lose any metadata when they edit post using
-    // Busy (like video data from DTube)
-    if (this.props.draftPosts[this.draftId] && this.props.draftPosts[this.draftId].jsonMetadata) {
+    // Merging json makes sure that users don't lose any metadata when they edit post using
+    // Ezira (like video data from DTube)
+    if (this.props.draftPosts[this.draftId] && this.props.draftPosts[this.draftId].json) {
       metaData = {
-        ...this.props.draftPosts[this.draftId].jsonMetadata,
+        ...this.props.draftPosts[this.draftId].json,
         ...metaData,
       };
     }
@@ -245,7 +245,7 @@ class Write extends React.Component {
     }
 
     data.parentPermlink = tags.length ? tags[0] : 'general';
-    data.jsonMetadata = metaData;
+    data.json = metaData;
 
     if (this.originalBody) {
       data.originalBody = this.originalBody;

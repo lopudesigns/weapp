@@ -190,6 +190,12 @@ export const STEEM = {
   symbol: 'STEEM',
 };
 
+export const ECO = {
+  id: 'ecoin',
+  name: 'eCoin',
+  symbol: 'ECO',
+};
+
 export const VERI = {
   id: 'veritaseum',
   name: 'Veritaseum',
@@ -598,10 +604,10 @@ export const FTC = {
   symbol: 'FTC',
 };
 
-export const SBD = {
-  id: 'steem-dollars',
-  name: 'Steem Dollars',
-  symbol: 'SBD*',
+export const EUSD = {
+  id: 'EUSD',
+  name: 'EUSD',
+  symbol: 'EUSD',
 };
 
 export const CRYPTO_MAP = {
@@ -636,8 +642,9 @@ export const CRYPTO_MAP = {
   [BTS.symbol]: BTS,
   [BCN.symbol]: BCN,
   [TRX.symbol]: TRX,
+  [ECO.symbol]: ECO,
   [STEEM.symbol]: STEEM,
-  [SBD.symbol]: SBD,
+  [EUSD.symbol]: EUSD,
   [VERI.symbol]: VERI,
   [ARK.symbol]: ARK,
   [SALT.symbol]: SALT,

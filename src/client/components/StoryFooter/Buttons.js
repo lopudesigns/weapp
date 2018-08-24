@@ -244,17 +244,17 @@ export default class Buttons extends React.Component {
       parseFloat(post.pending_payout_value) +
       parseFloat(post.total_payout_value) +
       parseFloat(post.curator_payout_value);
-    const voteRshares = post.active_votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
-    const ratio = totalPayout / voteRshares;
+    const voteRESCOR = post.active_votes.reduce((a, b) => a + parseFloat(b.rESCOR), 0);
+    const ratio = totalPayout / voteRESCOR;
 
     const upVotesPreview = take(upVotes, 10).map(vote => (
       <p key={vote.voter}>
         <Link to={`/@${vote.voter}`}>{vote.voter}</Link>
 
-        {vote.rshares * ratio > 0.01 && (
+        {vote.rESCOR * ratio > 0.01 && (
           <span style={{ opacity: '0.5' }}>
             {' '}
-            <USDDisplay value={vote.rshares * ratio} />
+            <USDDisplay value={vote.rESCOR * ratio} />
           </span>
         )}
       </p>

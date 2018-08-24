@@ -11,7 +11,7 @@ import {
 } from 'react-intl';
 import { Tag, message } from 'antd';
 import BTooltip from '../../components/BTooltip';
-import formatter from '../../helpers/steemitFormatter';
+import formatter from '../../helpers/extraformatter';
 import { MAXIMUM_UPLOAD_SIZE_HUMAN } from '../../helpers/image';
 import { sortComments } from '../../helpers/sortHelpers';
 import CommentForm from './CommentForm';
@@ -277,7 +277,7 @@ class Comment extends React.Component {
             <span className="username">{comment.author}</span>
             <BTooltip
               title={intl.formatMessage({
-                id: 'reputation_score',
+                id: 'reputation',
                 defaultMessage: 'Reputation score',
               })}
             >

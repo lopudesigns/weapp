@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import { Tag, Icon } from 'antd';
 import Lightbox from 'react-image-lightbox';
 import { Scrollbars } from 'react-custom-scrollbars';
-import formatter from '../../helpers/steemitFormatter';
+import formatter from '../../helpers/extraformatter';
 import { getFromMetadata, extractImageTags } from '../../helpers/parser';
 import { isPostDeleted, dropCategory } from '../../helpers/postHelpers';
 import withAuthActions from '../../auth/withAuthActions';
@@ -153,13 +153,13 @@ class StoryFull extends React.Component {
 
   renderDtubeEmbedPlayer() {
     const { post } = this.props;
-    const parsedJsonMetaData = _.attempt(JSON.parse, post.json_metadata);
+    const parsedjson = _.attempt(JSON.parse, post.json);
 
-    if (_.isError(parsedJsonMetaData)) {
+    if (_.isError(parsedjson)) {
       return null;
     }
 
-    const video = getFromMetadata(post.json_metadata, 'video');
+    const video = getFromMetadata(post.json, 'video');
     const isDtubeVideo = _.has(video, 'content.videohash') && _.has(video, 'info.snaphash');
 
     if (isDtubeVideo) {
@@ -215,7 +215,7 @@ class StoryFull extends React.Component {
 
     this.images = extractImageTags(parsedBody);
 
-    const tags = _.union(getFromMetadata(post.json_metadata, 'tags'), [post.category]);
+    const tags = _.union(getFromMetadata(post.json, 'tags'), [post.category]);
 
     let followText = '';
 
@@ -342,7 +342,7 @@ class StoryFull extends React.Component {
             full
             rewriteLinks={rewriteLinks}
             body={signedBody}
-            json_metadata={post.json_metadata}
+            json={post.json}
           />
         </div>
       );
@@ -378,7 +378,7 @@ class StoryFull extends React.Component {
               <span className="username">{post.author}</span>
               <BTooltip
                 title={intl.formatMessage({
-                  id: 'reputation_score',
+                  id: 'reputation',
                   defaultMessage: 'Reputation score',
                 })}
               >

@@ -4,12 +4,12 @@ import _ from 'lodash';
 import urlParse from 'url-parse';
 import { Link } from 'react-router-dom';
 import { Tag } from 'antd';
-import formatter from '../helpers/steemitFormatter';
+import formatter from '../helpers/extraformatter';
 import Avatar from '../components/Avatar';
 import FollowButton from '../widgets/FollowButton';
 
 const DiscoverUser = ({ user }) => {
-  const parsedJSON = _.attempt(JSON.parse, user.json_metadata);
+  const parsedJSON = _.attempt(JSON.parse, user.json);
   const userJSON = _.isError(parsedJSON) ? {} : parsedJSON;
   const userProfile = _.has(userJSON, 'profile') ? userJSON.profile : {};
   const location = userProfile.location;

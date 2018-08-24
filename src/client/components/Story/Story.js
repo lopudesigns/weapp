@@ -11,7 +11,7 @@ import {
 
 import { Link, withRouter } from 'react-router-dom';
 import { Tag } from 'antd';
-import formatter from '../../helpers/steemitFormatter';
+import formatter from '../../helpers/extraformatter';
 import { getHasDefaultSlider } from '../../helpers/user';
 import {
   isPostDeleted,
@@ -387,7 +387,7 @@ class Story extends React.Component {
 										>
 											<span className="username">{post.author}</span>
 										</Popover>
-                    <BTooltip title={intl.formatMessage({ id: 'reputation_score' })}>
+                    <BTooltip title={intl.formatMessage({ id: 'reputation' })}>
                       <Tag>{postAuthorReputation}</Tag>
                     </BTooltip>
                   </h4>

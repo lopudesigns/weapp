@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { Tag } from 'antd';
-import formatter from '../helpers/steemitFormatter';
+import formatter from '../helpers/extraformatter';
 import { getUserRankKey, getUserRank } from '../helpers/user';
 import BTooltip from './BTooltip';
 import AvatarLightbox from './AvatarLightbox';
@@ -17,7 +17,7 @@ const UserHeader = ({
   username,
   handle,
   userReputation,
-  vestingShares,
+  ESCOR,
   isSameUser,
   coverImage,
   hasCover,
@@ -37,7 +37,7 @@ const UserHeader = ({
               {username}
               <BTooltip
                 title={intl.formatMessage({
-                  id: 'reputation_score',
+                  id: 'reputation',
                   defaultMessage: 'Reputation Score',
                 })}
               >
@@ -87,8 +87,8 @@ const UserHeader = ({
             <div className="UserHeader__rank">
               <i className="iconfont icon-ranking" />
               <FormattedMessage
-                id={getUserRankKey(vestingShares)}
-                defaultMessage={getUserRank(vestingShares)}
+                id={getUserRankKey(ESCOR)}
+                defaultMessage={getUserRank(ESCOR)}
               />
             </div>
           </div>
@@ -113,7 +113,7 @@ UserHeader.propTypes = {
   username: PropTypes.string,
   handle: PropTypes.string,
   userReputation: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  vestingShares: PropTypes.number,
+  ESCOR: PropTypes.number,
   isSameUser: PropTypes.bool,
   coverImage: PropTypes.string,
   hasCover: PropTypes.bool,
@@ -125,7 +125,7 @@ UserHeader.defaultProps = {
   username: '',
   handle: '',
   userReputation: '0',
-  vestingShares: 0,
+  ESCOR: 0,
   isSameUser: false,
   coverImage: '',
   hasCover: false,

@@ -5,7 +5,7 @@ import _ from 'lodash';
 import PostFeedEmbed from './PostFeedEmbed';
 import BodyShort from './BodyShort';
 import { jsonParse } from '../../helpers/formatter';
-import { image } from '../../vendor/steemitLinks';
+import { image } from '../../vendor/links';
 import {
   getPositions,
   postWithPicture,
@@ -19,11 +19,11 @@ import { getHtml } from './Body';
 import { getProxyImageURL } from '../../helpers/image';
 
 const StoryPreview = ({ post }) => {
-  const jsonMetadata = jsonParse(post.json_metadata);
+  const json = jsonParse(post.json);
   let imagePath = '';
 
-  if (jsonMetadata.image && jsonMetadata.image[0]) {
-    imagePath = getProxyImageURL(jsonMetadata.image[0], 'preview');
+  if (json.image && json.image[0]) {
+    imagePath = getProxyImageURL(json.image[0], 'preview');
   } else {
     const bodyImg = post.body.match(image());
     if (bodyImg && bodyImg.length) {
@@ -32,7 +32,7 @@ const StoryPreview = ({ post }) => {
   }
 
   const embeds = embedjs.getAll(post.body, { height: '100%' });
-  const video = jsonMetadata.video;
+  const video = json.video;
   let hasVideo = false;
   if (_.has(video, 'content.videohash') && _.has(video, 'info.snaphash')) {
     const author = _.get(video, 'info.author', '');

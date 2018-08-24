@@ -9,7 +9,7 @@ import embedjs from 'embedjs';
 import { jsonParse } from '../../helpers/formatter';
 import sanitizeConfig from '../../vendor/SanitizeConfig';
 import { imageRegex, dtubeImageRegex } from '../../helpers/regexHelpers';
-import htmlReady from '../../vendor/steemitHtmlReady';
+import htmlReady from '../../vendor/HtmlReady';
 import PostFeedEmbed from './PostFeedEmbed';
 import './Body.less';
 
@@ -37,17 +37,17 @@ const getEmbed = link => {
 
 // Should return text(html) if returnType is text
 // Should return Object(React Compatible) if returnType is Object
-export function getHtml(body, jsonMetadata = {}, returnType = 'Object', options = {}) {
-  const parsedJsonMetadata = jsonParse(jsonMetadata) || {};
-  parsedJsonMetadata.image = parsedJsonMetadata.image || [];
+export function getHtml(body, json = {}, returnType = 'Object', options = {}) {
+  const parsedjson = jsonParse(json) || {};
+  parsedjson.image = parsedjson.image || [];
 
   let parsedBody = body.replace(/<!--([\s\S]+?)(-->|$)/g, '(html comment removed: $1)');
 
   parsedBody = parsedBody.replace(/^\s+</gm, '<');
 
   parsedBody.replace(imageRegex, img => {
-    if (_.filter(parsedJsonMetadata.image, i => i.indexOf(img) !== -1).length === 0) {
-      parsedJsonMetadata.image.push(img);
+    if (_.filter(parsedjson.image, i => i.indexOf(img) !== -1).length === 0) {
+      parsedjson.image.push(img);
     }
   });
 
@@ -62,7 +62,7 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object', options 
 
   if (options.rewriteLinks) {
     parsedBody = parsedBody.replace(
-      /"https?:\/\/(?:www)?steemit.com\/([A-Za-z0-9@/\-.]*)"/g,
+      /"https?:\/\/(?:www)?alpha.ezira.io\/([A-Za-z0-9@/\-.]*)"/g,
       (match, p1) => `"/${p1}"`,
     );
   }
@@ -101,20 +101,20 @@ const Body = props => {
   const options = {
     rewriteLinks: props.rewriteLinks,
   };
-  const htmlSections = getHtml(props.body, props.jsonMetadata, 'Object', options);
+  const htmlSections = getHtml(props.body, props.json, 'Object', options);
   return <div className={classNames('Body', { 'Body--full': props.full })}>{htmlSections}</div>;
 };
 
 Body.propTypes = {
   body: PropTypes.string,
-  jsonMetadata: PropTypes.string,
+  json: PropTypes.string,
   full: PropTypes.bool,
   rewriteLinks: PropTypes.bool,
 };
 
 Body.defaultProps = {
   body: '',
-  jsonMetadata: '',
+  json: '',
   full: false,
   rewriteLinks: false,
 };

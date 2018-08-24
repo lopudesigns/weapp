@@ -7,7 +7,7 @@ import _ from 'lodash';
 import urlParse from 'url-parse';
 import { getUser, getRewardFund, getRate } from '../../reducers';
 import { getVoteValue } from '../../helpers/user';
-import { calculateVotingPower } from '../../vendor/steemitHelpers';
+import { calculateVotingPower } from '../../vendor/helpers';
 import SocialLinks from '../../components/SocialLinks';
 import USDDisplay from '../../components/Utils/USDDisplay';
 
@@ -27,9 +27,9 @@ class UserInfo extends React.Component {
 
   render() {
     const { intl, user, rewardFund, rate } = this.props;
-    const location = user && _.get(user.json_metadata, 'profile.location');
-    const profile = (user && _.get(user.json_metadata, 'profile')) || {};
-    let website = user && _.get(user.json_metadata, 'profile.website');
+    const location = user && _.get(user.json, 'profile.location');
+    const profile = (user && _.get(user.json, 'profile')) || {};
+    let website = user && _.get(user.json, 'profile.website');
 
     if (website && website.indexOf('http://') === -1 && website.indexOf('https://') === -1) {
       website = `http://${website}`;
@@ -54,7 +54,7 @@ class UserInfo extends React.Component {
         {user.name && (
           <div style={{ wordBreak: 'break-word' }}>
             <div style={{ fontSize: '18px' }}>
-              {_.get(user && user.json_metadata, 'profile.about')}
+              {_.get(user && user.json, 'profile.about')}
             </div>
             <div style={{ marginTop: 16, marginBottom: 16 }}>
               {location && (

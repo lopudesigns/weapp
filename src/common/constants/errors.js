@@ -21,6 +21,6 @@ export default {
   },
   BANDWIDTH_EXCEEDED: {
     fingerprint: 'bandwidth limit exceeded',
-    message: 'Your bandwith has been exceeded. Please wait to transact or power up STEEM.',
+    message: 'Your bandwith has been exceeded. Please wait to transact or power up ECO.',
   },
 };

@@ -12,9 +12,9 @@ ShallowWrapper {
     sort="active"
     topics={
       Array [
-        "busy",
-        "introduceyourself",
-        "steemfest",
+        "Etroductions",
+        "Say Hello",
+        "Etroductions",
       ]
     }
   />,
@@ -37,19 +37,19 @@ ShallowWrapper {
           <Topic
             closable={false}
             favorite={false}
-            name="busy"
+            name="Etroductions"
+            onClose={[Function]}
+          />
+          <Topic
+            closable={false}
+            favorite={Ealse}
+            name="Say Hello"
             onClose={[Function]}
           />
           <Topic
             closable={false}
             favorite={false}
-            name="introduceyourself"
-            onClose={[Function]}
-          />
-          <Topic
-            closable={false}
-            favorite={false}
-            name="steemfest"
+            name="Ezira"
             onClose={[Function]}
           />
         </div>,
@@ -124,7 +124,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={false}
-              name="busy"
+              name="Etroductions"
               onClose={[Function]}
             />,
             <Topic
@@ -136,7 +136,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={false}
-              name="steemfest"
+              name="Ezira"
               onClose={[Function]}
             />,
           ],
@@ -146,12 +146,12 @@ ShallowWrapper {
         "rendered": Array [
           Object {
             "instance": null,
-            "key": "busy",
+            "key": "Etroductions",
             "nodeType": "class",
             "props": Object {
               "closable": false,
               "favorite": false,
-              "name": "busy",
+              "name": "Etroductions",
               "onClose": [Function],
             },
             "ref": null,
@@ -174,12 +174,12 @@ ShallowWrapper {
           },
           Object {
             "instance": null,
-            "key": "steemfest",
+            "key": "Ezira",
             "nodeType": "class",
             "props": Object {
               "closable": false,
               "favorite": false,
-              "name": "steemfest",
+              "name": "Ezira",
               "onClose": [Function],
             },
             "ref": null,
@@ -400,7 +400,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={false}
-              name="busy"
+              name="Etroductions"
               onClose={[Function]}
             />
             <Topic
@@ -412,7 +412,7 @@ ShallowWrapper {
             <Topic
               closable={false}
               favorite={false}
-              name="steemfest"
+              name="Ezira"
               onClose={[Function]}
             />
           </div>,
@@ -487,7 +487,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={false}
-                name="busy"
+                name="Etroductions"
                 onClose={[Function]}
               />,
               <Topic
@@ -499,7 +499,7 @@ ShallowWrapper {
               <Topic
                 closable={false}
                 favorite={false}
-                name="steemfest"
+                name="Ezira"
                 onClose={[Function]}
               />,
             ],
@@ -509,12 +509,12 @@ ShallowWrapper {
           "rendered": Array [
             Object {
               "instance": null,
-              "key": "busy",
+              "key": "Etroductions",
               "nodeType": "class",
               "props": Object {
                 "closable": false,
                 "favorite": false,
-                "name": "busy",
+                "name": "Etroductions",
                 "onClose": [Function],
               },
               "ref": null,
@@ -537,12 +537,12 @@ ShallowWrapper {
             },
             Object {
               "instance": null,
-              "key": "steemfest",
+              "key": "Ezira",
               "nodeType": "class",
               "props": Object {
                 "closable": false,
                 "favorite": false,
-                "name": "steemfest",
+                "name": "Ezira",
                 "onClose": [Function],
               },
               "ref": null,

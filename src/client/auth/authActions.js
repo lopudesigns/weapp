@@ -4,7 +4,7 @@ import { getAuthenticatedUserName, getIsAuthenticated } from '../reducers';
 import { createAsyncActionType } from '../helpers/stateHelpers';
 import { addNewNotification } from '../app/appActions';
 import { getFollowing } from '../user/userActions';
-import { BUSY_API_TYPES } from '../../common/constants/notifications';
+import { API_TYPES } from '../../common/constants/notifications';
 
 export const LOGIN = '@auth/LOGIN';
 export const LOGIN_START = '@auth/LOGIN_START';
@@ -18,20 +18,20 @@ export const RELOAD_ERROR = '@auth/RELOAD_ERROR';
 
 export const LOGOUT = '@auth/LOGOUT';
 
-export const UPDATE_SC2_USER_METADATA = createAsyncActionType('@auth/UPDATE_SC2_USER_METADATA');
-export const BUSY_LOGIN = createAsyncActionType('@auth/BUSY_LOGIN');
+export const UPDATE_USER_METADATA = createAsyncActionType('@auth/UPDATE_USER_METADATA');
+export const LOGIN = createAsyncActionType('@auth/LOGIN');
 
 const loginError = createAction(LOGIN_ERROR);
 
-export const login = () => (dispatch, getState, { steemConnectAPI }) => {
+export const login = () => (dispatch, getState, { authAPI }) => {
   let promise = Promise.resolve(null);
 
   if (getIsAuthenticated(getState())) {
     promise = Promise.resolve(null);
-  } else if (!steemConnectAPI.options.accessToken) {
+  } else if (!authAPI.options.accessToken) {
     promise = Promise.reject(new Error('There is not accessToken present'));
   } else {
-    promise = steemConnectAPI.me().catch(() => dispatch(loginError()));
+    promise = authAPI.me().catch(() => dispatch(loginError()));
   }
 
   return dispatch({
@@ -47,16 +47,16 @@ export const login = () => (dispatch, getState, { steemConnectAPI }) => {
 
 export const getCurrentUserFollowing = () => dispatch => dispatch(getFollowing());
 
-export const reload = () => (dispatch, getState, { steemConnectAPI }) =>
+export const reload = () => (dispatch, getState, { authAPI }) =>
   dispatch({
     type: RELOAD,
     payload: {
-      promise: steemConnectAPI.me(),
+      promise: authAPI.me(),
     },
   });
 
-export const logout = () => (dispatch, getState, { steemConnectAPI }) => {
-  steemConnectAPI.revokeToken();
+export const logout = () => (dispatch, getState, { authAPI }) => {
+  authAPI.revokeToken();
   Cookie.remove('access_token');
 
   dispatch({
@@ -64,26 +64,26 @@ export const logout = () => (dispatch, getState, { steemConnectAPI }) => {
   });
 };
 
-export const getUpdatedSCUserMetadata = () => (dispatch, getState, { steemConnectAPI }) =>
+export const getUpdatedSCUserMetadata = () => (dispatch, getState, { authAPI }) =>
   dispatch({
-    type: UPDATE_SC2_USER_METADATA.ACTION,
+    type: UPDATE_USER_METADATA.ACTION,
     payload: {
-      promise: steemConnectAPI.me(),
+      promise: authAPI.me(),
     },
   });
 
-export const busyLogin = () => (dispatch, getState, { busyAPI }) => {
+export const login = () => (dispatch, getState, { authAPI }) => {
   const accessToken = Cookie.get('access_token');
   const state = getState();
 
   if (!getIsAuthenticated(state)) {
-    return dispatch({ type: BUSY_LOGIN.ERROR });
+    return dispatch({ type: LOGIN.ERROR });
   }
 
-  busyAPI.subscribe((response, message) => {
+  authAPI.subscribe((response, message) => {
     const type = message && message.type;
 
-    if (type === BUSY_API_TYPES.notification && message.notification) {
+    if (type === API_TYPES.notification && message.notification) {
       dispatch(addNewNotification(message.notification));
     }
   });
@@ -91,10 +91,10 @@ export const busyLogin = () => (dispatch, getState, { busyAPI }) => {
   const targetUsername = getAuthenticatedUserName(state);
 
   return dispatch({
-    type: BUSY_LOGIN.ACTION,
+    type: LOGIN.ACTION,
     meta: targetUsername,
     payload: {
-      promise: busyAPI.sendAsync('login', [accessToken]),
+      promise: authAPI.sendAsync('login', [accessToken]),
     },
   });
 };

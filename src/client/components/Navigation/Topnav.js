@@ -14,7 +14,7 @@ import {
   getAuthenticatedUserSCMetaData,
   getIsLoadingNotifications,
 } from '../../reducers';
-import SteemConnect from '../../steemConnectAPI';
+import authAPI from '../../authAPI';
 import { PARSED_NOTIFICATIONS } from '../../../common/constants/notifications';
 import BTooltip from '../BTooltip';
 import Avatar from '../Avatar';
@@ -135,7 +135,7 @@ class Topnav extends React.Component {
             |
           </Menu.Item>
           <Menu.Item key="login">
-            <a href={SteemConnect.getLoginURL(next)}>
+            <a href={authAPI.getLoginURL(next)}>
               <FormattedMessage id="login" defaultMessage="Log in" />
             </a>
           </Menu.Item>
@@ -354,7 +354,7 @@ class Topnav extends React.Component {
         <div className="topnav-layout">
           <div className={classNames('left', { 'Topnav__mobile-hidden': searchBarActive })}>
             <Link className="Topnav__brand" to="/">
-              <i className="iconfont ezicon-ezira Topnav__brand-icon" />
+              <i className="iconfont native-icons-ezira Topnav__brand-icon" />
               Ezira
             </Link>
             <span className="Topnav__version">alpha</span>

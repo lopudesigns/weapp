@@ -2,8 +2,8 @@ import reducer from '../walletReducer';
 import * as actions from '../walletActions';
 
 const reducerInitialState = {
-  totalVestingShares: '',
-  totalVestingFundSteem: '',
+  totalESCOR: '',
+  ESCORbackingECOfundBalance: '',
   usersTransactions: {},
   usersAccountHistory: {},
   usersEstAccountsValues: {},

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage, FormattedNumber, FormattedRelative } from 'react-intl';
 import { getFromMetadata } from '../../helpers/parser';
 import { getProxyImageURL } from '../../helpers/image';
-import { image } from '../../vendor/steemitLinks';
+import { image } from '../../vendor/links';
 
 const PostRecommendationLink = ({ post, navigateToPost, navigateToPostComments }) => {
-  const images = getFromMetadata(post.json_metadata, 'image');
+  const images = getFromMetadata(post.json, 'image');
   const firstImage = _.head(images);
   let imagePath = '';
 

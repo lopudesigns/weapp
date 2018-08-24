@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Logger from 'js-logger';
 import { message } from 'antd';
 import Cookie from 'js-cookie';
-import steemConnectAPI from './steemConnectAPI';
+import authAPI from './authAPI';
 import history from './history';
 import getStore from './store';
 import AppHost from './AppHost';
@@ -21,10 +21,10 @@ if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
 
 const accessToken = Cookie.get('access_token');
 if (accessToken) {
-  steemConnectAPI.setAccessToken(accessToken);
+  authAPI.setAccessToken(accessToken);
 }
 
-const store = getStore(steemConnectAPI);
+const store = getStore(authAPI);
 
 message.config({
   top: 62,

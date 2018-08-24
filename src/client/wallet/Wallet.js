@@ -19,7 +19,7 @@ const Wallet = ({ intl }) => (
           <LeftSidebar />
         </div>
       </Affix>
-      <Affix className="rightContainer" stickPosition={77}>
+      <Affix className="rightContainer wallet" stickPosition={77}>
         <div className="right">
           <WalletSidebar isCurrentUser />
         </div>

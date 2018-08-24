@@ -1,7 +1,7 @@
-import { Client } from 'busyjs';
+import { Client } from 'welightjs';
 
-function createBusyAPI() {
-  const client = new Client('wss://api.busy.org');
+function createlightclient() {
+  const client = new Client('wss://api.ezira.io');
 
   client.sendAsync = (message, params) =>
     new Promise((resolve, reject) => {
@@ -14,4 +14,4 @@ function createBusyAPI() {
   return client;
 }
 
-export default createBusyAPI;
+export default createlightclient;

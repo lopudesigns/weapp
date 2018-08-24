@@ -103,7 +103,7 @@ export default class Invite extends React.Component {
                   text={intl.formatMessage(
                     {
                       id: 'invite_share',
-                      defaultMessage: 'Join me today on busy.org and get rewarded to blog {link}',
+                      defaultMessage: 'Join me today on ezira.io and get rewarded to blog {link}',
                     },
                     {
                       link: '',
@@ -115,7 +115,7 @@ export default class Invite extends React.Component {
                   text={intl.formatMessage(
                     {
                       id: 'invite_share',
-                      defaultMessage: 'Join me today on busy.org and get rewarded to blog {link}',
+                      defaultMessage: 'Join me today on ezira.io and get rewarded to blog {link}',
                     },
                     {
                       link: this.state.inviteURL,

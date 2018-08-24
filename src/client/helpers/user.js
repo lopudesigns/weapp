@@ -1,43 +1,43 @@
-import { calculateVoteValue } from '../vendor/steemitHelpers';
+import { calculateVoteValue } from '../vendor/helpers';
 
-export const getUserRank = vests => {
+export const getUserRank = ESCOR => {
   let rank = 'Plankton';
-  if (vests >= 1000000000) {
+  if (ESCOR >=1000000000) {
     rank = 'Whale';
-  } else if (vests >= 100000000) {
+  } else if (ESCOR >=100000000) {
     rank = 'Orca';
-  } else if (vests >= 10000000) {
+  } else if (ESCOR >=10000000) {
     rank = 'Dolphin';
-  } else if (vests >= 1000000) {
+  } else if (ESCOR >=1000000) {
     rank = 'Minnow';
   }
   return rank;
 };
 
-export const getUserRankKey = vests => {
+export const getUserRankKey = ESCOR => {
   let rank = 'plankton';
-  if (vests >= 1000000000) {
+  if (ESCOR >=1000000000) {
     rank = 'whale';
-  } else if (vests >= 100000000) {
+  } else if (ESCOR >=100000000) {
     rank = 'orca';
-  } else if (vests >= 10000000) {
+  } else if (ESCOR >=10000000) {
     rank = 'dolphin';
-  } else if (vests >= 1000000) {
+  } else if (ESCOR >=1000000) {
     rank = 'minnow';
   }
   return `rank_${rank}`;
 };
 
-export const getTotalShares = user =>
-  parseFloat(user.vesting_shares) +
-  parseFloat(user.received_vesting_shares) +
-  -parseFloat(user.delegated_vesting_shares);
+export const getTotalESCOR = user =>
+  parseFloat(user.ESCOR) +
+  parseFloat(user.ESCORreceived) +
+  -parseFloat(user.ESCORDelegated);
 
-export const getHasDefaultSlider = user => getTotalShares(user) >= 10000000;
+export const getHasDefaultSlider = user => getTotalESCOR(user) >= 10000000;
 
 export const getVoteValue = (user, recentClaims, rewardBalance, rate, weight = 10000) =>
   calculateVoteValue(
-    getTotalShares(user),
+    getTotalESCOR(user),
     parseFloat(recentClaims),
     parseFloat(rewardBalance),
     rate,

@@ -13,7 +13,7 @@ const initialState = {
   trendingTopics: [],
   rewardFund: {},
   bannerClosed: false,
-  appUrl: 'https://busy.org',
+  appUrl: 'https://alpha.ezira.io',
   usedLocale: null,
   translations: {},
   cryptosPriceHistory: {},

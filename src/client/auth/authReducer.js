@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         user: {},
       };
-    case types.UPDATE_SC2_USER_METADATA.SUCCESS:
+    case types.UPDATE_USER_METADATA.SUCCESS:
       return {
         ...state,
         userSCMetaData: action.payload.user_metadata,

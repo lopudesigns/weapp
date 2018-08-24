@@ -7,58 +7,58 @@ import {
   FormattedDate,
   FormattedTime,
 } from 'react-intl';
-import formatter from '../helpers/steemitFormatter';
+import extraformatter from '../helpers/extraformatter';
 import BTooltip from '../components/BTooltip';
 
 const getFormattedPayout = (
-  rewardSteem,
-  rewardSbd,
-  rewardVests,
-  totalVestingShares,
-  totalVestingFundSteem,
+  ECOreward,
+  EUSDreward,
+  ESCORreward,
+  totalESCOR,
+  ESCORbackingECOfundBalance,
 ) => {
   const payouts = [];
-  const parsedRewardSteem = parseFloat(rewardSteem);
-  const parsedRewardSbd = parseFloat(rewardSbd);
-  const parsedRewardVests = parseFloat(
-    formatter.vestToSteem(rewardVests, totalVestingShares, totalVestingFundSteem),
+  const parsedECOreward = parseFloat(ECOreward);
+  const parsedEUSDreward = parseFloat(EUSDreward);
+  const parsedESCORrewardinECO = parseFloat(
+    extraformatter.ESCORinECOvalue(ESCORreward, totalESCOR, ESCORbackingECOfundBalance),
   );
 
-  if (parsedRewardSteem > 0) {
+  if (parsedECOreward > 0) {
     payouts.push(
-      <span key="STEEM" className="UserWalletTransactions__payout-rewards">
+      <span key="ECO" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedRewardSteem}
+          value={parsedECOreward}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
-        {' STEEM'}
+        {' ECO'}
       </span>,
     );
   }
 
-  if (parsedRewardSbd > 0) {
+  if (parsedEUSDreward > 0) {
     payouts.push(
-      <span key="SBD" className="UserWalletTransactions__payout-rewards">
+      <span key="EUSD" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedRewardSbd}
+          value={parsedEUSDreward}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
-        {' SBD'}
+        {' EUSD'}
       </span>,
     );
   }
 
-  if (parsedRewardVests > 0) {
+  if (parsedESCORrewardinECO > 0) {
     payouts.push(
-      <span key="SP" className="UserWalletTransactions__payout-rewards">
+      <span key="ePOWER" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedRewardVests}
+          value={parsedESCORrewardinECO}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
-        {' SP'}
+        {' ePOWER'}
       </span>,
     );
   }
@@ -68,11 +68,11 @@ const getFormattedPayout = (
 
 const ClaimReward = ({
   timestamp,
-  rewardSteem,
-  rewardSbd,
-  rewardVests,
-  totalVestingShares,
-  totalVestingFundSteem,
+  ECOreward,
+  EUSDreward,
+  ESCORreward,
+  totalESCOR,
+  ESCORbackingECOfundBalance,
 }) => (
   <div className="UserWalletTransactions__transaction">
     <div className="UserWalletTransactions__icon-container">
@@ -83,11 +83,11 @@ const ClaimReward = ({
         <FormattedMessage id="claim_rewards" defaultMessage="Claim rewards" />
         <span className="UserWalletTransactions__payout">
           {getFormattedPayout(
-            rewardSteem,
-            rewardSbd,
-            rewardVests,
-            totalVestingShares,
-            totalVestingFundSteem,
+            ECOreward,
+            EUSDreward,
+            ESCORreward,
+            totalESCOR,
+            ESCORbackingECOfundBalance,
           )}
         </span>
       </div>
@@ -110,11 +110,11 @@ const ClaimReward = ({
 
 ClaimReward.propTypes = {
   timestamp: PropTypes.string.isRequired,
-  rewardSteem: PropTypes.string.isRequired,
-  rewardSbd: PropTypes.string.isRequired,
-  rewardVests: PropTypes.string.isRequired,
-  totalVestingShares: PropTypes.string.isRequired,
-  totalVestingFundSteem: PropTypes.string.isRequired,
+  ECOreward: PropTypes.string.isRequired,
+  EUSDreward: PropTypes.string.isRequired,
+  ESCORreward: PropTypes.string.isRequired,
+  totalESCOR: PropTypes.string.isRequired,
+  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
 };
 
 export default ClaimReward;

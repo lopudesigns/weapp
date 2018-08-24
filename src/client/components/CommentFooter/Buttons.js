@@ -6,7 +6,7 @@ import { injectIntl, FormattedNumber, FormattedMessage } from 'react-intl';
 import { Icon } from 'antd';
 import { getUpvotes, getDownvotes } from '../../helpers/voteHelpers';
 import { sortVotes } from '../../helpers/sortHelpers';
-import { calculatePayout } from '../../vendor/steemitHelpers';
+import { calculatePayout } from '../../vendor/helpers';
 import BTooltip from '../BTooltip';
 import ReactionsModal from '../Reactions/ReactionsModal';
 import withAuthActions from '../../auth/withAuthActions';
@@ -109,16 +109,16 @@ class Buttons extends React.Component {
       parseFloat(comment.pending_payout_value) +
       parseFloat(comment.total_payout_value) +
       parseFloat(comment.curator_payout_value);
-    const voteRshares = comment.active_votes.reduce((a, b) => a + parseFloat(b.rshares), 0);
-    const ratio = totalPayout / voteRshares;
+    const voteRESCOR = comment.active_votes.reduce((a, b) => a + parseFloat(b.rESCOR), 0);
+    const ratio = totalPayout / voteRESCOR;
 
     const upVotesPreview = take(upVotes, 10).map(vote => (
       <p key={vote.voter}>
         {vote.voter}
-        {vote.rshares * ratio > 0.01 && (
+        {vote.rESCOR * ratio > 0.01 && (
           <span style={{ opacity: '0.5' }}>
             {' '}
-            <USDDisplay value={vote.rshares * ratio} />
+            <USDDisplay value={vote.rESCOR * ratio} />
           </span>
         )}
       </p>

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import UserWalletSummary from '../wallet/UserWalletSummary';
-import { SBD, STEEM } from '../../common/constants/cryptos';
+import { EUSD, ECO } from '../../common/constants/cryptos';
 import { getUserDetailsKey } from '../helpers/stateHelpers';
 import UserWalletTransactions from '../wallet/UserWalletTransactions';
 import Loading from '../components/Icon/Loading';
@@ -12,8 +12,8 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  getTotalVestingShares,
-  getTotalVestingFundSteem,
+  getTotalESCOR,
+  getTotalECOintheESCORfund,
   getUsersTransactions,
   getUsersAccountHistory,
   getUsersAccountHistoryLoading,
@@ -37,8 +37,8 @@ import { getAccount } from './usersActions';
         ? getAuthenticatedUser(state)
         : getUser(state, ownProps.match.params.name),
     authenticatedUserName: getAuthenticatedUserName(state),
-    totalVestingShares: getTotalVestingShares(state),
-    totalVestingFundSteem: getTotalVestingFundSteem(state),
+    totalESCOR: getTotalESCOR(state),
+    ESCORbackingECOfundBalance: getTotalECOintheESCORfund(state),
     usersTransactions: getUsersTransactions(state),
     usersAccountHistory: getUsersAccountHistory(state),
     usersAccountHistoryLoading: getUsersAccountHistoryLoading(state),
@@ -62,8 +62,8 @@ import { getAccount } from './usersActions';
 class Wallet extends Component {
   static propTypes = {
     location: PropTypes.shape().isRequired,
-    totalVestingShares: PropTypes.string.isRequired,
-    totalVestingFundSteem: PropTypes.string.isRequired,
+    totalESCOR: PropTypes.string.isRequired,
+    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
     user: PropTypes.shape().isRequired,
     getGlobalProperties: PropTypes.func.isRequired,
     getUserAccountHistory: PropTypes.func.isRequired,
@@ -87,8 +87,8 @@ class Wallet extends Component {
 
   componentDidMount() {
     const {
-      totalVestingShares,
-      totalVestingFundSteem,
+      totalESCOR,
+      ESCORbackingECOfundBalance,
       usersTransactions,
       user,
       isCurrentUser,
@@ -98,7 +98,7 @@ class Wallet extends Component {
       ? authenticatedUserName
       : this.props.location.pathname.match(/@(.*)(.*?)\//)[1];
 
-    if (_.isEmpty(totalVestingFundSteem) || _.isEmpty(totalVestingShares)) {
+    if (_.isEmpty(ESCORbackingECOfundBalance) || _.isEmpty(totalESCOR)) {
       this.props.getGlobalProperties();
     }
 
@@ -114,8 +114,8 @@ class Wallet extends Component {
   render() {
     const {
       user,
-      totalVestingShares,
-      totalVestingFundSteem,
+      totalESCOR,
+      ESCORbackingECOfundBalance,
       loadingGlobalProperties,
       usersTransactions,
       usersAccountHistoryLoading,
@@ -127,29 +127,29 @@ class Wallet extends Component {
     const userKey = getUserDetailsKey(user.name);
     const transactions = _.get(usersTransactions, userKey, []);
     const actions = _.get(usersAccountHistory, userKey, []);
-    const currentSteemRate = _.get(
+    const currentECORate = _.get(
       cryptosPriceHistory,
-      `${STEEM.symbol}.priceDetails.currentUSDPrice`,
+      `${ECO.symbol}.priceDetails.currentUSDPrice`,
       null,
     );
-    const currentSBDRate = _.get(
+    const currentEUSDRate = _.get(
       cryptosPriceHistory,
-      `${SBD.symbol}.priceDetails.currentUSDPrice`,
+      `${EUSD.symbol}.priceDetails.currentUSDPrice`,
       null,
     );
-    const steemRateLoading = _.isNull(currentSteemRate) || _.isNull(currentSBDRate);
+    const ECOrateLoading = _.isNull(currentECORate) || _.isNull(currentEUSDRate);
 
     return (
       <div>
         <UserWalletSummary
           user={user}
           loading={user.fetching}
-          totalVestingShares={totalVestingShares}
-          totalVestingFundSteem={totalVestingFundSteem}
+          totalESCOR={totalESCOR}
+          ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
           loadingGlobalProperties={loadingGlobalProperties}
-          steemRate={currentSteemRate}
-          sbdRate={currentSBDRate}
-          steemRateLoading={steemRateLoading}
+          ECOrate={currentECORate}
+          EUSDrate={currentEUSDRate}
+          ECOrateLoading={ECOrateLoading}
         />
         {transactions.length === 0 && usersAccountHistoryLoading ? (
           <Loading style={{ marginTop: '20px' }} />
@@ -158,8 +158,8 @@ class Wallet extends Component {
             transactions={transactions}
             actions={actions}
             currentUsername={user.name}
-            totalVestingShares={totalVestingShares}
-            totalVestingFundSteem={totalVestingFundSteem}
+            totalESCOR={totalESCOR}
+            ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
             getMoreUserAccountHistory={this.props.getMoreUserAccountHistory}
             loadingMoreUsersAccountHistory={loadingMoreUsersAccountHistory}
             userHasMoreActions={userHasMoreActions}

@@ -8,8 +8,8 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  getTotalVestingShares,
-  getTotalVestingFundSteem,
+  getTotalESCOR,
+  getTotalECOintheESCORfund,
   getUsersAccountHistory,
   getLoadingMoreUsersAccountHistory,
   getUserHasMoreAccountHistory,
@@ -33,8 +33,8 @@ import UserAction from './UserAction';
     user: ownProps.isCurrentUser
       ? getAuthenticatedUser(state)
       : getUser(state, ownProps.match.params.name),
-    totalVestingShares: getTotalVestingShares(state),
-    totalVestingFundSteem: getTotalVestingFundSteem(state),
+    totalESCOR: getTotalESCOR(state),
+    ESCORbackingECOfundBalance: getTotalECOintheESCORfund(state),
     usersAccountHistory: getUsersAccountHistory(state),
     loadingMoreUsersAccountHistory: getLoadingMoreUsersAccountHistory(state),
     userHasMoreActions: getUserHasMoreAccountHistory(
@@ -61,8 +61,8 @@ class UserActivityActionsList extends Component {
     loadMoreCurrentUsersActions: PropTypes.func.isRequired,
     user: PropTypes.shape().isRequired,
     usersAccountHistory: PropTypes.shape().isRequired,
-    totalVestingShares: PropTypes.string.isRequired,
-    totalVestingFundSteem: PropTypes.string.isRequired,
+    totalESCOR: PropTypes.string.isRequired,
+    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
     currentDisplayedActions: PropTypes.arrayOf(PropTypes.shape()),
     currentFilteredActions: PropTypes.arrayOf(PropTypes.shape()),
     accountHistoryFilter: PropTypes.arrayOf(PropTypes.string),
@@ -92,8 +92,8 @@ class UserActivityActionsList extends Component {
     const {
       usersAccountHistory,
       user,
-      totalVestingShares,
-      totalVestingFundSteem,
+      totalESCOR,
+      ESCORbackingECOfundBalance,
       userHasMoreActions,
       loadingMoreUsersAccountHistory,
       accountHistoryFilter,
@@ -125,15 +125,15 @@ class UserActivityActionsList extends Component {
                 key={`${action.trx_id}${action.actionCount}`}
                 transaction={action}
                 currentUsername={currentUsername}
-                totalVestingShares={totalVestingShares}
-                totalVestingFundSteem={totalVestingFundSteem}
+                totalESCOR={totalESCOR}
+                ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
               />
             ) : (
               <UserAction
                 key={`${action.trx_id}${action.actionCount}`}
                 action={action}
-                totalVestingShares={totalVestingShares}
-                totalVestingFundSteem={totalVestingFundSteem}
+                totalESCOR={totalESCOR}
+                ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
                 currentUsername={currentUsername}
               />
             ),

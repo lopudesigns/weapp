@@ -7,20 +7,20 @@ import Avatar from '../components/Avatar';
 
 const getSavingsTransactionMessage = (transactionType, transactionDetails, amount) => {
   switch (transactionType) {
-    case 'cancel_transfer_from_savings':
+    case 'cancelTransferFromSavings':
       return (
         <FormattedMessage
-          id="cancel_transfer_from_savings"
+          id="cancelTransferFromSavings"
           defaultMessage="Cancel transfer from savings (request {requestId})"
           values={{
             requestId: transactionDetails.request_id,
           }}
         />
       );
-    case 'transfer_to_savings':
+    case 'transferToSavings':
       return (
         <FormattedMessage
-          id="transfer_to_savings"
+          id="transferToSavings"
           defaultMessage="Transfer to savings {amount} to {username}"
           values={{
             amount,
@@ -32,10 +32,10 @@ const getSavingsTransactionMessage = (transactionType, transactionDetails, amoun
           }}
         />
       );
-    case 'transfer_from_savings':
+    case 'transferFromSavings':
       return (
         <FormattedMessage
-          id="transfer_from_savings"
+          id="transferFromSavings"
           defaultMessage="Transfer from savings {amount} to {username}"
           values={{
             amount,
@@ -57,7 +57,7 @@ const SavingsTransaction = ({ timestamp, transactionType, transactionDetails, am
     <div className="UserWalletTransactions__avatar">
       <Avatar
         username={
-          transactionType === 'transfer_to_savings'
+          transactionType === 'transferToSavings'
             ? transactionDetails.to
             : transactionDetails.from
         }

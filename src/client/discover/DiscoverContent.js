@@ -1,7 +1,7 @@
 import React from 'react';
 import people from '../helpers/people';
 import DiscoverUser from './DiscoverUser';
-import SteemAPI from '../steemAPI';
+import client from '../client';
 import ReduxInfiniteScroll from '../vendor/ReduxInfiniteScroll';
 
 const displayLimit = 20;
@@ -13,7 +13,7 @@ class DiscoverContent extends React.Component {
 
   componentDidMount() {
     const initialUsers = people.slice(0, displayLimit);
-    SteemAPI.sendAsync('get_accounts', [initialUsers]).then(users =>
+    client.sendAsync('get_accounts', [initialUsers]).then(users =>
       this.setState({
         users,
       }),
@@ -24,7 +24,7 @@ class DiscoverContent extends React.Component {
     const { users } = this.state;
     const moreUsersStartIndex = users.length;
     const moreUsers = people.slice(moreUsersStartIndex, moreUsersStartIndex + displayLimit);
-    SteemAPI.sendAsync('get_accounts', [moreUsers]).then(moreUsersResponse =>
+    client.sendAsync('get_accounts', [moreUsers]).then(moreUsersResponse =>
       this.setState({
         users: users.concat(moreUsersResponse),
       }),
