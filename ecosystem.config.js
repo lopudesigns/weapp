@@ -9,7 +9,7 @@ module.exports = {
       script: 'build/server.js',
       instances: 2,
       exec_mode: 'cluster',
-      max_memory_restart: '600M',
+      max_memory_restart: '400M',
     },
   ],
 };
