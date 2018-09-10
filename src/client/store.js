@@ -25,7 +25,7 @@ export default authAPI => {
     thunk.withExtraArgument({
       client,
       authAPI,
-      welightjs: createlightclient(),
+      welitejs: createlightclient(),
     }),
     routerMiddleware(history),
   ];

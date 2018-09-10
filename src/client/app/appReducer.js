@@ -13,7 +13,7 @@ const initialState = {
   trendingTopics: [],
   rewardFund: {},
   bannerClosed: false,
-  appUrl: 'https://alpha.ezira.io',
+  appUrl: 'https://alpha.WeYouMe.io',
   usedLocale: null,
   translations: {},
   cryptosPriceHistory: {},

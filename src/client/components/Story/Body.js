@@ -62,7 +62,7 @@ export function getHtml(body, json = {}, returnType = 'Object', options = {}) {
 
   if (options.rewriteLinks) {
     parsedBody = parsedBody.replace(
-      /"https?:\/\/(?:www)?alpha.ezira.io\/([A-Za-z0-9@/\-.]*)"/g,
+      /"https?:\/\/(?:www)?alpha.WeYouMe.io\/([A-Za-z0-9@/\-.]*)"/g,
       (match, p1) => `"/${p1}"`,
     );
   }

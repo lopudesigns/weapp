@@ -116,14 +116,14 @@ const broadcastComment = (
     permlink,
     allow_votes: true,
     allow_curationRewards: true,
-    max_accepted_payout: '1000000.000 EUSD',
-    percent_EUSD: 10000,
+    max_accepted_payout: '1000000.000 TSD',
+    percent_TSD: 10000,
   };
 
   if (reward === rewardsValues.none) {
-    commentOptionsConfig.max_accepted_payout = '0.000 EUSD';
+    commentOptionsConfig.max_accepted_payout = '0.000 TSD';
   } else if (reward === rewardsValues.all) {
-    commentOptionsConfig.percent_EUSD = 0;
+    commentOptionsConfig.percent_TSD = 0;
   }
 
   if (referral && referral !== authUsername) {

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import { openTransfer } from '../../wallet/walletActions';
 import { getAuthenticatedUser } from '../../reducers';
-import { ECO, EUSD } from '../../../common/constants/cryptos';
+import { TME, TSD } from '../../../common/constants/cryptos';
 import Action from '../Button/Action';
 import ClaimRewardsBlock from '../../wallet/ClaimRewardsBlock';
 import CryptoTrendingCharts from './CryptoTrendingCharts';
@@ -43,7 +43,7 @@ class WalletSidebar extends React.Component {
   render() {
     const { match, user, isCurrentUser } = this.props;
     const displayClaimRewards = match.params.name === user.name || isCurrentUser;
-    const cryptos = [ECO.symbol, EUSD.symbol];
+    const cryptos = [TME.symbol, TSD.symbol];
 
     return (
       <div>

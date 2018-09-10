@@ -77,7 +77,7 @@ export const updateRecommendations = createAction(UPDATE_RECOMMENDATIONS);
 
 export const GET_NOTIFICATIONS = createAsyncActionType('@user/GET_NOTIFICATIONS');
 
-export const getNotifications = username => (dispatch, getState, { welightjs }) => {
+export const getNotifications = username => (dispatch, getState, { welitejs }) => {
   const state = getState();
 
   if (!username && !getIsAuthenticated(state)) {
@@ -90,7 +90,7 @@ export const getNotifications = username => (dispatch, getState, { welightjs }) 
     type: GET_NOTIFICATIONS.ACTION,
     meta: targetUsername,
     payload: {
-      promise: welightjs.sendAsync('get_notifications', [targetUsername]),
+      promise: welitejs.sendAsync('get_notifications', [targetUsername]),
     },
   });
 };

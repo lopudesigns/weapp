@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import UserWalletSummary from '../wallet/UserWalletSummary';
-import { EUSD, ECO } from '../../common/constants/cryptos';
+import { TSD, TME } from '../../common/constants/cryptos';
 import { getUserDetailsKey } from '../helpers/stateHelpers';
 import UserWalletTransactions from '../wallet/UserWalletTransactions';
 import Loading from '../components/Icon/Loading';
@@ -12,8 +12,8 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  getTotalESCOR,
-  getTotalECOintheESCORfund,
+  getTotalSCORE,
+  getTotalTMEintheSCOREfund,
   getUsersTransactions,
   getUsersAccountHistory,
   getUsersAccountHistoryLoading,
@@ -37,8 +37,8 @@ import { getAccount } from './usersActions';
         ? getAuthenticatedUser(state)
         : getUser(state, ownProps.match.params.name),
     authenticatedUserName: getAuthenticatedUserName(state),
-    totalESCOR: getTotalESCOR(state),
-    ESCORbackingECOfundBalance: getTotalECOintheESCORfund(state),
+    totalSCORE: getTotalSCORE(state),
+    SCOREbackingTMEfundBalance: getTotalTMEintheSCOREfund(state),
     usersTransactions: getUsersTransactions(state),
     usersAccountHistory: getUsersAccountHistory(state),
     usersAccountHistoryLoading: getUsersAccountHistoryLoading(state),
@@ -62,8 +62,8 @@ import { getAccount } from './usersActions';
 class Wallet extends Component {
   static propTypes = {
     location: PropTypes.shape().isRequired,
-    totalESCOR: PropTypes.string.isRequired,
-    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+    totalSCORE: PropTypes.string.isRequired,
+    SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
     user: PropTypes.shape().isRequired,
     getGlobalProperties: PropTypes.func.isRequired,
     getUserAccountHistory: PropTypes.func.isRequired,
@@ -87,8 +87,8 @@ class Wallet extends Component {
 
   componentDidMount() {
     const {
-      totalESCOR,
-      ESCORbackingECOfundBalance,
+      totalSCORE,
+      SCOREbackingTMEfundBalance,
       usersTransactions,
       user,
       isCurrentUser,
@@ -98,7 +98,7 @@ class Wallet extends Component {
       ? authenticatedUserName
       : this.props.location.pathname.match(/@(.*)(.*?)\//)[1];
 
-    if (_.isEmpty(ESCORbackingECOfundBalance) || _.isEmpty(totalESCOR)) {
+    if (_.isEmpty(SCOREbackingTMEfundBalance) || _.isEmpty(totalSCORE)) {
       this.props.getGlobalProperties();
     }
 
@@ -114,8 +114,8 @@ class Wallet extends Component {
   render() {
     const {
       user,
-      totalESCOR,
-      ESCORbackingECOfundBalance,
+      totalSCORE,
+      SCOREbackingTMEfundBalance,
       loadingGlobalProperties,
       usersTransactions,
       usersAccountHistoryLoading,
@@ -127,29 +127,29 @@ class Wallet extends Component {
     const userKey = getUserDetailsKey(user.name);
     const transactions = _.get(usersTransactions, userKey, []);
     const actions = _.get(usersAccountHistory, userKey, []);
-    const currentECORate = _.get(
+    const currentTMErate = _.get(
       cryptosPriceHistory,
-      `${ECO.symbol}.priceDetails.currentUSDPrice`,
+      `${TME.symbol}.priceDetails.currentUSDPrice`,
       null,
     );
-    const currentEUSDRate = _.get(
+    const currentTSDRate = _.get(
       cryptosPriceHistory,
-      `${EUSD.symbol}.priceDetails.currentUSDPrice`,
+      `${TSD.symbol}.priceDetails.currentUSDPrice`,
       null,
     );
-    const ECOrateLoading = _.isNull(currentECORate) || _.isNull(currentEUSDRate);
+    const TMErateLoading = _.isNull(currentTMErate) || _.isNull(currentTSDRate);
 
     return (
       <div>
         <UserWalletSummary
           user={user}
           loading={user.fetching}
-          totalESCOR={totalESCOR}
-          ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+          totalSCORE={totalSCORE}
+          SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
           loadingGlobalProperties={loadingGlobalProperties}
-          ECOrate={currentECORate}
-          EUSDrate={currentEUSDRate}
-          ECOrateLoading={ECOrateLoading}
+          TMErate={currentTMErate}
+          TSDrate={currentTSDRate}
+          TMErateLoading={TMErateLoading}
         />
         {transactions.length === 0 && usersAccountHistoryLoading ? (
           <Loading style={{ marginTop: '20px' }} />
@@ -158,8 +158,8 @@ class Wallet extends Component {
             transactions={transactions}
             actions={actions}
             currentUsername={user.name}
-            totalESCOR={totalESCOR}
-            ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+            totalSCORE={totalSCORE}
+            SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
             getMoreUserAccountHistory={this.props.getMoreUserAccountHistory}
             loadingMoreUsersAccountHistory={loadingMoreUsersAccountHistory}
             userHasMoreActions={userHasMoreActions}

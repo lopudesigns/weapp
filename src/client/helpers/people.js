@@ -37,7 +37,7 @@ export default [
   'alexbeyman',
   'gringalicious',
   'donkeypong',
-  'ESCOR',
+  'SCORE',
   'marius19',
   'mindhunter',
   'the-alien',

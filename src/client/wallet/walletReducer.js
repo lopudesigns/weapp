@@ -6,8 +6,8 @@ import { getUserDetailsKey } from '../helpers/stateHelpers';
 const initialState = {
   transferVisible: false,
   transferTo: '',
-  totalESCOR: '',
-  ESCORbackingECOfundBalance: '',
+  totalSCORE: '',
+  SCOREbackingTMEfundBalance: '',
   usersTransactions: {},
   usersAccountHistory: {},
   usersEstAccountsValues: {},
@@ -41,8 +41,8 @@ export default function walletReducer(state = initialState, action) {
     case walletActions.GET_GLOBAL_PROPERTIES.SUCCESS: {
       return {
         ...state,
-        ESCORbackingECOfundBalance: action.payload.total_ESCOR_fund_in_ECO,
-        totalESCOR: action.payload.totalESCOR,
+        SCOREbackingTMEfundBalance: action.payload.total_SCORE_fund_in_TME,
+        totalSCORE: action.payload.totalSCORE,
         loadingGlobalProperties: false,
       };
     }
@@ -179,8 +179,8 @@ export default function walletReducer(state = initialState, action) {
 
 export const getIsTransferVisible = state => state.transferVisible;
 export const getTransferTo = state => state.transferTo;
-export const getTotalESCOR = state => state.totalESCOR;
-export const getTotalECOintheESCORfund = state => state.ESCORbackingECOfundBalance;
+export const getTotalSCORE = state => state.totalSCORE;
+export const getTotalTMEintheSCOREfund = state => state.SCOREbackingTMEfundBalance;
 export const getUsersTransactions = state => state.usersTransactions;
 export const getUsersEstAccountsValues = state => state.usersEstAccountsValues;
 export const getUsersAccountHistoryLoading = state => state.usersAccountHistoryLoading;

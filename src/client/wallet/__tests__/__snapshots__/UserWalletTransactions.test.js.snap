@@ -6,16 +6,16 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <UserWalletTransactions
     actions={Array []}
-    currentUsername="helloezira"
-    ESCORbackingECOfundBalance="0"
-    totalESCOR="0"
+    currentUsername="helloWeYouMe"
+    SCOREbackingTMEfundBalance="0"
+    totalSCORE="0"
     transactions={
       Array [
         Object {
           "op": Array [
-            "transferECOtoESCORfund",
+            "transferTMEtoSCOREfund",
             Object {
-              "amount": "100 ECO",
+              "amount": "100 TME",
             },
           ],
           "timestamp": "0",
@@ -24,8 +24,8 @@ ShallowWrapper {
           "op": Array [
             "transfer",
             Object {
-              "amount": "100 ECO",
-              "from": "helloezira1",
+              "amount": "100 TME",
+              "from": "helloWeYouMe1",
               "memo": "transfer memo",
             },
           ],
@@ -71,15 +71,15 @@ ShallowWrapper {
       >
         <div />
         <WalletTransaction
-          currentUsername="helloezira"
-          ESCORbackingECOfundBalance="0"
-          totalESCOR="0"
+          currentUsername="helloWeYouMe"
+          SCOREbackingTMEfundBalance="0"
+          totalSCORE="0"
           transaction={
             Object {
               "op": Array [
-                "transferECOtoESCORfund",
+                "transferTMEtoSCOREfund",
                 Object {
-                  "amount": "100 ECO",
+                  "amount": "100 TME",
                 },
               ],
               "timestamp": "0",
@@ -87,16 +87,16 @@ ShallowWrapper {
           }
         />
         <WalletTransaction
-          currentUsername="helloezira"
-          ESCORbackingECOfundBalance="0"
-          totalESCOR="0"
+          currentUsername="helloWeYouMe"
+          SCOREbackingTMEfundBalance="0"
+          totalSCORE="0"
           transaction={
             Object {
               "op": Array [
                 "transfer",
                 Object {
-                  "amount": "100 ECO",
-                  "from": "helloezira1",
+                  "amount": "100 TME",
+                  "from": "helloWeYouMe1",
                   "memo": "transfer memo",
                 },
               ],
@@ -117,15 +117,15 @@ ShallowWrapper {
           <div />,
           Array [
             <WalletTransaction
-              currentUsername="helloezira"
-              ESCORbackingECOfundBalance="0"
-              totalESCOR="0"
+              currentUsername="helloWeYouMe"
+              SCOREbackingTMEfundBalance="0"
+              totalSCORE="0"
               transaction={
                 Object {
                   "op": Array [
-                    "transferECOtoESCORfund",
+                    "transferTMEtoSCOREfund",
                     Object {
-                      "amount": "100 ECO",
+                      "amount": "100 TME",
                     },
                   ],
                   "timestamp": "0",
@@ -133,16 +133,16 @@ ShallowWrapper {
               }
             />,
             <WalletTransaction
-              currentUsername="helloezira"
-              ESCORbackingECOfundBalance="0"
-              totalESCOR="0"
+              currentUsername="helloWeYouMe"
+              SCOREbackingTMEfundBalance="0"
+              totalSCORE="0"
               transaction={
                 Object {
                   "op": Array [
                     "transfer",
                     Object {
-                      "amount": "100 ECO",
-                      "from": "helloezira1",
+                      "amount": "100 TME",
+                      "from": "helloWeYouMe1",
                       "memo": "transfer memo",
                     },
                   ],
@@ -188,14 +188,14 @@ ShallowWrapper {
           "key": "undefinedundefined",
           "nodeType": "function",
           "props": Object {
-            "currentUsername": "helloezira",
-            "ESCORbackingECOfundBalance": "0",
-            "totalESCOR": "0",
+            "currentUsername": "helloWeYouMe",
+            "SCOREbackingTMEfundBalance": "0",
+            "totalSCORE": "0",
             "transaction": Object {
               "op": Array [
-                "transferECOtoESCORfund",
+                "transferTMEtoSCOREfund",
                 Object {
-                  "amount": "100 ECO",
+                  "amount": "100 TME",
                 },
               ],
               "timestamp": "0",
@@ -210,15 +210,15 @@ ShallowWrapper {
           "key": "undefinedundefined",
           "nodeType": "function",
           "props": Object {
-            "currentUsername": "helloezira",
-            "ESCORbackingECOfundBalance": "0",
-            "totalESCOR": "0",
+            "currentUsername": "helloWeYouMe",
+            "SCOREbackingTMEfundBalance": "0",
+            "totalSCORE": "0",
             "transaction": Object {
               "op": Array [
                 "transfer",
                 Object {
-                  "amount": "100 ECO",
-                  "from": "helloezira1",
+                  "amount": "100 TME",
+                  "from": "helloWeYouMe1",
                   "memo": "transfer memo",
                 },
               ],
@@ -265,15 +265,15 @@ ShallowWrapper {
         >
           <div />
           <WalletTransaction
-            currentUsername="helloezira"
-            ESCORbackingECOfundBalance="0"
-            totalESCOR="0"
+            currentUsername="helloWeYouMe"
+            SCOREbackingTMEfundBalance="0"
+            totalSCORE="0"
             transaction={
               Object {
                 "op": Array [
-                  "transferECOtoESCORfund",
+                  "transferTMEtoSCOREfund",
                   Object {
-                    "amount": "100 ECO",
+                    "amount": "100 TME",
                   },
                 ],
                 "timestamp": "0",
@@ -281,16 +281,16 @@ ShallowWrapper {
             }
           />
           <WalletTransaction
-            currentUsername="helloezira"
-            ESCORbackingECOfundBalance="0"
-            totalESCOR="0"
+            currentUsername="helloWeYouMe"
+            SCOREbackingTMEfundBalance="0"
+            totalSCORE="0"
             transaction={
               Object {
                 "op": Array [
                   "transfer",
                   Object {
-                    "amount": "100 ECO",
-                    "from": "helloezira1",
+                    "amount": "100 TME",
+                    "from": "helloWeYouMe1",
                     "memo": "transfer memo",
                   },
                 ],
@@ -311,15 +311,15 @@ ShallowWrapper {
             <div />,
             Array [
               <WalletTransaction
-                currentUsername="helloezira"
-                ESCORbackingECOfundBalance="0"
-                totalESCOR="0"
+                currentUsername="helloWeYouMe"
+                SCOREbackingTMEfundBalance="0"
+                totalSCORE="0"
                 transaction={
                   Object {
                     "op": Array [
-                      "transferECOtoESCORfund",
+                      "transferTMEtoSCOREfund",
                       Object {
-                        "amount": "100 ECO",
+                        "amount": "100 TME",
                       },
                     ],
                     "timestamp": "0",
@@ -327,16 +327,16 @@ ShallowWrapper {
                 }
               />,
               <WalletTransaction
-                currentUsername="helloezira"
-                ESCORbackingECOfundBalance="0"
-                totalESCOR="0"
+                currentUsername="helloWeYouMe"
+                SCOREbackingTMEfundBalance="0"
+                totalSCORE="0"
                 transaction={
                   Object {
                     "op": Array [
                       "transfer",
                       Object {
-                        "amount": "100 ECO",
-                        "from": "helloezira1",
+                        "amount": "100 TME",
+                        "from": "helloWeYouMe1",
                         "memo": "transfer memo",
                       },
                     ],
@@ -382,14 +382,14 @@ ShallowWrapper {
             "key": "undefinedundefined",
             "nodeType": "function",
             "props": Object {
-              "currentUsername": "helloezira",
-              "ESCORbackingECOfundBalance": "0",
-              "totalESCOR": "0",
+              "currentUsername": "helloWeYouMe",
+              "SCOREbackingTMEfundBalance": "0",
+              "totalSCORE": "0",
               "transaction": Object {
                 "op": Array [
-                  "transferECOtoESCORfund",
+                  "transferTMEtoSCOREfund",
                   Object {
-                    "amount": "100 ECO",
+                    "amount": "100 TME",
                   },
                 ],
                 "timestamp": "0",
@@ -404,15 +404,15 @@ ShallowWrapper {
             "key": "undefinedundefined",
             "nodeType": "function",
             "props": Object {
-              "currentUsername": "helloezira",
-              "ESCORbackingECOfundBalance": "0",
-              "totalESCOR": "0",
+              "currentUsername": "helloWeYouMe",
+              "SCOREbackingTMEfundBalance": "0",
+              "totalSCORE": "0",
               "transaction": Object {
                 "op": Array [
                   "transfer",
                   Object {
-                    "amount": "100 ECO",
-                    "from": "helloezira1",
+                    "amount": "100 TME",
+                    "from": "helloWeYouMe1",
                     "memo": "transfer memo",
                   },
                 ],

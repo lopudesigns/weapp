@@ -217,13 +217,13 @@ class Write extends React.Component {
     if (this.state.isUpdating) data.isUpdating = this.state.isUpdating;
 
     let metaData = {
-      community: 'ezira',
+      community: 'WeYouMe',
       app: `weapp/${version}`,
       format: 'markdown',
     };
 
     // Merging json makes sure that users don't lose any metadata when they edit post using
-    // Ezira (like video data from DTube)
+    // WeYouMe (like video data from DTube)
     if (this.props.draftPosts[this.draftId] && this.props.draftPosts[this.draftId].json) {
       metaData = {
         ...this.props.draftPosts[this.draftId].json,

@@ -32,13 +32,13 @@ const getFormattedTransactionAmount = (amount, currency) => {
 const WalletTransaction = ({
   transaction,
   currentUsername,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
 }) => {
   const transactionType = transaction.op[0];
   const transactionDetails = transaction.op[1];
   switch (transactionType) {
-    case accountHistoryConstants.transferECOtoESCORfund:
+    case accountHistoryConstants.transferTMEtoSCOREfund:
       return (
         <PowerUpTransaction
           amount={getFormattedTransactionAmount(transactionDetails.amount, 'ePOWER')}
@@ -68,11 +68,11 @@ const WalletTransaction = ({
       return (
         <ClaimReward
           timestamp={transaction.timestamp}
-          ECOreward={transactionDetails.ECOreward}
-          EUSDreward={transactionDetails.EUSDreward}
-          ESCORreward={transactionDetails.ESCORreward}
-          totalESCOR={totalESCOR}
-          ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+          TMEreward={transactionDetails.TMEreward}
+          TSDreward={transactionDetails.TSDreward}
+          SCOREreward={transactionDetails.SCOREreward}
+          totalSCORE={totalSCORE}
+          SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
         />
       );
     case accountHistoryConstants.transferToSavings:
@@ -94,8 +94,8 @@ const WalletTransaction = ({
 WalletTransaction.propTypes = {
   transaction: PropTypes.shape().isRequired,
   currentUsername: PropTypes.string.isRequired,
-  totalESCOR: PropTypes.string.isRequired,
-  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+  totalSCORE: PropTypes.string.isRequired,
+  SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
 };
 
 export default WalletTransaction;

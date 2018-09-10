@@ -42,7 +42,7 @@ export const getMessageForSearchFilter = (currentUsername, actionType, actionDet
     case accountHistoryConstants.CLAIM_REWARDS:
     case accountHistoryConstants.claimRewardBalance:
       return accountHistoryConstants.CLAIM_REWARDS;
-    case accountHistoryConstants.transferECOtoESCORfund:
+    case accountHistoryConstants.transferTMEtoSCOREfund:
       return accountHistoryConstants.POWERED_UP;
     case accountHistoryConstants.TRANSFER:
       if (actionDetails.to === currentUsername) {

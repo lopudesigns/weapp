@@ -1,43 +1,43 @@
 import { calculateVoteValue } from '../vendor/helpers';
 
-export const getUserRank = ESCOR => {
+export const getUserRank = SCORE => {
   let rank = 'Plankton';
-  if (ESCOR >=1000000000) {
+  if (SCORE >=1000000000) {
     rank = 'Whale';
-  } else if (ESCOR >=100000000) {
+  } else if (SCORE >=100000000) {
     rank = 'Orca';
-  } else if (ESCOR >=10000000) {
+  } else if (SCORE >=10000000) {
     rank = 'Dolphin';
-  } else if (ESCOR >=1000000) {
+  } else if (SCORE >=1000000) {
     rank = 'Minnow';
   }
   return rank;
 };
 
-export const getUserRankKey = ESCOR => {
+export const getUserRankKey = SCORE => {
   let rank = 'plankton';
-  if (ESCOR >=1000000000) {
+  if (SCORE >=1000000000) {
     rank = 'whale';
-  } else if (ESCOR >=100000000) {
+  } else if (SCORE >=100000000) {
     rank = 'orca';
-  } else if (ESCOR >=10000000) {
+  } else if (SCORE >=10000000) {
     rank = 'dolphin';
-  } else if (ESCOR >=1000000) {
+  } else if (SCORE >=1000000) {
     rank = 'minnow';
   }
   return `rank_${rank}`;
 };
 
-export const getTotalESCOR = user =>
-  parseFloat(user.ESCOR) +
-  parseFloat(user.ESCORreceived) +
-  -parseFloat(user.ESCORDelegated);
+export const getTotalSCORE = user =>
+  parseFloat(user.SCORE) +
+  parseFloat(user.SCOREreceived) +
+  -parseFloat(user.SCOREDelegated);
 
-export const getHasDefaultSlider = user => getTotalESCOR(user) >= 10000000;
+export const getHasDefaultSlider = user => getTotalSCORE(user) >= 10000000;
 
 export const getVoteValue = (user, recentClaims, rewardBalance, rate, weight = 10000) =>
   calculateVoteValue(
-    getTotalESCOR(user),
+    getTotalSCORE(user),
     parseFloat(recentClaims),
     parseFloat(rewardBalance),
     rate,

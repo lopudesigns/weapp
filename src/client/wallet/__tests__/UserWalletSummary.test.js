@@ -8,13 +8,13 @@ describe('(Component) UserWalletSummary', () => {
       const props = {
         user: {
           balance: '100',
-          ESCOR: '0',
-          ECOsavingsBalance: '100 ECO',
-          EUSDsavingsBalance: '1000 ECO',
+          SCORE: '0',
+          TMEsavingsBalance: '100 TME',
+          TSDsavingsBalance: '1000 TME',
         },
-        estAccountValue: '100.00 ECO',
-        totalESCOR: '100 ECO',
-        ESCORbackingECOfundBalance: '100 ECO',
+        estAccountValue: '100.00 TME',
+        totalSCORE: '100 TME',
+        SCOREbackingTMEfundBalance: '100 TME',
         loading: false,
       };
       const wrapper = shallow(<UserWalletSummary {...props} />);

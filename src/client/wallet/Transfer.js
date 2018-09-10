@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import _ from 'lodash';
 import { Form, Input, Radio, Modal } from 'antd';
-import { ECO, EUSD } from '../../common/constants/cryptos';
+import { TME, TSD } from '../../common/constants/cryptos';
 import client from '../client';
 import authAPI from '../authAPI';
 import { getCryptoPriceHistory } from '../app/appActions';
@@ -60,26 +60,26 @@ export default class Transfer extends React.Component {
   static maxAccountLength = 16;
   static exchangeRegex = /^(bittrex|blocktrades|poloniex|changelly|openledge|shapeshiftio)$/;
   static CURRENCIES = {
-    ECO: 'ECO',
-    EUSD: 'EUSD',
+    TME: 'TME',
+    TSD: 'TSD',
   };
 
   state = {
-    currency: Transfer.CURRENCIES.ECO,
+    currency: Transfer.CURRENCIES.TME,
     oldAmount: undefined,
   };
 
   componentDidMount() {
     const { cryptosPriceHistory } = this.props;
-    const currentECORate = _.get(cryptosPriceHistory, 'ECO.priceDetails.currentUSDPrice', null);
-    const currentEUSDRate = _.get(cryptosPriceHistory, 'EUSD.priceDetails.currentUSDPrice', null);
+    const currentTMErate = _.get(cryptosPriceHistory, 'TME.priceDetails.currentUSDPrice', null);
+    const currentTSDRate = _.get(cryptosPriceHistory, 'TSD.priceDetails.currentUSDPrice', null);
 
-    if (_.isNull(currentECORate)) {
-      this.props.getCryptoPriceHistory(ECO.symbol);
+    if (_.isNull(currentTMErate)) {
+      this.props.getCryptoPriceHistory(TME.symbol);
     }
 
-    if (_.isNull(currentEUSDRate)) {
-      this.props.getCryptoPriceHistory(EUSD.symbol);
+    if (_.isNull(currentTSDRate)) {
+      this.props.getCryptoPriceHistory(TSD.symbol);
     }
   }
 
@@ -89,11 +89,11 @@ export default class Transfer extends React.Component {
       form.setFieldsValue({
         to,
         amount: undefined,
-        currency: ECO.symbol,
+        currency: TME.symbol,
         memo: undefined,
       });
       this.setState({
-        currency: ECO.symbol,
+        currency: TME.symbol,
       });
     }
   }
@@ -101,19 +101,19 @@ export default class Transfer extends React.Component {
   getUSDValue() {
     const { cryptosPriceHistory, intl } = this.props;
     const { currency, oldAmount } = this.state;
-    const currentECORate = _.get(cryptosPriceHistory, 'ECO.priceDetails.currentUSDPrice', null);
-    const currentEUSDRate = _.get(cryptosPriceHistory, 'EUSD.priceDetails.currentUSDPrice', null);
-    const ECOrateLoading = _.isNull(currentECORate) || _.isNull(currentEUSDRate);
+    const currentTMErate = _.get(cryptosPriceHistory, 'TME.priceDetails.currentUSDPrice', null);
+    const currentTSDRate = _.get(cryptosPriceHistory, 'TSD.priceDetails.currentUSDPrice', null);
+    const TMErateLoading = _.isNull(currentTMErate) || _.isNull(currentTSDRate);
     const parsedAmount = parseFloat(oldAmount);
     const invalidAmount = parsedAmount <= 0 || _.isNaN(parsedAmount);
     let amount = 0;
 
-    if (ECOrateLoading || invalidAmount) return '';
+    if (TMErateLoading || invalidAmount) return '';
 
-    if (currency === ECO.symbol) {
-      amount = parsedAmount * parseFloat(currentECORate);
+    if (currency === TME.symbol) {
+      amount = parsedAmount * parseFloat(currentTMErate);
     } else {
-      amount = parsedAmount * parseFloat(currentEUSDRate);
+      amount = parsedAmount * parseFloat(currentTSDRate);
     }
 
     return `~ $${intl.formatNumber(amount, {
@@ -269,7 +269,7 @@ export default class Transfer extends React.Component {
     }
 
     const selectedBalance =
-      this.state.currency === Transfer.CURRENCIES.ECO ? user.balance : user.EUSDbalance;
+      this.state.currency === Transfer.CURRENCIES.TME ? user.balance : user.TSDbalance;
 
     if (authenticated && currentValue !== 0 && currentValue > parseFloat(selectedBalance)) {
       callback([
@@ -287,14 +287,14 @@ export default class Transfer extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     const balance =
-      this.state.currency === Transfer.CURRENCIES.ECO ? user.balance : user.EUSDbalance;
+      this.state.currency === Transfer.CURRENCIES.TME ? user.balance : user.TSDbalance;
 
     const currencyPrefix = getFieldDecorator('currency', {
       initialValue: this.state.currency,
     })(
       <Radio.Group onChange={this.handleCurrencyChange} className="Transfer__amount__type">
-        <Radio.Button value={Transfer.CURRENCIES.ECO}>{Transfer.CURRENCIES.ECO}</Radio.Button>
-        <Radio.Button value={Transfer.CURRENCIES.EUSD}>{Transfer.CURRENCIES.EUSD}</Radio.Button>
+        <Radio.Button value={Transfer.CURRENCIES.TME}>{Transfer.CURRENCIES.TME}</Radio.Button>
+        <Radio.Button value={Transfer.CURRENCIES.TSD}>{Transfer.CURRENCIES.TSD}</Radio.Button>
       </Radio.Group>,
     );
 

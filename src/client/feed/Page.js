@@ -59,7 +59,7 @@ class Page extends React.Component {
       <div>
         <Helmet>
           <title>
-						Ezira
+						WeYouMe
 					</title>
           <meta name="robots" content={robots} />
         </Helmet>

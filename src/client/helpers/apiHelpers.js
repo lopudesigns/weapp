@@ -86,11 +86,11 @@ export const getDynamicGlobalProperties = () =>
 
 export const isWalletTransaction = actionType =>
   actionType === accountHistoryConstants.TRANSFER ||
-  actionType === accountHistoryConstants.transferECOtoESCORfund ||
+  actionType === accountHistoryConstants.transferTMEtoSCOREfund ||
   actionType === accountHistoryConstants.cancelTransferFromSavings ||
   actionType === accountHistoryConstants.transferFromSavings ||
   actionType === accountHistoryConstants.transferToSavings ||
-  actionType === accountHistoryConstants.delegateESCOR ||
+  actionType === accountHistoryConstants.delegateSCORE ||
   actionType === accountHistoryConstants.claimRewardBalance;
 
 export const getAccountReputation = (name, limit = 20) =>

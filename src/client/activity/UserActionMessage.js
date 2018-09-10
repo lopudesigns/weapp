@@ -13,8 +13,8 @@ class UserActionMessage extends React.Component {
   static propTypes = {
     actionType: PropTypes.string.isRequired,
     actionDetails: PropTypes.shape().isRequired,
-    totalESCOR: PropTypes.string.isRequired,
-    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+    totalSCORE: PropTypes.string.isRequired,
+    SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
     currentUsername: PropTypes.string.isRequired,
   };
 
@@ -22,8 +22,8 @@ class UserActionMessage extends React.Component {
     const {
       actionType,
       actionDetails,
-      totalESCOR,
-      ESCORbackingECOfundBalance,
+      totalSCORE,
+      SCOREbackingTMEfundBalance,
       currentUsername,
     } = this.props;
 
@@ -98,23 +98,23 @@ class UserActionMessage extends React.Component {
         return (
           <AuthorRewardMessage
             actionDetails={actionDetails}
-            totalESCOR={totalESCOR}
-            ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+            totalSCORE={totalSCORE}
+            SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
           />
         );
       case accountHistoryConstants.curationReward:
         return (
           <FormattedMessage
             id="curationReward_for_post"
-            defaultMessage="Curation reward: {amountESCORvalueInECO} ESCOR for {author} ({postLink})"
+            defaultMessage="Curation reward: {amountSCOREvalueInTME} SCORE for {author} ({postLink})"
             values={{
-              amountESCORvalueInECO: (
+              amountSCOREvalueInTME: (
                 <FormattedNumber
                   value={parseFloat(
-                    formatter.ESCORinECOvalue(
+                    formatter.SCOREinTMEvalue(
                       actionDetails.reward,
-                      totalESCOR,
-                      ESCORbackingECOfundBalance,
+                      totalSCORE,
+                      SCOREbackingTMEfundBalance,
                     ),
                   )}
                 />
@@ -175,7 +175,7 @@ class UserActionMessage extends React.Component {
             }}
           />
         );
-      case accountHistoryConstants.fillESCORWithdraw:
+      case accountHistoryConstants.fillSCOREWithdraw:
         return (
           <FormattedMessage
             id="power_down_message"

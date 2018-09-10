@@ -61,7 +61,7 @@ class UserActionIcon extends React.Component {
         return null;
       case accountHistoryConstants.deleteComment:
         return 'icon-message';
-      case accountHistoryConstants.fillESCORWithdraw:
+      case accountHistoryConstants.fillSCOREWithdraw:
         return 'icon-flashlight';
       default:
         return null;

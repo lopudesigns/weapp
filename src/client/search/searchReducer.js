@@ -20,14 +20,14 @@ export default (state = initialState, action) => {
     case searchActions.SEARCH_ASK.SUCCESS: {
       const AskNodeResults = _.get(action.payload, 0, []);
       const lookupResults = _.get(action.payload, 1, []);
-      const parsedECOLookupResults = _.map(lookupResults, accountDetails => ({
+      const parsedTMElookupResults = _.map(lookupResults, accountDetails => ({
         ...accountDetails,
         reputation: formatter.reputation(accountDetails.reputation),
         name: accountDetails.account,
         type: 'user',
       }));
-      const sortedECOLookupResults = _.sortBy(parsedECOLookupResults, 'reputation').reverse();
-      const searchResults = _.compact(_.concat(sortedECOLookupResults, AskNodeResults));
+      const sortedTMElookupResults = _.sortBy(parsedTMElookupResults, 'reputation').reverse();
+      const searchResults = _.compact(_.concat(sortedTMElookupResults, AskNodeResults));
       return {
         ...state,
         searchResults,

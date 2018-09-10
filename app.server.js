@@ -366,7 +366,7 @@
         },
         publisher: {
           '@type': 'Organization',
-          name: 'alpha.Ezira.io',
+          name: 'alpha.WeYouMe.io',
           logo: {
             '@type': 'ImageObject',
             url: `${appUrl}/images/logo-brand.png`,
@@ -428,7 +428,7 @@
 
     const createClient = __webpack_require__(21).createClient;
 
-    const client = createClient("https://api.ezira.io" || 'https://api.ezira.io');
+    const client = createClient("https://api.WeYouMe.io" || 'https://api.WeYouMe.io');
     client.sendAsync = (message, params) =>
       new Promise((resolve, reject) => {
         client.send(message, params, (err, result) => {
@@ -818,10 +818,10 @@
   (function (module, exports) {
 
     module.exports = {
-			"Ezira": {
-        "name": "Ezira",
-        "homepage": "https://ezira.io/",
-        "url_scheme": "https://ezira.io/{username}/{permlink}"
+			"WeYouMe": {
+        "name": "WeYouMe",
+        "homepage": "https://WeYouMe.io/",
+        "url_scheme": "https://WeYouMe.io/{username}/{permlink}"
       },
 			"WeYouMe": {
         "name": "WeYouMe",

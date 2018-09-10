@@ -42,14 +42,14 @@ class ClaimRewardsBlock extends Component {
     const { user } = this.props;
     const {
       name,
-      ECOrewardBalance: ECObalance,
-      EUSDrewardBalance: EUSDbalance,
-      ESCORrewardBalance: ESCORbalance,
+      TMErewardBalance: TMEbalance,
+      TSDrewardBalance: TSDbalance,
+      SCORErewardBalance: SCOREbalance,
     } = user;
     this.setState({
       loading: true,
     });
-    authAPI.claimRewardBalance(name, ECObalance, EUSDbalance, ESCORbalance, err => {
+    authAPI.claimRewardBalance(name, TMEbalance, TSDbalance, SCOREbalance, err => {
       if (!err) {
         this.setState({
           loading: false,
@@ -83,10 +83,10 @@ class ClaimRewardsBlock extends Component {
 
     const { user, intl } = this.props;
     const { rewardClaimed } = this.state;
-    const ECOreward = parseFloat(user.ECOrewardBalance);
-    const EUSDreward = parseFloat(user.EUSDrewardbalance);
-    const ESCORreward = parseFloat(user.ESCORreward);
-    const userHasRewards = ECOreward > 0 || EUSDreward > 0 || ESCORreward > 0;
+    const TMEreward = parseFloat(user.TMErewardBalance);
+    const TSDreward = parseFloat(user.TSDrewardBalance);
+    const SCORErewardBalanceInTME = parseFloat(user.SCORErewardBalanceInTME);
+    const userHasRewards = TMEreward > 0 || TSDreward > 0 || SCORErewardBalanceInTME > 0;
 
     const buttonText = rewardClaimed
       ? intl.formatMessage({
@@ -109,9 +109,9 @@ class ClaimRewardsBlock extends Component {
         <div className="SidebarContentBlock__content">
           {!rewardClaimed && (
             <div>
-              {ECOreward > 0 && this.renderReward(ECOreward, 'ECO', 'eCoin')}
-              {EUSDreward > 0 && this.renderReward(EUSDreward, 'EUSD', 'eUSD')}
-              {ESCORreward > 0 && this.renderReward(ESCORreward, 'ESCOR', 'eScore')}
+              {TMEreward > 0 && this.renderReward(TMEreward, 'TME', 'TME')}
+              {TSDreward > 0 && this.renderReward(TSDreward, 'TSD', 'TSD')}
+              {SCORErewardBalanceInTME > 0 && this.renderReward(SCORErewardBalanceInTME, 'SCORE', 'SCORE')}
             </div>
           )}
           <Action

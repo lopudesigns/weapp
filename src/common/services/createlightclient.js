@@ -1,7 +1,7 @@
-import { Client } from 'welightjs';
+import { Client } from 'welitejs';
 
 function createlightclient() {
-  const client = new Client('wss://api.ezira.io');
+  const client = new Client('wss://api.WeYouMe.io');
 
   client.sendAsync = (message, params) =>
     new Promise((resolve, reject) => {

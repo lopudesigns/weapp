@@ -190,10 +190,10 @@ export const STEEM = {
   symbol: 'STEEM',
 };
 
-export const ECO = {
-  id: 'ecoin',
-  name: 'eCoin',
-  symbol: 'ECO',
+export const SBD = {
+  id: 'SBD',
+  name: 'SBD',
+  symbol: 'SBD',
 };
 
 export const VERI = {
@@ -282,7 +282,7 @@ export const DGD = {
 
 export const MAID = {
   id: 'maidsafecoin',
-  name: 'MaidSafeCoin',
+  name: 'MaidSafTME',
   symbol: 'MAID',
 };
 
@@ -604,10 +604,16 @@ export const FTC = {
   symbol: 'FTC',
 };
 
-export const EUSD = {
-  id: 'EUSD',
-  name: 'EUSD',
-  symbol: 'EUSD',
+export const TME = {
+  id: 'TME',
+  name: 'TME',
+  symbol: 'TME',
+};
+
+export const TSD = {
+  id: 'TSD',
+  name: 'TSD',
+  symbol: 'TSD',
 };
 
 export const CRYPTO_MAP = {
@@ -642,9 +648,10 @@ export const CRYPTO_MAP = {
   [BTS.symbol]: BTS,
   [BCN.symbol]: BCN,
   [TRX.symbol]: TRX,
-  [ECO.symbol]: ECO,
+  [TME.symbol]: TME,
   [STEEM.symbol]: STEEM,
-  [EUSD.symbol]: EUSD,
+  [SBD.symbol]: SBD,
+  [TSD.symbol]: TSD,
   [VERI.symbol]: VERI,
   [ARK.symbol]: ARK,
   [SALT.symbol]: SALT,

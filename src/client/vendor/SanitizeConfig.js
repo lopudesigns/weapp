@@ -160,8 +160,8 @@ export default ({ large = true, noImage = false, sanitizeErrors = [] }) => ({
       if (!href) href = '#';
       href = href.trim();
       const attys = {};
-      // If it's not a (relative or absolute) alpha.ezira.io URL...
-      if (!href.match(/^^(\/|https:\/\/(staging\.)?ezira\.io(?![\w\.]+))/)) {
+      // If it's not a (relative or absolute) alpha.WeYouMe.io URL...
+      if (!href.match(/^^(\/|https:\/\/(staging\.)?WeYouMe\.io(?![\w\.]+))/)) {
         attys.target = '_blank';
         href = `/exit?url=${encodeURI(href)}`;
       }

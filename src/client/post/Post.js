@@ -115,7 +115,7 @@ export default class Post extends React.Component {
 
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
-      window.document.title = 'Ezira';
+      window.document.title = 'WeYouMe';
     }
   }
 

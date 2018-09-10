@@ -24,11 +24,11 @@ const Payout = ({ intl, post }) => {
             <USDDisplay value={payoutValue} />
           </span>
         </BTooltip>
-        {post.percent_EUSD === 0 && (
+        {post.percent_TSD === 0 && (
           <BTooltip
             title={intl.formatMessage({
               id: 'reward_option_100',
-              defaultMessage: '100% ESCOR',
+              defaultMessage: '100% SCORE',
             })}
           >
             <i className="iconfont icon-flashlight" />

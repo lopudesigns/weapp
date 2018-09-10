@@ -97,7 +97,7 @@ export const sendComment = (parentPost, body, isUpdating = false, originalCommen
   const permlink = isUpdating
     ? originalComment.permlink
     : createCommentPermlink(parentAuthor, parentPermlink);
-  const json = { tags: [category], community: 'Ezira', app: `weapp/${version}` };
+  const json = { tags: [category], community: 'WeYouMe', app: `weapp/${version}` };
 
   const newBody = isUpdating ? getBodyPatchIfSmaller(originalComment.body, body) : body;
 

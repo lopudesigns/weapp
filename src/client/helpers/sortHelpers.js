@@ -3,12 +3,12 @@ import formatter from './extraformatter';
 export const sortComments = (comments, sortType = 'BEST') => {
   const sortedComments = [...comments];
 
-  const netNegative = a => a.net_rESCOR < 0;
+  const netNegative = a => a.net_rSCORE < 0;
   const totalPayout = a =>
     parseFloat(a.pending_payout_value) +
     parseFloat(a.total_payout_value) +
     parseFloat(a.curator_payout_value);
-  const netRESCOR = a => a.net_rESCOR;
+  const netRSCORE = a => a.net_rSCORE;
 
   switch (sortType) {
     case 'BEST':
@@ -26,7 +26,7 @@ export const sortComments = (comments, sortType = 'BEST') => {
           return bPayout - aPayout;
         }
 
-        return netRESCOR(b) - netRESCOR(a);
+        return netRSCORE(b) - netRSCORE(a);
       });
     case 'NEWEST':
       return sortedComments.sort((a, b) => Date.parse(a.created) - Date.parse(b.created)).reverse();
@@ -42,6 +42,6 @@ export const sortComments = (comments, sortType = 'BEST') => {
   }
 };
 
-export const sortVotes = (a, b) => b.rESCOR - a.rESCOR;
+export const sortVotes = (a, b) => b.rSCORE - a.rSCORE;
 
 export default null;

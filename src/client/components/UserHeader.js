@@ -17,7 +17,7 @@ const UserHeader = ({
   username,
   handle,
   userReputation,
-  ESCOR,
+  SCORE,
   isSameUser,
   coverImage,
   hasCover,
@@ -87,8 +87,8 @@ const UserHeader = ({
             <div className="UserHeader__rank">
               <i className="iconfont icon-ranking" />
               <FormattedMessage
-                id={getUserRankKey(ESCOR)}
-                defaultMessage={getUserRank(ESCOR)}
+                id={getUserRankKey(SCORE)}
+                defaultMessage={getUserRank(SCORE)}
               />
             </div>
           </div>
@@ -113,7 +113,7 @@ UserHeader.propTypes = {
   username: PropTypes.string,
   handle: PropTypes.string,
   userReputation: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  ESCOR: PropTypes.number,
+  SCORE: PropTypes.number,
   isSameUser: PropTypes.bool,
   coverImage: PropTypes.string,
   hasCover: PropTypes.bool,
@@ -125,7 +125,7 @@ UserHeader.defaultProps = {
   username: '',
   handle: '',
   userReputation: '0',
-  ESCOR: 0,
+  SCORE: 0,
   isSameUser: false,
   coverImage: '',
   hasCover: false,

@@ -10,15 +10,15 @@ export const REBLOG = 'reblog';
 export const curationReward = 'curationReward';
 export const authorReward = 'authorReward';
 export const accountWitnessVote = 'accountWitnessVote';
-export const fillESCORWithdraw = 'fillESCORWithdraw';
+export const fillSCOREWithdraw = 'fillSCOREWithdraw';
 
 // Wallet Action Types
 export const TRANSFER = 'transfer';
-export const transferECOtoESCORfund = 'transferECOtoESCORfund';
+export const transferTMEtoSCOREfund = 'transferTMEtoSCOREfund';
 export const cancelTransferFromSavings = 'cancelTransferFromSavings';
 export const transferFromSavings = 'transferFromSavings';
 export const transferToSavings = 'transferToSavings';
-export const delegateESCOR = 'delegateESCOR';
+export const delegateSCORE = 'delegateSCORE';
 export const claimRewardBalance = 'claimRewardBalance';
 
 // Filter Types - General
@@ -46,12 +46,12 @@ export const PARSED_PROPERTIES = [
   curationReward,
   authorReward,
   TRANSFER,
-  transferECOtoESCORfund,
+  transferTMEtoSCOREfund,
   cancelTransferFromSavings,
   transferFromSavings,
   transferToSavings,
-  delegateESCOR,
+  delegateSCORE,
   claimRewardBalance,
   accountWitnessVote,
-  fillESCORWithdraw,
+  fillSCOREWithdraw,
 ];

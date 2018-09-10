@@ -75,7 +75,7 @@ const filterValues = {
     id: accountHistoryConstants.POWERED_UP,
     messageId: accountHistoryConstants.POWERED_UP,
     defaultMessage: 'Powered up',
-    value: [accountHistoryConstants.POWERED_UP, accountHistoryConstants.transferECOtoESCORfund],
+    value: [accountHistoryConstants.POWERED_UP, accountHistoryConstants.transferTMEtoSCOREfund],
   },
   [accountHistoryConstants.RECEIVED]: {
     id: accountHistoryConstants.RECEIVED,

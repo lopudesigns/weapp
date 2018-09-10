@@ -11,50 +11,50 @@ import extraformatter from '../helpers/extraformatter';
 import BTooltip from '../components/BTooltip';
 
 const getFormattedPayout = (
-  ECOreward,
-  EUSDreward,
-  ESCORreward,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
+  TMEreward,
+  TSDreward,
+  SCOREreward,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
 ) => {
   const payouts = [];
-  const parsedECOreward = parseFloat(ECOreward);
-  const parsedEUSDreward = parseFloat(EUSDreward);
-  const parsedESCORrewardinECO = parseFloat(
-    extraformatter.ESCORinECOvalue(ESCORreward, totalESCOR, ESCORbackingECOfundBalance),
+  const parsedTMEreward = parseFloat(TMEreward);
+  const parsedTSDreward = parseFloat(TSDreward);
+  const parsedSCORErewardinTME = parseFloat(
+    extraformatter.SCOREinTMEvalue(SCOREreward, totalSCORE, SCOREbackingTMEfundBalance),
   );
 
-  if (parsedECOreward > 0) {
+  if (parsedTMEreward > 0) {
     payouts.push(
-      <span key="ECO" className="UserWalletTransactions__payout-rewards">
+      <span key="TME" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedECOreward}
+          value={parsedTMEreward}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
-        {' ECO'}
+        {' TME'}
       </span>,
     );
   }
 
-  if (parsedEUSDreward > 0) {
+  if (parsedTSDreward > 0) {
     payouts.push(
-      <span key="EUSD" className="UserWalletTransactions__payout-rewards">
+      <span key="TSD" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedEUSDreward}
+          value={parsedTSDreward}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
-        {' EUSD'}
+        {' TSD'}
       </span>,
     );
   }
 
-  if (parsedESCORrewardinECO > 0) {
+  if (parsedSCORErewardinTME > 0) {
     payouts.push(
       <span key="ePOWER" className="UserWalletTransactions__payout-rewards">
         <FormattedNumber
-          value={parsedESCORrewardinECO}
+          value={parsedSCORErewardinTME}
           minimumFractionDigits={3}
           maximumFractionDigits={3}
         />
@@ -68,11 +68,11 @@ const getFormattedPayout = (
 
 const ClaimReward = ({
   timestamp,
-  ECOreward,
-  EUSDreward,
-  ESCORreward,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
+  TMEreward,
+  TSDreward,
+  SCOREreward,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
 }) => (
   <div className="UserWalletTransactions__transaction">
     <div className="UserWalletTransactions__icon-container">
@@ -83,11 +83,11 @@ const ClaimReward = ({
         <FormattedMessage id="claim_rewards" defaultMessage="Claim rewards" />
         <span className="UserWalletTransactions__payout">
           {getFormattedPayout(
-            ECOreward,
-            EUSDreward,
-            ESCORreward,
-            totalESCOR,
-            ESCORbackingECOfundBalance,
+            TMEreward,
+            TSDreward,
+            SCOREreward,
+            totalSCORE,
+            SCOREbackingTMEfundBalance,
           )}
         </span>
       </div>
@@ -110,11 +110,11 @@ const ClaimReward = ({
 
 ClaimReward.propTypes = {
   timestamp: PropTypes.string.isRequired,
-  ECOreward: PropTypes.string.isRequired,
-  EUSDreward: PropTypes.string.isRequired,
-  ESCORreward: PropTypes.string.isRequired,
-  totalESCOR: PropTypes.string.isRequired,
-  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+  TMEreward: PropTypes.string.isRequired,
+  TSDreward: PropTypes.string.isRequired,
+  SCOREreward: PropTypes.string.isRequired,
+  totalSCORE: PropTypes.string.isRequired,
+  SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
 };
 
 export default ClaimReward;

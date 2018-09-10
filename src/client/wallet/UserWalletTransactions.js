@@ -13,8 +13,8 @@ class UserWalletTransactions extends React.Component {
     actions: PropTypes.arrayOf(PropTypes.shape()),
     getMoreUserAccountHistory: PropTypes.func.isRequired,
     currentUsername: PropTypes.string,
-    totalESCOR: PropTypes.string.isRequired,
-    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+    totalSCORE: PropTypes.string.isRequired,
+    SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
     loadingMoreUsersAccountHistory: PropTypes.bool.isRequired,
     userHasMoreActions: PropTypes.bool.isRequired,
   };
@@ -42,8 +42,8 @@ class UserWalletTransactions extends React.Component {
     const {
       transactions,
       currentUsername,
-      totalESCOR,
-      ESCORbackingECOfundBalance,
+      totalSCORE,
+      SCOREbackingTMEfundBalance,
       loadingMoreUsersAccountHistory,
       userHasMoreActions,
     } = this.props;
@@ -72,8 +72,8 @@ class UserWalletTransactions extends React.Component {
               key={`${transaction.trx_id}${transaction.actionCount}`}
               transaction={transaction}
               currentUsername={currentUsername}
-              totalESCOR={totalESCOR}
-              ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+              totalSCORE={totalSCORE}
+              SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
             />
           ))}
         </ReduxInfiniteScroll>

@@ -109,7 +109,7 @@ class Editor extends React.Component {
   }
 
   setValues(post) {
-    // NOTE: Used to rollback damaged drafts - https://github.com/eziranetwork/weapp/issues/1412
+    // NOTE: Used to rollback damaged drafts - https://github.com/WeYouMe/weapp/issues/1412
     // Might be deleted after a while.
     let reward = rewardsValues.half;
     if (
@@ -204,7 +204,7 @@ class Editor extends React.Component {
       <Form className="Editor" layout="vertical" onSubmit={this.handleSubmit}>
         <Helmet>
           <title>
-            {intl.formatMessage({ id: 'write_post', defaultMessage: 'Write post' })} Ezira
+            {intl.formatMessage({ id: 'write_post', defaultMessage: 'Write post' })} WeYouMe
           </title>
         </Helmet>
         <Form.Item
@@ -341,10 +341,10 @@ class Editor extends React.Component {
           {getFieldDecorator('reward')(
             <Select onChange={this.onUpdate} disabled={isUpdating}>
               <Select.Option value={rewardsValues.all}>
-                <FormattedMessage id="reward_option_100" defaultMessage="100% ESCOR" />
+                <FormattedMessage id="reward_option_100" defaultMessage="100% SCORE" />
               </Select.Option>
               <Select.Option value={rewardsValues.half}>
-                <FormattedMessage id="reward_option_50" defaultMessage="50% eUSD and 50% eScore" />
+                <FormattedMessage id="reward_option_50" defaultMessage="50% TSD and 50% SCORE" />
               </Select.Option>
               <Select.Option value={rewardsValues.none}>
                 <FormattedMessage id="reward_option_0" defaultMessage="Declined" />

@@ -8,8 +8,8 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  getTotalESCOR,
-  getTotalECOintheESCORfund,
+  getTotalSCORE,
+  getTotalTMEintheSCOREfund,
   getUsersAccountHistory,
   getLoadingMoreUsersAccountHistory,
   getUserHasMoreAccountHistory,
@@ -33,8 +33,8 @@ import UserAction from './UserAction';
     user: ownProps.isCurrentUser
       ? getAuthenticatedUser(state)
       : getUser(state, ownProps.match.params.name),
-    totalESCOR: getTotalESCOR(state),
-    ESCORbackingECOfundBalance: getTotalECOintheESCORfund(state),
+    totalSCORE: getTotalSCORE(state),
+    SCOREbackingTMEfundBalance: getTotalTMEintheSCOREfund(state),
     usersAccountHistory: getUsersAccountHistory(state),
     loadingMoreUsersAccountHistory: getLoadingMoreUsersAccountHistory(state),
     userHasMoreActions: getUserHasMoreAccountHistory(
@@ -61,8 +61,8 @@ class UserActivityActionsList extends Component {
     loadMoreCurrentUsersActions: PropTypes.func.isRequired,
     user: PropTypes.shape().isRequired,
     usersAccountHistory: PropTypes.shape().isRequired,
-    totalESCOR: PropTypes.string.isRequired,
-    ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+    totalSCORE: PropTypes.string.isRequired,
+    SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
     currentDisplayedActions: PropTypes.arrayOf(PropTypes.shape()),
     currentFilteredActions: PropTypes.arrayOf(PropTypes.shape()),
     accountHistoryFilter: PropTypes.arrayOf(PropTypes.string),
@@ -92,8 +92,8 @@ class UserActivityActionsList extends Component {
     const {
       usersAccountHistory,
       user,
-      totalESCOR,
-      ESCORbackingECOfundBalance,
+      totalSCORE,
+      SCOREbackingTMEfundBalance,
       userHasMoreActions,
       loadingMoreUsersAccountHistory,
       accountHistoryFilter,
@@ -125,15 +125,15 @@ class UserActivityActionsList extends Component {
                 key={`${action.trx_id}${action.actionCount}`}
                 transaction={action}
                 currentUsername={currentUsername}
-                totalESCOR={totalESCOR}
-                ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+                totalSCORE={totalSCORE}
+                SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
               />
             ) : (
               <UserAction
                 key={`${action.trx_id}${action.actionCount}`}
                 action={action}
-                totalESCOR={totalESCOR}
-                ESCORbackingECOfundBalance={ESCORbackingECOfundBalance}
+                totalSCORE={totalSCORE}
+                SCOREbackingTMEfundBalance={SCOREbackingTMEfundBalance}
                 currentUsername={currentUsername}
               />
             ),

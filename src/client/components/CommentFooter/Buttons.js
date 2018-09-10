@@ -109,16 +109,16 @@ class Buttons extends React.Component {
       parseFloat(comment.pending_payout_value) +
       parseFloat(comment.total_payout_value) +
       parseFloat(comment.curator_payout_value);
-    const voteRESCOR = comment.active_votes.reduce((a, b) => a + parseFloat(b.rESCOR), 0);
-    const ratio = totalPayout / voteRESCOR;
+    const voteRSCORE = comment.active_votes.reduce((a, b) => a + parseFloat(b.rSCORE), 0);
+    const ratio = totalPayout / voteRSCORE;
 
     const upVotesPreview = take(upVotes, 10).map(vote => (
       <p key={vote.voter}>
         {vote.voter}
-        {vote.rESCOR * ratio > 0.01 && (
+        {vote.rSCORE * ratio > 0.01 && (
           <span style={{ opacity: '0.5' }}>
             {' '}
-            <USDDisplay value={vote.rESCOR * ratio} />
+            <USDDisplay value={vote.rSCORE * ratio} />
           </span>
         )}
       </p>

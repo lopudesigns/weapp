@@ -6,9 +6,9 @@ describe('(Component) TransferTransaction', () => {
   describe('with default prop values', () => {
     it('renders and matches snapshot', () => {
       const props = {
-        to: 'helloezira',
+        to: 'helloWeYouMe',
         memo: 'Test Transfer Transaction',
-        amount: <span>{'0 ECO'}</span>,
+        amount: <span>{'0 TME'}</span>,
         timestamp: '0',
       };
       const wrapper = shallow(<TransferTransaction {...props} />);

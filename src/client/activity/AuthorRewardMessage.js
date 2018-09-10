@@ -13,22 +13,22 @@ import extraformatter from '../helpers/extraformatter';
 const AuthorRewardMessage = ({
   actionDetails,
   intl,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
 }) => {
   const rewards = [{
-      payout: actionDetails.EUSDpayout,
-      currency: 'EUSD',
+      payout: actionDetails.TSDpayout,
+      currency: 'TSD',
       extra: ''
     },
     {
-      payout: actionDetails.ECOpayout,
-      currency: 'ECO',
+      payout: actionDetails.TMEpayout,
+      currency: 'TME',
       extra: ''
     },
     {
-      payout: actionDetails.ESCORpayout,
-      currency: 'ESCOR',
+      payout: actionDetails.SCOREpayout,
+      currency: 'SCORE',
       extra: ''
     },
   ];
@@ -40,17 +40,17 @@ const AuthorRewardMessage = ({
 
       if (parsedPayout > 0) {
         let rewardsStr;
-        if (reward.currency === 'ESCOR') {
-          const ESCORrewardInECOvalue = extraformatter.ESCORinECOvalue(
+        if (reward.currency === 'SCORE') {
+          const SCORErewardInTMEvalue = extraformatter.SCOREinTMEvalue(
             parsedPayout,
-            totalESCOR,
-            ESCORbackingECOfundBalance,
+            totalSCORE,
+            SCOREbackingTMEfundBalance,
           );
-          rewardsStr = intl.formatNumber(ESCORrewardInECOvalue, {
+          rewardsStr = intl.formatNumber(SCORErewardInTMEvalue, {
             minimumFractionDigits: 3,
             maximumFractionDigits: 3,
           });
-          // reward.extra = `OR ${ Math.round((100*(reward.payout /  totalESCOR))/100)}% of eScore`
+          // reward.extra = `OR ${ Math.round((100*(reward.payout /  totalSCORE))/100)}% of SCORE`
         } else {
           rewardsStr = intl.formatNumber(parsedPayout, {
             minimumFractionDigits: 3,
@@ -89,8 +89,8 @@ const AuthorRewardMessage = ({
 AuthorRewardMessage.propTypes = {
   actionDetails: PropTypes.shape().isRequired,
   intl: PropTypes.shape().isRequired,
-  totalESCOR: PropTypes.string.isRequired,
-  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
+  totalSCORE: PropTypes.string.isRequired,
+  SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
 };
 
 export default injectIntl(AuthorRewardMessage);

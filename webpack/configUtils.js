@@ -22,13 +22,13 @@ const NETWORK = {
 	SSR_PORT: process.env.SSR_PORT || 3457,
 	CLIENT_PROTOCOL: process.env.CLIENT_PROTOCOL || 'http://',
 	SSR_PROTOCOL: process.env.SSR_PROTOCOL || 'http://',
-	URL: 'ezira.src',
+	URL: 'WeYouMe.src',
 	LOCALHOST: process.env.LOCALHOST || 'localhost'
 };
 
 const BRAND = {
-	BRAND_NAME: 'ezira',
-	BRAND_NAME_CAPITALIZED: 'Ezira',
+	BRAND_NAME: 'WeYouMe',
+	BRAND_NAME_CAPITALIZED: 'WeYouMe',
 	BRAND_COLOR: 'red'
 }
 
@@ -50,14 +50,14 @@ const DEFINE_PLUGIN = new webpack.DefinePlugin({
     process.env.AUTH_API_CLIENT_ID || 'native-app',
   ),
   'process.env.AUTH_API_REDIRECT_URL': JSON.stringify(
-    process.env.AUTH_API_REDIRECT_URL || `'https://alpha.ezira.io/callback`,
+    process.env.AUTH_API_REDIRECT_URL || `'https://alpha.WeYouMe.io/callback`,
   ),
   'process.env.AUTH_API_HOST': JSON.stringify(
-    process.env.AUTH_API_HOST || 'https://auth.ezira.io',
+    process.env.AUTH_API_HOST || 'https://auth.WeYouMe.io',
   ),
-  'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://api.ezira.io'),
+  'process.env.API_URL': JSON.stringify(process.env.API_URL || 'https://api.WeYouMe.io'),
   'process.env.SIGNUP_URL': JSON.stringify(
-    process.env.SIGNUP_URL || 'https://signup.ezira.io/?ref=ezira',
+    process.env.SIGNUP_URL || 'https://signup.WeYouMe.io/?ref=WeYouMe',
   ),
   'process.env.MANIFEST_PATH': JSON.stringify(paths.assets),
 });

@@ -63,7 +63,7 @@ class Replies extends React.Component {
     return (
       <div className="shifted">
         <Helmet>
-          <title>{intl.formatMessage({ id: 'replies', defaultMessage: 'Replies' })} Ezira</title>
+          <title>{intl.formatMessage({ id: 'replies', defaultMessage: 'Replies' })} WeYouMe</title>
         </Helmet>
         <div className="feed-layout container">
           <Affix className="leftContainer" stickPosition={77}>

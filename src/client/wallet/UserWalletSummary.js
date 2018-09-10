@@ -2,35 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import formatter from '../helpers/extraformatter';
-import { calculateTotalDelegatedESCORinECOvalue, calculateEstAccountValue } from '../vendor/helpers';
+import { calculateTotalDelegatedSCOREinTMEvalue, calculateEstAccountValue } from '../vendor/helpers';
 import BTooltip from '../components/BTooltip';
 import Loading from '../components/Icon/Loading';
 import USDDisplay from '../components/Utils/USDDisplay';
 import './UserWalletSummary.less';
 
-const getFormattedTotalDelegatedESCOR = (user, totalESCOR, ESCORbackingECOfundBalance) => {
-  const totalDelegatedESCORinECOvalue = calculateTotalDelegatedESCORinECOvalue(
+const getFormattedTotalDelegatedSCORE = (user, totalSCORE, SCOREbackingTMEfundBalance) => {
+  const totalDelegatedSCOREinTMEvalue = calculateTotalDelegatedSCOREinTMEvalue(
     user,
-    totalESCOR,
-    ESCORbackingECOfundBalance,
+    totalSCORE,
+    SCOREbackingTMEfundBalance,
   );
 
-  if (totalDelegatedESCORinECOvalue !== 0) {
+  if (totalDelegatedSCOREinTMEvalue !== 0) {
     return (
       <BTooltip
         title={
           <span>
             <FormattedMessage
-              id="ESCOR_in_ECO_delegated_to_account_tooltip"
+              id="SCORE_in_TME_delegated_to_account_tooltip"
               defaultMessage="ePower increase from supporters"
             />
           </span>
         }
       >
         <span>
-          {totalDelegatedESCORinECOvalue > 0 ? '(+' : '('}
+          {totalDelegatedSCOREinTMEvalue > 0 ? '(+' : '('}
           <FormattedNumber
-            value={calculateTotalDelegatedESCORinECOvalue(user, totalESCOR, ESCORbackingECOfundBalance)}
+            value={calculateTotalDelegatedSCOREinTMEvalue(user, totalSCORE, SCOREbackingTMEfundBalance)}
           />
           {' ePOWER)'}
         </span>
@@ -44,18 +44,18 @@ const getFormattedTotalDelegatedESCOR = (user, totalESCOR, ESCORbackingECOfundBa
 const UserWalletSummary = ({
   user,
   loading,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
   loadingGlobalProperties,
-  ECOrate,
-  EUSDrate,
-  ECOrateLoading,
+  TMErate,
+  TSDrate,
+  TMErateLoading,
 }) => (
   <div className="UserWalletSummary">
     <div className="UserWalletSummary__item">
-      <i className="iconfont icon-eCoin UserWalletSummary__icon" />
+      <i className="iconfont icon-TME UserWalletSummary__icon" />
       <div className="UserWalletSummary__label">
-        <FormattedMessage id="eCoin" defaultMessage="eCoin" />
+        <FormattedMessage id="TME" defaultMessage="TME" />
       </div>
       <div className="UserWalletSummary__value">
         {loading ? (
@@ -63,7 +63,7 @@ const UserWalletSummary = ({
         ) : (
           <span>
             <FormattedNumber value={parseFloat(user.balance)} />
-            {' ECO'}
+            {' TME'}
           </span>
         )}
       </div>
@@ -71,7 +71,7 @@ const UserWalletSummary = ({
     <div className="UserWalletSummary__item">
       <i className="iconfont icon-flashlight_fill UserWalletSummary__icon" />
       <div className="UserWalletSummary__label">
-        <FormattedMessage id="ESCOR" defaultMessage="ESCOR" />
+        <FormattedMessage id="SCORE" defaultMessage="SCORE" />
       </div>
       <div className="UserWalletSummary__value">
         {loading || loadingGlobalProperties ? (
@@ -80,15 +80,15 @@ const UserWalletSummary = ({
           <span>
             <FormattedNumber
               value={parseFloat(
-                formatter.ESCORinECOvalue(
-                  user.ESCOR,
-                  totalESCOR,
-                  ESCORbackingECOfundBalance,
+                formatter.SCOREinTMEvalue(
+                  user.SCORE,
+                  totalSCORE,
+                  SCOREbackingTMEfundBalance,
                 ),
               )}
             />
             {' ePOWER '}
-            {getFormattedTotalDelegatedESCOR(user, totalESCOR, ESCORbackingECOfundBalance)}
+            {getFormattedTotalDelegatedSCORE(user, totalSCORE, SCOREbackingTMEfundBalance)}
           </span>
         )}
       </div>
@@ -96,15 +96,15 @@ const UserWalletSummary = ({
     <div className="UserWalletSummary__item">
       <i className="iconfont icon-Dollar UserWalletSummary__icon" />
       <div className="UserWalletSummary__label">
-        <FormattedMessage id="EUSD" defaultMessage="EUSD" />
+        <FormattedMessage id="TSD" defaultMessage="TSD" />
       </div>
       <div className="UserWalletSummary__value">
         {loading ? (
           <Loading />
         ) : (
           <span>
-            <FormattedNumber value={parseFloat(user.EUSDbalance)} />
-            {' EUSD'}
+            <FormattedNumber value={parseFloat(user.TSDbalance)} />
+            {' TSD'}
           </span>
         )}
       </div>
@@ -119,10 +119,10 @@ const UserWalletSummary = ({
           <Loading />
         ) : (
           <span>
-            <FormattedNumber value={parseFloat(user.ECOsavingsBalance)} />
-            {' ECO, '}
-            <FormattedNumber value={parseFloat(user.EUSDsavingsBalance)} />
-            {' EUSD'}
+            <FormattedNumber value={parseFloat(user.TMEsavingsBalance)} />
+            {' TME, '}
+            <FormattedNumber value={parseFloat(user.TSDsavingsBalance)} />
+            {' TSD'}
           </span>
         )}
       </div>
@@ -133,16 +133,16 @@ const UserWalletSummary = ({
         <FormattedMessage id="est_account_value" defaultMessage="Est. Account Value" />
       </div>
       <div className="UserWalletSummary__value">
-        {loading || loadingGlobalProperties || ECOrateLoading ? (
+        {loading || loadingGlobalProperties || TMErateLoading ? (
           <Loading />
         ) : (
           <USDDisplay
             value={calculateEstAccountValue(
               user,
-              totalESCOR,
-              ESCORbackingECOfundBalance,
-              ECOrate,
-              EUSDrate,
+              totalSCORE,
+              SCOREbackingTMEfundBalance,
+              TMErate,
+              TSDrate,
             )}
           />
         )}
@@ -154,19 +154,19 @@ const UserWalletSummary = ({
 UserWalletSummary.propTypes = {
   loadingGlobalProperties: PropTypes.bool.isRequired,
   user: PropTypes.shape().isRequired,
-  totalESCOR: PropTypes.string.isRequired,
-  ESCORbackingECOfundBalance: PropTypes.string.isRequired,
-  ECOrate: PropTypes.number,
-  EUSDrate: PropTypes.number,
+  totalSCORE: PropTypes.string.isRequired,
+  SCOREbackingTMEfundBalance: PropTypes.string.isRequired,
+  TMErate: PropTypes.number,
+  TSDrate: PropTypes.number,
   loading: PropTypes.bool,
-  ECOrateLoading: PropTypes.bool,
+  TMErateLoading: PropTypes.bool,
 };
 
 UserWalletSummary.defaultProps = {
-  ECOrate: 1,
-  EUSDrate: 1,
+  TMErate: 1,
+  TSDrate: 1,
   loading: false,
-  ECOrateLoading: false,
+  TMErateLoading: false,
 };
 
 export default UserWalletSummary;

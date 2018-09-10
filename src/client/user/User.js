@@ -120,14 +120,14 @@ export default class User extends React.Component {
     const username = this.props.match.params.name;
     const { user } = this.props;
     const { profile = {} } = user.json || {};
-    const host = global.postOrigin || 'https://alpha.ezira.io';
+    const host = global.postOrigin || 'https://alpha.WeYouMe.io';
     const desc = profile.about || `Posts by ${username}`;
     const image = getAvatarURL(username) || '/images/logo.png';
     const canonicalUrl = `${host}/@${username}`;
     const url = `${host}/@${username}`;
     const displayedUsername = profile.name || username || '';
     const hasCover = !!profile.cover_image;
-    const title = `${displayedUsername} Ezira`;
+    const title = `${displayedUsername} WeYouMe`;
 
     const isSameUser = authenticated && authenticatedUser.name === username;
 
@@ -143,10 +143,10 @@ export default class User extends React.Component {
           <meta property="og:url" content={url} />
           <meta property="og:image" content={image} />
           <meta property="og:description" content={desc} />
-          <meta property="og:site_name" content="Ezira" />
+          <meta property="og:site_name" content="WeYouMe" />
 
           <meta property="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-          <meta property="twitter:site" content={'@eziranetwork'} />
+          <meta property="twitter:site" content={'@WeYouMe'} />
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={desc} />
           <meta

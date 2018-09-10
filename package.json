@@ -47,7 +47,7 @@
     "babel-register": "^6.24.1",
     "babel-runtime": "^6.18.0",
     "bs58": "^4.0.0",
-    "welightjs": "welightjs",
+    "welitejs": "welitejs",
     "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
@@ -155,6 +155,6 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js"
   },
-  "repository": "https://github.com/eziranetwork/weapp.git",
+  "repository": "https://github.com/WeYouMe/weapp.git",
   "license": "MIT"
 }

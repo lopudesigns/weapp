@@ -169,27 +169,27 @@ export function getBodyPatchIfSmaller(originalBody, body) {
  * https://github.com/aaroncox/chainbb/blob/fcb09bee716e907c789a6494975093361482fb4f/services/frontend/src/components/elements/post/button/vote/options.js#L69
  */
 export const calculateVoteValue = (
-  ESCOR,
+  SCORE,
   recentClaims,
   rewardBalance,
   rate,
   vp = 10000,
   weight = 10000,
 ) => {
-  const ESCOR = parseInt(ESCOR * 1e6, 10);
+  const SCORE = parseInt(SCORE * 1e6, 10);
   const power = vp * weight / 10000 / 50;
-  const rESCOR = power * ESCOR / 10000;
-  return rESCOR / recentClaims * rewardBalance * rate;
+  const rSCORE = power * SCORE / 10000;
+  return rSCORE / recentClaims * rewardBalance * rate;
 };
 
-export const calculateTotalDelegatedESCORinECOvalue = (user, totalESCOR, ESCORbackingECOfundBalance) => {
-  const ESCORvalueInECOreceived = parseFloat(
-    formatter.ESCORinECOvalue(user.ESCORreceived, totalESCOR, ESCORbackingECOfundBalance),
+export const calculateTotalDelegatedSCOREinTMEvalue = (user, totalSCORE, SCOREbackingTMEfundBalance) => {
+  const SCOREvalueInTMEreceived = parseFloat(
+    formatter.SCOREinTMEvalue(user.SCOREreceived, totalSCORE, SCOREbackingTMEfundBalance),
   );
-  const ESCORvalueInECOdelegate = parseFloat(
-    formatter.ESCORinECOvalue(user.ESCORDelegated, totalESCOR, ESCORbackingECOfundBalance),
+  const SCOREvalueInTMEdelegate = parseFloat(
+    formatter.SCOREinTMEvalue(user.SCOREDelegated, totalSCORE, SCOREbackingTMEfundBalance),
   );
-  return ESCORvalueInECOreceived - ESCORvalueInECOdelegate;
+  return SCOREvalueInTMEreceived - SCOREvalueInTMEdelegate;
 };
 
 export const calculateVotingPower = user => {
@@ -199,18 +199,18 @@ export const calculateVotingPower = user => {
 
 export const calculateEstAccountValue = (
   user,
-  totalESCOR,
-  ESCORbackingECOfundBalance,
-  ECOrate,
-  EUSDrate,
+  totalSCORE,
+  SCOREbackingTMEfundBalance,
+  TMErate,
+  TSDrate,
 ) => {
-  const amountESCORvalueInECO = formatter.ESCORinECOvalue(
-    user.ESCOR,
-    totalESCOR,
-    ESCORbackingECOfundBalance,
+  const amountSCOREvalueInTME = formatter.SCOREinTMEvalue(
+    user.SCORE,
+    totalSCORE,
+    SCOREbackingTMEfundBalance,
   );
   return (
-    parseFloat(ECOrate) * (parseFloat(user.balance) + parseFloat(amountESCORvalueInECO)) +
-    parseFloat(user.EUSDbalance) * parseFloat(EUSDrate)
+    parseFloat(TMErate) * (parseFloat(user.balance) + parseFloat(amountSCOREvalueInTME)) +
+    parseFloat(user.TSDbalance) * parseFloat(TSDrate)
   );
 };

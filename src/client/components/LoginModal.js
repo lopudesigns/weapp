@@ -44,7 +44,7 @@ class LoginModal extends React.Component {
               values={{
                 link: (
                   <a role="presentation" onClick={this.handleSignup}>
-                    alpha.Ezira.io
+                    alpha.WeYouMe.io
                   </a>
                 ),
               }}
@@ -55,12 +55,12 @@ class LoginModal extends React.Component {
         <div className="LoginModal__body">
           <i className="iconfont icon-native-app LoginModal__icon" />
           <span className="LoginModal__login-title">
-            <FormattedMessage id="login_to_native_app" defaultMessage="Login to Ezira" />
+            <FormattedMessage id="login_to_native_app" defaultMessage="Login to WeYouMe" />
           </span>
           <span className="LoginModal__login-description">
             <FormattedMessage
               id="login_modal_description"
-              defaultMessage="Login with your Ezira account using weAuth to enjoy Ezira at 100%"
+              defaultMessage="Login with your WeYouMe account using weAuth to enjoy WeYouMe at 100%"
             />
           </span>
           <a className="LoginModal__login-button" href={authAPI.getLoginURL(next)}>

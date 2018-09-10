@@ -1,14 +1,14 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/eziranetwork/weapp/new-design/LICENSE)
-[![Ezira channel on Discord](https://img.shields.io/badge/chat-discord-738bd7.svg)](https://discord.gg/G95rNZs)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/WeYouMe/weapp/new-design/LICENSE)
+[![WeYouMe channel on Discord](https://img.shields.io/badge/chat-discord-738bd7.svg)](https://discord.gg/G95rNZs)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 # LL
 
-# weapp 🚀
+# WeApp 🚀
 
-Ezira is an Open Source social network and communications platform which extends itself to a variety of rich features and functionality including free digital payments and a marketplace for goods and services.
+WeYouMe is an Open Source social network and communications platform which extends itself to a variety of rich features and functionality including free digital payments and a marketplace for goods and services.
 
-For more info: https://alpha.ezira.io
+For more info: https://alpha.WeYouMe.io
 
 ## Preview
 
@@ -17,7 +17,7 @@ For more info: https://alpha.ezira.io
 ## Quick Setup
 
 ```
-git clone https://github.com/eziranetwork/weapp
+git clone https://github.com/WeYouMe/weapp
 cd weapp
 
 yarn
@@ -26,12 +26,12 @@ yarn start
 
 ## Getting involved
 
-We at Ezira really appreciate help from the community. We want to make the weapp project as friendly as possible to contributors. It doesn't matter if you are a beginner looking for a place to improve your skills or just want to help us build something great.
+We at WeYouMe really appreciate help from the community. We want to make the weapp project as friendly as possible to contributors. It doesn't matter if you are a beginner looking for a place to improve your skills or just want to help us build something great.
 If you would like to contribute, but don't know what to work on, check our [Contributing guide][contributing].
 
 ## Backers
 
-Ezira is an MIT-licensed open source project. It's an independent project with its ongoing development made possible entirely thanks to the support by these awesome backers.
+WeYouMe is an MIT-licensed open source project. It's an independent project with its ongoing development made possible entirely thanks to the support by these awesome backers.
 
 ## Partners
 
