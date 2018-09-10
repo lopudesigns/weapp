@@ -63,7 +63,7 @@ function getContext(post, body, appUrl) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'steem.weYouMe.io',
+      name: 'steemit.weYouMe.io',
       logo: {
         '@type': 'ImageObject',
         url: `${appUrl}/images/logo-brand.png`,

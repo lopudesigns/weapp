@@ -19,10 +19,10 @@ const urlSet = ({ domain = domainPath, path } = {}) =>
 */
 export const any = (flags = 'i') => new RegExp(urlSet(), flags);
 export const local = (flags = 'i') =>
-  new RegExp(urlSet({ domain: '(?:localhost|(?:.*\\.)?steemit.com|(?:.*\\.)?busy.org|(?:.*\\.)?steem.weyoume.io)' }), flags);
+  new RegExp(urlSet({ domain: '(?:localhost|(?:.*\\.)?steemit.com|(?:.*\\.)?busy.org|(?:.*\\.)?steemit.weyoume.io)' }), flags);
 export const remote = (flags = 'i') =>
   new RegExp(
-    urlSet({ domain: `(?!localhost|(?:.*\\.)?steemit.com|(?:.*\\.)?busy.org|(?:.*\\.)?steem.weyoume.io)${domainPath}` }),
+    urlSet({ domain: `(?!localhost|(?:.*\\.)?steemit.com|(?:.*\\.)?busy.org|(?:.*\\.)?steemit.weyoume.io)${domainPath}` }),
     flags,
   );
 export const youTube = (flags = 'i') =>
