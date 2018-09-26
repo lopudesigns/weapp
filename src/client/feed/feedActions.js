@@ -22,12 +22,11 @@ export const GET_MORE_REPLIES = createAsyncActionType('@user/GET_MORE_REPLIES');
 
 export const GET_BOOKMARKS = createAsyncActionType('@bookmarks/GET_BOOKMARKS');
 
-export const getFeedContent = ({ sortBy = 'hot', category, limit = 20 }) => (
+export const getFeedContent = ({ sortBy = 'feed', category, limit = 20 }) => (
   dispatch,
   getState,
   { steemAPI },
 ) =>
-	console.log('sortBy', sortBy);
   dispatch({
 		type: GET_FEED_CONTENT.ACTION,
     payload: getDiscussionsFromAPI(sortBy, { tag: category, limit }, steemAPI),
