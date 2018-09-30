@@ -7,7 +7,7 @@ require('dotenv').config()
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
 const SERVER_PORT = process.env.SSR_PORT || 3456;
-const CONTENT_PORT = IS_DEV ? SERVER_PORT + 1 : SERVER_PORT;
+const CONTENT_PORT = IS_DEV ? parseInt(SERVER_PORT) + 1 : SERVER_PORT;
 
 const MATCH_JS = /\.js$/i;
 const MATCH_CSS_LESS = /\.(css|less)$/i;
