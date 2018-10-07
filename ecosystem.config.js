@@ -5,9 +5,9 @@ module.exports = {
    */
   apps: [
     {
-      name: 'weapp',
+      name: 'steem-weapp',
       script: 'build/server.js',
-      instances: 4,
+      instances: 3,
       exec_mode: 'cluster',
       max_memory_restart: '600M',
     },

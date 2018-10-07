@@ -30,7 +30,7 @@ module.exports = function createConfig(env = 'dev') {
     output: {
       path: appPath,
       filename: IS_DEV ? 'bundle.js' : 'bundle-[name].[chunkhash].js',
-      publicPath: IS_DEV ? `https://steem.weyoume.src:${CONTENT_PORT}/` : '/',
+      publicPath: IS_DEV ? `https://steem.weyoume.io:${CONTENT_PORT}/` : '/',
     },
     context: process.cwd(),
     plugins: [
@@ -80,7 +80,7 @@ module.exports = function createConfig(env = 'dev') {
   };
 
   if (IS_DEV) {
-    config.entry = ['webpack-dev-server/client?https://steem.weyoume.src:'+CONTENT_PORT, 'webpack/hot/dev-server', ...config.entry];
+    config.entry = ['webpack-dev-server/client?https://steem.weyoume.io:'+CONTENT_PORT, 'webpack/hot/dev-server', ...config.entry];
     config.plugins = [...config.plugins, new webpack.HotModuleReplacementPlugin()];
   }
 
