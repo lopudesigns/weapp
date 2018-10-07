@@ -13,7 +13,7 @@ const initialState = {
   trendingTopics: [],
   rewardFund: {},
   bannerClosed: false,
-  appUrl: 'https://alpha.weyoume.src',
+  appUrl: 'https://steem.weyoume.src',
   usedLocale: null,
   translations: {},
   cryptosPriceHistory: {},
