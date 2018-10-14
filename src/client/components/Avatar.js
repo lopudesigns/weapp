@@ -32,26 +32,41 @@ class Avatar extends React.Component {
 	};
 
 	componentDidMount(){
-		this.getProfilePicture();
-		if(window.wehelpjs){
-			window.wehelpjs.api.getAccountsAsync([this.props.username])
-			.then((res,err)=>{
-				if(!err && res){
-					let profile = res[0].json ? JSON.parse(res[0].json)['profile'] : undefined
-					let profilePicture = profile ? profile['profile_image'] : undefined
-					console.log('profilePicture', profilePicture)
-					this.setState({
-						profilePicture: profilePicture
-					})
-					this.forceUpdate()
-				} else if(err){
-					console.error('err', err)
-				}
+		var help;
+		var cached;
+		if(typeof window !== 'undefined' && window.wehelpjs ){
+			help = window.wehelpjs
+			if(!window.ppc) window.ppc = []
+			cached = window.ppc
+		} else if(typeof global !== 'undefined' && global.wehelpjs ){
+			help = global.wehelpjs			
+			if(!global.ppc) global.ppc = []
+			cached = global.ppc
+		}		
+		if(cached[this.props.username]){
+			this.setState({
+				profilePicture: cached[this.props.username]
 			})
-			.catch(err=>{
-				console.error('err', err)
-			})
+			this.forceUpdate()
 		}
+		help.api.getAccountsAsync([this.props.username])
+		.then((res,err)=>{
+			if(!err && res){
+				let profile = res[0].json ? JSON.parse(res[0].json)['profile'] : undefined
+				let profilePicture = profile ? profile['profile_image'] : undefined
+				console.log('profilePicture', profilePicture)
+				this.setState({
+					profilePicture: profilePicture
+				})
+				cached[this.props.username] = profilePicture
+				this.forceUpdate()
+			} else if(err){
+				console.error('err', err)
+			}
+		})
+		.catch(err=>{
+			console.error('err', err)
+		})
 	};
 
 	componentDidUpdate(){
@@ -71,12 +86,12 @@ class Avatar extends React.Component {
 			height: `${size}px`,
 		};
 
-		const url = getAvatarURL(username, size);
+		const url = getAvatarURL(profilePicture, size);
 		
 		if (username) {
 			style = {
 				...style,
-				backgroundImage: `url(${profilePicture || url})`,
+				backgroundImage: `url(${url})`,
 			};
 		}
 		return (
@@ -87,8 +102,13 @@ class Avatar extends React.Component {
 	
 export default Avatar;
 
-export function getAvatarURL(username, size = 100) {
-	return size > 64
-		? `https://steemitimages.com/u/${username}/avatar`
-		: `https://steemitimages.com/u/${username}/avatar/small`;
+export function getAvatarURL(profilePicture, size = 100) {
+
+	return profilePicture ? ( size > 64
+			? `https://steemitimages.com/128x128/${profilePicture}`
+			: `https://steemitimages.com/64x64/${profilePicture}`
+		) : ( size > 64
+			? `https://steemitimages.com/128x128/https://steemitimages.com/DQmb2HNSGKN3pakguJ4ChCRjgkVuDN9WniFRPmrxoJ4sjR4`
+			: `https://steemitimages.com/64x64/https://steemitimages.com/DQmb2HNSGKN3pakguJ4ChCRjgkVuDN9WniFRPmrxoJ4sjR4`
+		)
 }
