@@ -129,7 +129,7 @@ export const getExitPageSetting = state => fromSettings.getExitPageSetting(state
 export const getRewardSetting = state => fromSettings.getRewardSetting(state.settings);
 export const getUseBeta = state => fromSettings.getUseBeta(state.settings);
 
-export const gettotalSCORE = state => fromWallet.gettotalSCORE(state.wallet);
+export const getTotalSCORE = state => fromWallet.getTotalSCORE(state.wallet);
 export const getSCOREbackingTMEfundBalance = state => fromWallet.getSCOREbackingTMEfundBalance(state.wallet);
 export const getUsersTransactions = state => fromWallet.getUsersTransactions(state.wallet);
 export const getUsersAccountHistory = state => fromWallet.getUsersAccountHistory(state.wallet);

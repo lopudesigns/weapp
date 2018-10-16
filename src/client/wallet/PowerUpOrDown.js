@@ -9,7 +9,7 @@ import {
   getAuthenticatedUser,
   getIsPowerUpOrDownVisible,
   getIsPowerDown,
-  gettotalSCORE,
+  getTotalSCORE,
   getSCOREbackingTMEfundBalance,
 } from '../reducers';
 import formatter from '../helpers/blockchainProtocolFormatter';
@@ -20,7 +20,7 @@ import './Transfer.less';
   state => ({
     visible: getIsPowerUpOrDownVisible(state),
     user: getAuthenticatedUser(state),
-    totalSCORE: gettotalSCORE(state),
+    totalSCORE: getTotalSCORE(state),
     SCOREbackingTMEfundBalance: getSCOREbackingTMEfundBalance(state),
     down: getIsPowerDown(state),
   }),

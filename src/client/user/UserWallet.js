@@ -12,7 +12,7 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  gettotalSCORE,
+  getTotalSCORE,
   getSCOREbackingTMEfundBalance,
   getUsersTransactions,
   getUsersAccountHistory,
@@ -38,7 +38,7 @@ import WalletSidebar from '../components/Sidebar/WalletSidebar';
         ? getAuthenticatedUser(state)
         : getUser(state, ownProps.match.params.name),
     authenticatedUserName: getAuthenticatedUserName(state),
-    totalSCORE: gettotalSCORE(state),
+    totalSCORE: getTotalSCORE(state),
     SCOREbackingTMEfundBalance: getSCOREbackingTMEfundBalance(state),
     usersTransactions: getUsersTransactions(state),
     usersAccountHistory: getUsersAccountHistory(state),

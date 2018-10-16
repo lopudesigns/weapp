@@ -8,7 +8,7 @@ import {
   getUser,
   getAuthenticatedUser,
   getAuthenticatedUserName,
-  gettotalSCORE,
+  getTotalSCORE,
   getSCOREbackingTMEfundBalance,
   getUsersAccountHistory,
   getUsersAccountHistoryLoading,
@@ -36,7 +36,7 @@ import UserActivityActions from './UserActivityActions';
       ? getAuthenticatedUser(state)
       : getUser(state, ownProps.match.params.name),
     authenticatedUserName: getAuthenticatedUserName(state),
-    totalSCORE: gettotalSCORE(state),
+    totalSCORE: getTotalSCORE(state),
     SCOREbackingTMEfundBalance: getSCOREbackingTMEfundBalance(state),
     usersAccountHistory: getUsersAccountHistory(state),
     usersAccountHistoryLoading: getUsersAccountHistoryLoading(state),

@@ -194,7 +194,7 @@ export const getIsTransferVisible = state => state.transferVisible;
 export const getTransferTo = state => state.transferTo;
 export const getIsPowerUpOrDownVisible = state => state.powerUpOrDownVisible;
 export const getIsPowerDown = state => state.powerDown;
-export const gettotalSCORE = state => state.totalSCORE;
+export const getTotalSCORE = state => state.totalSCORE;
 export const getSCOREbackingTMEfundBalance = state => state.SCOREbackingTMEfundBalance;
 export const getUsersTransactions = state => state.usersTransactions;
 export const getUsersEstAccountsValues = state => state.usersEstAccountsValues;

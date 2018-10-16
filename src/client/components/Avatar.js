@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.less';
 import { connect } from 'react-redux';
+let s = require('smarts')({node: {}})
 // import {
 // 	getAuthenticatedUser,
 // 	getUser
