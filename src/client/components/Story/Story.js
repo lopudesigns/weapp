@@ -90,7 +90,8 @@ class Story extends React.Component {
 
     this.state = {
       showHiddenStoryPreview: false,
-      displayLoginModal: false,
+			displayLoginModal: false,
+			accountName: undefined
     };
 
     this.getDisplayStoryPreview = this.getDisplayStoryPreview.bind(this);
@@ -105,7 +106,14 @@ class Story extends React.Component {
     this.handleFollowClick = this.handleFollowClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleTransferClick = this.handleTransferClick.bind(this);
-  }
+    // this.getName = this.getName.bind(this);
+	}
+	
+	componentDidMount(){
+		// if(this.props.post){
+		// 	this.getName(this.props.post.author)
+		// }
+	}
 	handleTransferClick = () => {
 		const { post } = this.props;
     openTransfer(post.author);
@@ -274,7 +282,23 @@ class Story extends React.Component {
     ) : (
       hiddenStoryPreviewMessage
     );
-  }
+	}
+	
+	// getName = (author) => {
+	// 	let help = (window && window.wehelpjs) ? window.wehelpjs : (global && global.wehelpjs) ? global.wehelpjs : undefined
+	// 	if(help){
+	// 		help.api.getAccountsAsync([author]).then(res=>{
+	// 			let name = (res[0] && res[0].json && JSON.stringify(res[0].json)['profile']) ? JSON.stringify(res[0].json)['profile']['name'] : author
+	// 			this.setState({
+	// 				accountName: name
+	// 			})
+	// 			this.forceUpdate()
+	// 		})
+	// 		.catch(err=>{console.error('err', err)})
+	// 	} else {
+	// 		// return author
+	// 	}
+	// }
 
   render() {
     const {
@@ -291,7 +315,11 @@ class Story extends React.Component {
       ownPost,
       sliderMode,
 			defaultVotePercent
-    } = this.props;
+		} = this.props;
+		
+		const {
+			accountName
+		} = this.state;
 
     if (isPostDeleted(post)) return <div />;
 
@@ -343,7 +371,7 @@ class Story extends React.Component {
 												</Action>
 											}
 											>
-											<span className="account_name">{`${post.author}`}</span>
+											<span className="account_name">{`${accountName || post.author}`}</span>
 											<span className="username">{`@${post.author}`}</span>
 										</BTooltip>
                     {/* <ReputationTag reputation={post.author_reputation} /> */}

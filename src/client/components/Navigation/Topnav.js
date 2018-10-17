@@ -236,11 +236,11 @@ class Topnav extends React.Component {
                   <PopoverMenuItem key="my-profile">
                     <FormattedMessage id="my_profile" defaultMessage="My profile" />
                   </PopoverMenuItem>
-                  <PopoverMenuItem key="feed">
-                    <FormattedMessage id="feed" defaultMessage="Feed" />
+                  <PopoverMenuItem key="trending">
+                    <FormattedMessage id="trending" defaultMessage="Trending" />
                   </PopoverMenuItem>
-                  <PopoverMenuItem key="news">
-                    <FormattedMessage id="news" defaultMessage="News" />
+                  <PopoverMenuItem key="hot">
+                    <FormattedMessage id="hot" defaultMessage="Hot" />
                   </PopoverMenuItem>
                   <PopoverMenuItem key="replies">
                     <FormattedMessage id="replies" defaultMessage="Replies" />
@@ -259,6 +259,9 @@ class Topnav extends React.Component {
                   </PopoverMenuItem>
                   <PopoverMenuItem key="settings">
                     <FormattedMessage id="settings" defaultMessage="Settings" />
+                  </PopoverMenuItem>
+									<PopoverMenuItem key="edit-profile">
+                    <FormattedMessage id="edit-profile" defaultMessage="Edit Profile" />
                   </PopoverMenuItem>
                   <PopoverMenuItem key="logout">
                     <FormattedMessage id="logout" defaultMessage="Logout" />
