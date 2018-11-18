@@ -32,10 +32,21 @@ import HiddenStoryPreviewMessage from './HiddenStoryPreviewMessage';
 import DMCARemovedMessage from './DMCARemovedMessage';
 import PostedFrom from './PostedFrom';
 import './Story.less';
+import { connect } from 'react-redux';
+import { getAccount } from '../../user/usersActions';
+const s = require('smarts')()
 
 @injectIntl
 @withRouter
 @withAuthActions
+@connect((state,ownProps)=>({
+	accountName: s.getsmart(state, `users.users.${s.getsmart(ownProps, `post.author`, undefined)}.json.profile.name`, undefined),
+	s,
+}),
+{
+	getAccount
+}
+)
 class Story extends React.Component {
   static propTypes = {
     intl: PropTypes.shape().isRequired,
@@ -110,9 +121,10 @@ class Story extends React.Component {
 	}
 	
 	componentDidMount(){
-		// if(this.props.post){
-		// 	this.getName(this.props.post.author)
-		// }
+		console.log('this.props', this.props)
+		if(!this.props.accountName && this.props.accountName != 'unset'){
+			this.props.getAccount(`${this.props.s.getsmart(this, `props.post.author`, undefined)}`)
+		}
 	}
 	handleTransferClick = () => {
 		const { post } = this.props;
@@ -283,22 +295,6 @@ class Story extends React.Component {
       hiddenStoryPreviewMessage
     );
 	}
-	
-	// getName = (author) => {
-	// 	let help = (window && window.wehelpjs) ? window.wehelpjs : (global && global.wehelpjs) ? global.wehelpjs : undefined
-	// 	if(help){
-	// 		help.api.getAccountsAsync([author]).then(res=>{
-	// 			let name = (res[0] && res[0].json && JSON.stringify(res[0].json)['profile']) ? JSON.stringify(res[0].json)['profile']['name'] : author
-	// 			this.setState({
-	// 				accountName: name
-	// 			})
-	// 			this.forceUpdate()
-	// 		})
-	// 		.catch(err=>{console.error('err', err)})
-	// 	} else {
-	// 		// return author
-	// 	}
-	// }
 
   render() {
     const {
@@ -314,13 +310,10 @@ class Story extends React.Component {
       rewardFund,
       ownPost,
       sliderMode,
-			defaultVotePercent
+			defaultVotePercent,
+			accountName
 		} = this.props;
 		
-		const {
-			accountName
-		} = this.state;
-
     if (isPostDeleted(post)) return <div />;
 
     let rebloggedUI = null;

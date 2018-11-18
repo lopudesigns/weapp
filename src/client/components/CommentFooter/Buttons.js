@@ -80,6 +80,40 @@ class Buttons extends React.Component {
       reactionsModalVisible: false,
     });
   }
+	LikeIntended(){
+		const { pendingVotes, comment, user} = this.props
+		const pendingVote = find(pendingVotes, { id: comment.id });
+    const pendingLike = pendingVote && (pendingVote.percent > 0 || pendingVote.vote === 'like');
+    const pendingDislike = pendingVote && (pendingVote.percent < 0 || pendingVote.vote === 'dislike');
+		const userVote = find(comment.active_votes, { voter: user.name });
+		const userUpVoted = userVote && userVote.percent > 0;
+
+		return (pendingLike || userUpVoted && !pendingLike) && !pendingDislike
+	}
+	DislikeIntended(){
+		const { pendingVotes, comment, user} = this.props
+		const pendingVote = find(pendingVotes, { id: comment.id });
+    const pendingLike = pendingVote && (pendingVote.percent > 0 || pendingVote.vote === 'like');
+    const pendingDislike = pendingVote && (pendingVote.percent < 0 || pendingVote.vote === 'dislike');
+		const userVote = find(comment.active_votes, { voter: user.name });
+		const userDownVoted = userVote && userVote.percent < 0;
+
+		return (pendingDislike || userDownVoted && !pendingDislike) && !pendingLike
+	}
+	LikeAdjust(){
+		const { comment, user } = this.props
+		const userVote = find(comment.active_votes, { voter: user.name });
+		const userUpVoted = userVote && userVote.percent > 0;
+	
+		return (this.LikeIntended() ? (userUpVoted ? 0 : 1) : (userUpVoted ? -1 : 0))
+	}
+	DislikeAdjust(){
+		const { comment, user } = this.props
+		const userVote = find(comment.active_votes, { voter: user.name });
+		const userDownVoted = userVote && userVote.percent < 0;
+	
+		return (this.DislikeIntended() ? (userDownVoted ? 0 : 1) : (userDownVoted ? -1 : 0))
+	}
 
   render() {
     const {
@@ -95,7 +129,7 @@ class Buttons extends React.Component {
 
     const pendingVote = find(pendingVotes, { id: comment.id });
     const pendingLike = pendingVote && (pendingVote.percent > 0 || pendingVote.vote === 'like');
-    const pendingDisLike =
+    const pendingDislike =
       pendingVote && (pendingVote.percent < 0 || pendingVote.vote === 'dislike');
 
     const payout = calculatePayout(comment);
@@ -104,7 +138,9 @@ class Buttons extends React.Component {
     const downVotes = getDownvotes(comment.active_votes)
       .sort(sortVotes)
       .reverse();
-
+		const upVotesLength = upVotes.length + this.LikeAdjust()
+		const downVotesLength = downVotes.length + this.DislikeAdjust()
+	
     const totalPayout =
       parseFloat(comment.pending_payout_value) +
       parseFloat(comment.total_payout_value) +
@@ -146,12 +182,28 @@ class Buttons extends React.Component {
     const userDownVoted = userVote && userVote.percent < 0;
 
     let likeTooltip = <span>{intl.formatMessage({ id: 'like' })}</span>;
-    if (userUpVoted) {
+    if (this.LikeIntended()) {
       likeTooltip = <span>{intl.formatMessage({ id: 'unlike', defaultMessage: 'Unlike' })}</span>;
     } else if (defaultVotePercent !== 10000) {
       likeTooltip = (
         <span>
           {intl.formatMessage({ id: 'like' })}{' '}
+          {/* <span style={{ opacity: 0.5 }}>
+            <FormattedNumber
+              style="percent" // eslint-disable-line
+              value={defaultVotePercent / 10000}
+            />
+          </span> */}
+        </span>
+      );
+    }
+    let dislikeTooltip = <span>{intl.formatMessage({ id: 'dislike' })}</span>;
+    if (this.DislikeIntended()) {
+      dislikeTooltip = <span>{intl.formatMessage({ id: 'undislike', defaultMessage: 'Undislike' })}</span>;
+    } else if (defaultVotePercent !== 10000) {
+      dislikeTooltip = (
+        <span>
+          {intl.formatMessage({ id: 'dislike' })}{' '}
           {/* <span style={{ opacity: 0.5 }}>
             <FormattedNumber
               style="percent" // eslint-disable-line
@@ -170,18 +222,14 @@ class Buttons extends React.Component {
           <a
             role="presentation"
             className={classNames('CommentFooter__link', {
-              'CommentFooter__link--active': userUpVoted || (pendingLike && !pendingDisLike),
+              'CommentFooter__link--active': this.LikeIntended(),
             })}
             onClick={this.handleLikeClick}
           >
-            {/* {pendingLike ? <Icon type="loading" /> : <i className="iconfont icon-praise_fill" />} */}
-            {pendingLike ? 
-							<i className="iconfont icon-praise_fill" /> 
-							: 
-							<i className="iconfont icon-praise_fill" />}
+						<i className="iconfont icon-praise_fill" />
           </a>
         </BTooltip>
-        {upVotes.length > 0 && (
+        {(upVotesLength > 0) && (
           <span
             className="CommentFooter__count"
             role="presentation"
@@ -195,28 +243,23 @@ class Buttons extends React.Component {
                 </div>
               }
             >
-              <FormattedNumber value={upVotes.length} />
+              <FormattedNumber value={upVotesLength} />
               <span />
             </BTooltip>
           </span>
         )}
-        <BTooltip title={intl.formatMessage({ id: 'dislike', defaultMessage: 'Dislike' })}>
+        <BTooltip title={dislikeTooltip}>
           <a
             role="presentation"
             className={classNames('CommentFooter__link', {
-              'CommentFooter__link--active': userDownVoted || (pendingDisLike && !pendingLike),
+              'CommentFooter__link--active': this.DislikeIntended(),
             })}
             onClick={this.handleDislikeClick}
           >
-            {pendingDisLike ? (
-							// <Icon type="loading" />
-							<i className="iconfont icon-praise_fill Comment__icon_dislike" />
-            ) : (
-              <i className="iconfont icon-praise_fill Comment__icon_dislike" />
-            )}
+						<i className="iconfont icon-praise_fill Comment__icon_dislike" />
           </a>
         </BTooltip>
-        {downVotes.length > 0 && (
+        {(downVotesLength > 0) && (
           <span
             className="CommentFooter__count"
             role="presentation"
@@ -230,7 +273,7 @@ class Buttons extends React.Component {
                 </div>
               }
             >
-              <FormattedNumber value={downVotes.length} />
+              <FormattedNumber value={downVotesLength} />
               <span />
             </BTooltip>
           </span>

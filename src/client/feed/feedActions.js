@@ -26,8 +26,9 @@ export const getFeedContent = ({ sortBy='trending', category, limit = 20 }) => (
   dispatch,
   getState,
   { blockchainAPI },
-) =>
-  dispatch({
+) => {
+	console.log('getting feed content')
+  return dispatch({
 		type: GET_FEED_CONTENT.ACTION,
     payload: getDiscussionsFromAPI(sortBy, { tag: category, limit }, blockchainAPI),
     meta: {
@@ -36,6 +37,7 @@ export const getFeedContent = ({ sortBy='trending', category, limit = 20 }) => (
       limit,
     },
   });
+}
 
 export const getMoreFeedContent = ({ sortBy, category, limit = 20 }) => (
   dispatch,
@@ -53,7 +55,7 @@ export const getMoreFeedContent = ({ sortBy, category, limit = 20 }) => (
 
   const startAuthor = lastPost.author;
   const startPermlink = lastPost.permlink;
-
+	console.log('getting more feed content')
   return dispatch({
     type: GET_MORE_FEED_CONTENT.ACTION,
     payload: getDiscussionsFromAPI(

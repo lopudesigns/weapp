@@ -21,6 +21,9 @@ export const LOGOUT = '@auth/LOGOUT';
 export const UPDATE_SC2_USER_METADATA = createAsyncActionType('@auth/UPDATE_SC2_USER_METADATA');
 export const BUSY_LOGIN = createAsyncActionType('@auth/BUSY_LOGIN');
 
+// export const weauthjsInstanceAction = createAsyncActionType('@auth/weauthjsInstanceAction');
+export const weauthjsInstanceAction = '@auth/weauthjsInstanceAction';
+
 const loginError = createAction(LOGIN_ERROR);
 
 export const login = () => (dispatch, getState, { weauthjsInstance }) => {

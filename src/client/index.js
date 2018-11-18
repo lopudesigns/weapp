@@ -10,6 +10,7 @@ import getStore from './store';
 import AppHost from './AppHost';
 import { getBrowserLocale, loadLanguage } from './translations';
 import { setUsedLocale } from './app/appActions';
+import { weauthjsInstanceAction } from './auth/authActions';
 import { getLocale } from './reducers';
 require('./wehelpjs.js')
 
@@ -32,6 +33,11 @@ message.config({
 const render = async Component => {
 	
   const state = store.getState();
+
+	store.dispatch({
+		type: weauthjsInstanceAction,
+		payload: weauthjsInstance
+	})
 
   const userLocale = getLocale(state);
 

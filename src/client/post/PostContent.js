@@ -182,20 +182,20 @@ class PostContent extends React.Component {
     if (isBannedPost(content)) return <DMCARemovedMessage className="center" />;
 
     const postMetaData = jsonParse(content.json);
-    const nativeHost = appUrl || 'https://alpha.weyoume.io';
+    const nativeHost = appUrl || 'https://alpha.weyoume.src';
     let canonicalHost = nativeHost;
 
     if (postMetaData && _.indexOf(postMetaData.app, 'steemit') === 0) {
       canonicalHost = 'https://steemit.com';
     }
     if (postMetaData && _.indexOf(postMetaData.app, 'weyoume') === 0) {
-      canonicalHost = 'https://alpha.weyoume.io';
+      canonicalHost = 'https://alpha.weyoume.src';
     }
     if (postMetaData && _.indexOf(postMetaData.app, 'weapp') === 0) {
-      canonicalHost = 'https://alpha.weyoume.io';
+      canonicalHost = 'https://alpha.weyoume.src';
     }
     if (postMetaData && _.indexOf(postMetaData.app, 'alpha.weyoume') === 0) {
-      canonicalHost = 'https://alpha.weyoume.io';
+      canonicalHost = 'https://alpha.weyoume.src';
     }
 
     const userVote = _.find(content.active_votes, { voter: user.name }) || {};
@@ -206,6 +206,7 @@ class PostContent extends React.Component {
       isSaved: !!bookmarks[content.id],
       isLiked: userVote.percent > 0,
       isReported: userVote.percent < 0,
+      isDisliked: userVote.percent < 0,
       userFollowed: followingList.includes(content.author),
     };
 
@@ -219,7 +220,12 @@ class PostContent extends React.Component {
       (pendingLikes[content.id].weight < 0 ||
         (pendingLikes[content.id].weight === 0 && postState.isReported));
 
-    const { title, category, created, author, body } = content;
+    const pendingDislike =
+      pendingLikes[content.id] &&
+      (pendingLikes[content.id].weight < 0 ||
+        (pendingLikes[content.id].weight === 0 && postState.isDisliked));
+
+		const { title, category, created, author, body } = content;
     const postMetaImage = postMetaData && postMetaData.image && postMetaData.image[0];
     const htmlBody = getHtml(body, {}, 'text');
     const bodyText = sanitize(htmlBody, { allowedTags: [] });
@@ -258,7 +264,8 @@ class PostContent extends React.Component {
           signature={signature}
           commentCount={content.children}
           pendingLike={pendingLike}
-          pendingFlag={pendingFlag}
+					pendingFlag={pendingFlag}
+					pendingDislike={pendingDislike}
           pendingFollow={pendingFollows.includes(content.author)}
           pendingBookmark={pendingBookmarks.includes(content.id)}
           saving={saving}

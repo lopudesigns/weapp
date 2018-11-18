@@ -17,6 +17,7 @@ import Affix from '../components/Utils/Affix';
 import LeftSidebar from '../app/Sidebar/LeftSidebar';
 import requiresLogin from '../auth/requiresLogin';
 import './Settings.less';
+import fetch from 'isomorphic-fetch';
 
 const FormItem = Form.Item;
 
@@ -41,7 +42,8 @@ function mapPropsToFields(props) {
 @injectIntl
 @connect(state => ({
   user: getAuthenticatedUser(state),
-  reloading: getIsReloading(state),
+	reloading: getIsReloading(state),
+	weauthjsInstance
 }))
 @Form.create({
   mapPropsToFields,
@@ -92,9 +94,39 @@ export default class ProfileSettings extends React.Component {
               [b]: values[b] || '',
             }),
             {},
-          );
-        const win = window.open(weauthjsInstance.sign('profile-update', cleanValues), '_blank');
-        win.focus();
+					);
+				fetch(process.env.AUTH_URL+'/api/do',
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						do: 'profile-update',
+						args: cleanValues,
+						auth: {
+							token: weauthjsInstance.options.accessToken
+						}
+					}),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+				.then(res=>res.json())
+				.then(res=>{
+					console.log('res', res)
+				})
+				var w=500
+				var h=700
+				// Fixes dual-screen position                         Most browsers      Firefox
+				var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+				var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+		
+				var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+				var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+		
+				var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+				var top = ((height / 2) - (h / 2)) + dualScreenTop;
+
+        // const win = window.open(weauthjsInstance.sign('profile-update', cleanValues),'_blank','scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+        // win.focus();
       }
     });
   }

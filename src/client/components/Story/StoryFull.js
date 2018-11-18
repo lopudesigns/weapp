@@ -203,7 +203,7 @@ class StoryFull extends React.Component {
       onShareClick,
       onEditClick,
     } = this.props;
-    const { isReported } = postState;
+    const { isReported, isDisliked } = postState;
 
     const { open, index } = this.state.lightbox;
 

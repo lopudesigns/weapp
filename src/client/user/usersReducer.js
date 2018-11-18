@@ -5,7 +5,7 @@ const initialState = {
   users: {},
 };
 
-const getUserDetailsKey = username => `user-${username}`;
+const getUserDetailsKey = username => `${username}`;
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {

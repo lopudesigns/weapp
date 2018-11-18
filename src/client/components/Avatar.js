@@ -2,24 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.less';
 import { connect } from 'react-redux';
-let s = require('smarts')({node: {}})
+import { getAccount } from '../user/usersActions';
+const s = require('smarts')()
 // import {
 // 	getAuthenticatedUser,
 // 	getUser
 // } from '../reducers';
 
-// @connect((state, ownProps) => ({
-// 		user: getUser(state, ownProps.username),
-// }))
-
+@connect((state, ownProps) => ({
+	// test: 'hmm',
+	// testStateValue: state.users,
+	// state: state,
+	profilePicture: s.getsmart(state, `users.users.${ownProps.username}.json.profile.profile_image`, s.getsmart(state, `users.users.${ownProps.username}`, false) ? 'unset' : undefined),
+	// profilePicture: state[`users.${ownProps.username}.json.profile.profile_image`],
+	// users: state.users,
+	s,
+}),{
+	getAccount
+})
 class Avatar extends React.Component {
 	
 	constructor(props){
 		super(props)
 		this.getProfilePicture = this.getProfilePicture.bind(this)
-		this.state = {
-			profilePicture: undefined
-		}
 	}
 
 	static propTypes = {
@@ -33,44 +38,10 @@ class Avatar extends React.Component {
 	};
 
 	componentDidMount(){
-		var help;
-		var cached;
-		if(typeof window !== 'undefined' && window.wehelpjs ){
-			help = window.wehelpjs
-			if(!window.ppc) window.ppc = []
-			cached = window.ppc
-		} else if(typeof global !== 'undefined' && global.wehelpjs ){
-			help = global.wehelpjs			
-			if(!global.ppc) global.ppc = []
-			cached = global.ppc
-		}		
-		if(cached[this.props.username]){
-			this.setState({
-				profilePicture: cached[this.props.username]
-			})
-			this.forceUpdate()
-		} else {
-			help.api.getAccountsAsync([this.props.username])
-			.then((res,err)=>{
-				if(!err && res){
-					let profile = res[0].json ? JSON.parse(res[0].json)['profile'] : undefined
-					let profilePicture = profile ? profile['profile_image'] : undefined
-					console.log('profilePicture', profilePicture)
-					this.setState({
-						profilePicture: profilePicture
-					})
-					cached[this.props.username] = profilePicture
-					this.forceUpdate()
-				} else if(err){
-					console.error('err', err)
-				}
-			})
-			.catch(err=>{
-				console.error('err', err)
-			})
-			this.forceUpdate()
+		if(!this.props.profilePicture && this.props.profilePicture != 'unset'){
+			this.props.getAccount(`${this.props.username}`)
 		}
-	};
+	}
 
 	componentDidUpdate(){
 		// this.getProfilePicture();
@@ -80,9 +51,8 @@ class Avatar extends React.Component {
 	};
 
   render(){
-		let { username, size } = this.props;
-		let { profilePicture } = this.state
-		// let json = JSON.parse()
+		let { username, size, profilePicture } = this.props;
+
 		let style = {
 			minWidth: `${size}px`,
 			width: `${size}px`,
@@ -107,7 +77,7 @@ export default Avatar;
 
 export function getAvatarURL(profilePicture, size = 100) {
 
-	return profilePicture ? ( size > 64
+	return (profilePicture && profilePicture !== 'unset') ? ( size > 64
 			? `https://steemitimages.com/128x128/${profilePicture}`
 			: `https://steemitimages.com/64x64/${profilePicture}`
 		) : ( size > 64

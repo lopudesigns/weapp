@@ -43,11 +43,11 @@ const mapStateToProps = (state, { id }) => {
   const pendingVote = getPendingLikes(state)[post.id];
 
   const pendingLike =
-    pendingVote && (pendingVote.weight > 0 || (pendingVote.weight === 0 && postState.isLiked));
+    pendingVote && (pendingVote.weight > 0 || (pendingVote.weight === 0 && !postState.isLiked));
 	const pendingDislike =
-    pendingVote && (pendingVote.weight < 0 || (pendingVote.weight === 0 && postState.isReported));
+    pendingVote && (pendingVote.weight < 0 || (pendingVote.weight === 0 && !postState.isDisliked));
 	const pendingFlag =
-    pendingVote && (pendingVote.weight < 0 || (pendingVote.weight === 0 && postState.isReported));
+    pendingVote && (pendingVote.weight < 0 || (pendingVote.weight === 0 && !postState.isReported));
 
   return {
     user,

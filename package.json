@@ -17,7 +17,8 @@
     "prettier-check-all": "node ./scripts/prettier/tasks/checkFiles.js all",
     "prettier-file": "node ./scripts/prettier/tasks/formatFile.js",
     "build": "node ./scripts/build.js",
-    "dev": "node ./scripts/dev.js",
+    "dev": "yarn devaux",
+    "devaux": "node ./scripts/dev.js",
     "start": "node ./build/server.js",
     "run": "yarn run build && yarn run start",
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -26,10 +27,10 @@
     "test:coverage": "jest --coverage",
     "eslint-autofix": "eslint --fix \"src/**/*.js\"",
     "heroku-prebuild": "npm i -g pm2 && pm2 install pm2-logrotate",
-		"heroku-postbuild": "npm run build",
-		"commit" : "git add . ; git commit -m 'ready'",
+    "heroku-postbuild": "npm run build",
+    "commit": "git add . ; git commit -m 'ready'",
     "push": "npm run commit ; git push origin dev",
-		"pull": "git pull origin dev"
+    "pull": "git pull origin dev"
   },
   "husky": {
     "hooks": {}
@@ -111,7 +112,7 @@
     "url-search-params-polyfill": "^2.0.0",
     "uuid": "^3.1.0",
     "weauthjs": "^1.1.155",
-    "wehelpjs": "^0.6.9",
+    "wehelpjs": "0.6.70",
     "welitejs": "1.1.130",
     "weliterpcjs": "^1.1.32",
     "weschemajs": "^1.2.8",

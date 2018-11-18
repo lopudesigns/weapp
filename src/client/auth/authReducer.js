@@ -63,7 +63,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userSCMetaData: action.payload.user_metadata,
-      };
+			};
+		case types.weauthjsInstanceAction:
+			return {
+				...state,
+				weauthjsInstance: action.payload
+			}
     default:
       return state;
   }

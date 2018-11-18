@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import { getFeedContent } from './feedActions';
 import { getIsLoaded, getIsAuthenticated } from '../reducers';
 import SubFeed from './SubFeed';
-// import HeroBannerContainer from './HeroBannerContainer';
+import AuthBanner from '../components/AuthBanner';
 import LeftSidebar from '../app/Sidebar/LeftSidebar';
 import RightSidebar from '../app/Sidebar/RightSidebar';
 import TopicSelector from '../components/TopicSelector';
@@ -65,7 +65,7 @@ class Page extends React.Component {
         </Helmet>
         <ScrollToTop />
         <ScrollToTopOnMount />
-				{/* <HeroBannerContainer /> */}
+				<AuthBanner />
 				
         <div className="shifted">
           <div className="feed-layout container">

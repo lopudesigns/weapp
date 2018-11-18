@@ -51,7 +51,7 @@ export default class Buttons extends React.Component {
     onDislikeClick: () => {},
     onShareClick: () => {},
     handlePostPopoverMenuClick: () => {},
-    handleTransferClick: () => {},
+		handleTransferClick: () => {},
   };
 
   static handleCommentClick() {
@@ -152,7 +152,7 @@ export default class Buttons extends React.Component {
 			ownPost,
 			handleTransferClick
     } = this.props;
-    const { isReported } = postState;
+    const { isReported, isDisliked } = postState;
 
     let followText = '';
 
@@ -254,7 +254,7 @@ export default class Buttons extends React.Component {
     ];
 
     return (
-			<div className="button__group">
+			<div className="button__group button__group__unpadded">
 				<Popover
 					placement="bottomRight"
 					trigger="click"
@@ -270,6 +270,22 @@ export default class Buttons extends React.Component {
     );
   }
 
+	LikeIntended(){
+		const { pendingLike, pendingDislike, postState} = this.props
+		return (pendingLike || (postState.isLiked && !pendingLike)) && !pendingDislike
+	}
+	DislikeIntended(){
+		const { pendingLike, pendingDislike, postState} = this.props
+		return (pendingDislike || (postState.isDisliked && !pendingDislike)) && !pendingLike
+	}
+	LikeAdjust(){
+		const { postState } = this.props
+		return (this.LikeIntended() ? (postState.isLiked ? 0 : 1) : (postState.isLiked ? -1 : 0))
+	}
+	DislikeAdjust(){
+		const { postState } = this.props
+		return (this.DislikeIntended() ? (postState.isDisliked ? 0 : 1) : (postState.isDisliked ? -1 : 0))
+	}
   render() {
     const { intl, post, postState, pendingLike, pendingDislike, pendingFlag, ownPost, defaultVotePercent } = this.props;
 
@@ -277,8 +293,9 @@ export default class Buttons extends React.Component {
     const downVotes = getDownvotes(post.active_votes)
       .sort(sortVotes)
       .reverse();
-
-    const totalPayout =
+		const upVotesLength = upVotes.length + this.LikeAdjust()
+		const downVotesLength = downVotes.length + this.DislikeAdjust()
+		const totalPayout =
       parseFloat(post.pending_payout_value) +
       parseFloat(post.total_payout_value) +
       parseFloat(post.curator_payout_value);
@@ -335,8 +352,8 @@ export default class Buttons extends React.Component {
       </p>
     );
 
-    const likeClass = classNames({ active: postState.isLiked || (pendingLike && !pendingDislike), Buttons__link: true });
-    const dislikeClass = classNames({ active: postState.isDisliked || (!pendingLike && pendingDislike), Buttons__link: true });
+    const likeClass = classNames({ active: this.LikeIntended(), Buttons__link: true });
+    const dislikeClass = classNames({ active: this.DislikeIntended(), Buttons__link: true });
     const rebloggedClass = classNames({ active: postState.isReblogged, Buttons__link: true });
 
     const commentsLink =
@@ -361,7 +378,7 @@ export default class Buttons extends React.Component {
 		}
 		
     let dislikeTooltip = <span>{intl.formatMessage({ id: 'dislike' })}</span>;
-    if (postState.isDisliked) {
+    if (this.DislikeIntended()) {
       dislikeTooltip = <span>{intl.formatMessage({ id: 'undislike', defaultMessage: 'Undislike' })}</span>;
     } else if (defaultVotePercent !== 10000) {
       dislikeTooltip = (
@@ -382,41 +399,36 @@ export default class Buttons extends React.Component {
 				<div className="button__group">
 					<BTooltip title={likeTooltip}>
 						<a role="presentation" className={likeClass} onClick={this.handleLikeClick}>
-							{pendingLike ? (
-								// <Icon type="loading" />
 								<i
 									className={`iconfont icon-${this.state.sliderVisible ? 'right' : 'praise_fill'}`}
 								/>
-
-							) : (
-								<i
-									className={`iconfont icon-${this.state.sliderVisible ? 'right' : 'praise_fill'}`}
-								/>
-							)}
 						</a>
 					</BTooltip>
 					{/* {post.active_votes.length > 0 && upVotes.length > 0 && ( */}
-						<span
-							className="Buttons__number Buttons__reactions-count"
-							role="presentation"
-							onClick={this.handleShowReactions}
+					<span
+						className="Buttons__number Buttons__reactions-count"
+						role="presentation"
+						onClick={this.handleShowReactions}
+					>
+						<BTooltip
+							title={
+								<div>
+									{(upVotesLength > 0 )  ? (
+										upVotesPreview
+									) : (
+										<FormattedMessage id="no_likes" defaultMessage="No likes yet" />
+									)}
+									{upVotesMore}
+								</div>
+							}
 						>
-							<BTooltip
-								title={
-									<div>
-										{upVotes.length > 0 ? (
-											upVotesPreview
-										) : (
-											<FormattedMessage id="no_likes" defaultMessage="No likes yet" />
-										)}
-										{upVotesMore}
-									</div>
-								}
-							>
-								{ upVotes.length > 0 && <FormattedNumber value={upVotes.length} /> }
-								<span />
-							</BTooltip>
-						</span>
+							{ 
+								(upVotesLength > 0) && 
+								<FormattedNumber value={upVotesLength} /> 
+							}
+							{/* <span /> */}
+						</BTooltip>
+					</span>
 				</div>
         {/* )} */}
 				<div className="button__group">
@@ -426,16 +438,9 @@ export default class Buttons extends React.Component {
 							role="presentation" 
 							className={dislikeClass} 
 							onClick={this.handleDislikeClick}>
-							{pendingDislike ? (
-								// <Icon type="loading" />
 								<i
 									className={`iconfont icon-${this.state.sliderVisible ? 'right' : 'thumb-down'}`}
 								/>
-							) : (
-								<i
-									className={`iconfont icon-${this.state.sliderVisible ? 'right' : 'thumb-down'}`}
-								/>
-							)}
 						</a>
 					</BTooltip>
 					<span
@@ -446,7 +451,7 @@ export default class Buttons extends React.Component {
 						<BTooltip
 							title={
 								<div>
-									{downVotes.length > 0 ? (
+									{ (downVotesLength > 0) ? (
 										downVotesPreview
 									) : (
 										<FormattedMessage id="no_dislikes" defaultMessage="No dislikes yet" />
@@ -455,8 +460,11 @@ export default class Buttons extends React.Component {
 								</div>
 							}
 						>
-							{ downVotes.length > 0 && <FormattedNumber value={downVotes.length} /> }
-							<span />
+							{ 
+								(downVotesLength > 0) && 
+								<FormattedNumber value={downVotesLength} /> 
+							}
+							{/* <span /> */}
 						</BTooltip>
 					</span>
 				</div>

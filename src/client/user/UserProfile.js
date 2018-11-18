@@ -16,6 +16,7 @@ import { showPostModal } from '../app/appActions';
 import EmptyUserProfile from '../statics/EmptyUserProfile';
 import EmptyUserOwnProfile from '../statics/EmptyUserOwnProfile';
 import PostModal from '../post/PostModalContainer';
+import QuickPostEditor from '../components/QuickPostEditor/QuickPostEditor';
 
 @withRouter
 @connect(
@@ -52,7 +53,7 @@ export default class UserProfile extends React.Component {
   componentDidMount() {
     const { match, limit } = this.props;
     const { name } = match.params;
-
+		console.log('this.props.getFeedContent in componentDidMount')
     this.props.getFeedContent({
       sortBy: 'blog',
       category: name,
@@ -78,6 +79,7 @@ export default class UserProfile extends React.Component {
     return (
       <div>
         <div className="profile">
+					{isOwnProfile && <QuickPostEditor />}
           <Feed
             content={content}
             isFetching={isFetching}

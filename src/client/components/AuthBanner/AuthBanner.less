@@ -1,0 +1,151 @@
+@import (reference) '../../styles/custom.less';
+@import (reference) '../../styles/modules/variables.less';
+
+.AuthBanner {
+	padding: 70px 5px 50px 5px;
+  position: relative;
+  background-image: url('/images/banner.svg');
+  background-color: @white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: @base-border;
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 30px;
+    color: @primary-color;
+    z-index: 1;
+    cursor: pointer;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: @white-gainsboro;
+    }
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    // margin: 0 auto;
+    // max-width: @container-width;
+    // padding: 16px;
+		width: 100%;
+		max-width: 100;
+    @media @medium {
+      // padding: 16px 0;
+    }
+  }
+	&__content-positioner {
+    display: flex;
+    flex-direction: column;
+		align-items: center;
+		&:first-child {
+			width: auto;
+			min-width: 52.5%;
+			max-width: 52.5vw;
+			justify-content: center;
+			align-items: flex-end;
+		}
+		&:last-child {
+			// width: 40%;
+			margin-top: -10px;
+			// margin-left: 0px;
+			// margin-right: 0px;
+			align-items: flex-start;
+			.AuthBanner__content {
+				// width: auto;
+				// width: 100%;
+			}
+		}
+	}
+  &__content {
+    display: flex;
+    flex-direction: column;
+		justify-content: flex-start;
+    // align-items: ;
+		// max-width: 50vw;
+    &__description {
+			// width: 230px;
+			width: auto;
+      display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+    }
+
+    &__title {
+			width: auto;
+			max-width: 470px;
+      display: flex;
+      font-size: 20px;
+			font-weight: 800;
+			letter-spacing: 0px;
+      color: lighten(@black,25%);
+			line-height: 29px;
+			&.createAnAccount {
+				font-size: 37px;
+				max-width: none;
+			}
+			&.createAnAccountSubtitle {
+				padding-top: 8px;
+				font-weight: normal;
+			}
+    }
+		.wymNetwork {
+			width: auto;
+			height: auto;
+		}
+    &__image {
+      height: 115px;
+      width: 135px;
+      margin-bottom: 15px;
+    }
+
+    &__number {
+      margin-right: 20px;
+      font-weight: bold;
+      background-color: @primary-color;
+      color: @white;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__content-container {
+    display: none;
+    flex-direction: row;
+    width: 100%;
+    // justify-content: space-around;
+
+    @media @small {
+      display: flex;
+    }
+  }
+}
+
+div[data-dir='rtl'] .AuthBanner {
+  &__container {
+    @media @medium {
+      padding: 16px 0;
+    }
+  }
+}

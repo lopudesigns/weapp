@@ -142,4 +142,4 @@ export const createAsyncActionType = type => ({
   ERROR: `${type}_ERROR`,
 });
 
-export const getUserDetailsKey = username => `user-${username}`;
+export const getUserDetailsKey = username => `${username}`;

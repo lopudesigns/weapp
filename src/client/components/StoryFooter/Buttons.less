@@ -10,7 +10,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	flex-direction: row;
-	flex-wrap: wrap;
+	flex-wrap: no-wrap;
 	.button__group {
 		position: relative;
 		display: flex;
@@ -18,19 +18,30 @@
 		justify-content: center;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		padding-left: 16px;
-		padding-right: 14px;
-		margin-right: 10px;
-		&:first-child {
-			padding-left: 0px
-		}
+		padding-right: 60px;
 		@media (max-width: @small-bp){
-			padding-left: 8px;
-			padding-right: 10px;
-			margin-right: 8px;	
+			padding-right: 40px;
+			// margin-right: 8px;	
+		}
+		@media (max-width: @xsmall-bp){
+			padding-right: 44px;
+			// margin-right: 8px;	
+		}
+		&__unpadded {
+			padding-right: 0px;
 		}
 	}
-	
+	&__number {
+		position: absolute;
+		vertical-align: 3px;
+		// min-width: 15px;
+		left: 35px;
+		// margin-right: 10px;
+		@media (max-width: @xsmall-bp){
+			left: 34px;
+		}
+  }
+
   &__reactions-count {
     cursor: pointer;
     &:hover {
@@ -67,13 +78,6 @@
     }
   }
 
-  &__number {
-		position: absolute;
-		vertical-align: 3px;
-		// min-width: 15px;
-		right: 0px;
-    // margin-right: 10px;
-  }
 
   &__dislike:before {
     display: inline-block;
@@ -82,7 +86,9 @@
   }
 
   &__share {
-    vertical-align: -1px;
+		vertical-align: -1px;
+		// margin-left: -2px;
+		// left: -5px;
     // margin-right: 10px !important;
   }
 
@@ -97,7 +103,8 @@
   }
 
   &__post-menu {
-    cursor: pointer;
+		cursor: pointer;
+		margin-left: -10px;
     &:hover {
       color: @primary-color;
     }

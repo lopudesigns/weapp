@@ -60,7 +60,7 @@ export const votePost = (postId, author, permlink, weight = 10000) => (
         }
 
         // Delay to make sure you get the latest data (unknown issue with API)
-        setTimeout(() => dispatch(getContent(post.author, post.permlink, true)), 1000);
+        setTimeout(() => dispatch(getContent(post.author, post.permlink, true)), 100);
         return res;
       }),
     },
